@@ -21,18 +21,12 @@ function populateRoom() {
         console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'harvester'}});
-    }
-    
-    // Check if there is one upgrader
-    if(GetCreepsByRole("upgrader").length < 1) {
+    } else if(GetCreepsByRole("upgrader").length < 1) {
         var newName = 'Upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'upgrader'}});
-    }
-    
-    // Check if there is one builder
-    if(GetCreepsByRole("builder").length < 1) {
+    } else if(GetCreepsByRole("builder").length < 1) {
         var newName = 'Builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
@@ -49,6 +43,8 @@ module.exports.loop = function () {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
+  
+    populateRoom();
 
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
