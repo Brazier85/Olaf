@@ -4,24 +4,50 @@ var roleBuilder = require('role.builder');
 
 var stats = [];
 
+function GetCreepsByRole(role){
+  var CreepList = [];
+    for (var creepname in Game.creeps){
+      if (Game.creeps[creepname].memory.role == role){
+      CreepList.push(Game.creeps[creepname]);
+    }
+  }
+  return CreepList
+}
+
+function populateRoom() {
+    // Check if there are two harvesters
+    if(GetCreepsByRole("harvester").length < 2) {
+        var newName = 'Harvester' + Game.time;
+        console.log('Spawning new harvester: ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            {memory: {role: 'harvester'}});
+    }
+    
+    // Check if there is one upgrader
+    if(GetCreepsByRole("upgrader").length < 1) {
+        var newName = 'Upgrader' + Game.time;
+        console.log('Spawning new upgrader: ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            {memory: {role: 'upgrader'}});
+    }
+    
+    // Check if there is one builder
+    if(GetCreepsByRole("builder").length < 1) {
+        var newName = 'Builder' + Game.time;
+        console.log('Spawning new builder: ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            {memory: {role: 'builder'}});
+    }
+}
+
 module.exports.loop = function () {
 
+    //Cleanup destroyed things
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
         }
-    }
-
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    stats.["harvester"] = harvesters.length;
-    console.log(stats);
-
-    if(harvesters.length < 2) {
-        var newName = 'Harvester' + Game.time;
-        console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-            {memory: {role: 'harvester'}});
     }
 
     if(Game.spawns['Spawn1'].spawning) {
