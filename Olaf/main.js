@@ -9,10 +9,11 @@ var Populate = require('populate');
 var snowflakes = [];
 
 function GetSnowflakes() {
-    var flakes = [];
-    flakes["harvester"] = 0;
-    flakes["upgrader"] = 0;
-    flakes["builder"] = 0;
+    var flakes = new Array(
+        {name: "harvester", count: 0},
+        {name: "upgrader", count: 0},
+        {name: "builder", count: 0},
+    )
 
     for (var creepname in Game.creeps){
       var role = Game.creeps[creepname].memory.role;
@@ -24,6 +25,7 @@ function GetSnowflakes() {
           flakes["builder"]++;
       }
     }
+    console.log(flakes["harvester"]);
     return flakes;
 }
 
