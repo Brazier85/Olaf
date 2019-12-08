@@ -2,33 +2,39 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
-var tracker = ["harvester","upgrader","builder"];
+var harvester=0, upgrader = 0, builder = 0;
 
 function GetCreeps() {
     for (var creepname in Game.creeps){
       var role = Game.creeps[creepname].memory.role;
-      tracker[role].push(Game.creeps[creepname])
+      if (role == "harvester") {
+        harvester++;
+      } else if ( role == "upgrader" ) {
+          upgrader++;
+      } else if ( role == "builder" ) {
+          builder++;
+      }
     }
 }
 
 function PopulateRoom() {
     // Check if there are two harvesters
-    if(tracker["harvester"].length < 2) {
+    if ( harvester < 2 ) {
         var newName = 'Harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'harvester'}});
-    } else if(tracker["upgrader"].length < 1) {
+    } else if ( upgrader < 1 ) {
         var newName = 'Upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'upgrader'}});
-    } else if(tracker["builder"].length < 1) {
+    } else if ( builder < 1 ) {
         var newName = 'Builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'builder'}});
-    }
+    } 
 }
 
 module.exports.loop = function () {
