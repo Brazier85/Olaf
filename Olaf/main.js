@@ -5,6 +5,9 @@ var roleBuilder = require('role.builder');
 var harvester=0, upgrader = 0, builder = 0;
 
 function GetCreeps() {
+    harvester = 0;
+    upgrader = 0;
+    builder = 0;
     for (var creepname in Game.creeps){
       var role = Game.creeps[creepname].memory.role;
       if (role == "harvester") {
