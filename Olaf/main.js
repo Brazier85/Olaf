@@ -2,34 +2,31 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
+//Room functions
 var Populate = require('populate');
 
-var harvester=0, upgrader = 0, builder = 0;
+//Our creeps
+var snowflakes = [];
 
-function GetCreeps() {
-    harvester = 0;
-    upgrader = 0;
-    builder = 0;
+function GetSnowflakes() {
+    var flakes = [];
+    flakes["harvester"] = 0;
+    flakes["upgrader"] = 0;
+    flakes["builder"] = 0;
+
     for (var creepname in Game.creeps){
       var role = Game.creeps[creepname].memory.role;
       if (role == "harvester") {
-        harvester++;
+          flakes["harvester"]++;
       } else if ( role == "upgrader" ) {
-          upgrader++;
+          flakes["upgrader"]++;
       } else if ( role == "builder" ) {
-          builder++;
+          flakes["builder"]++;
       }
     }
+    return flakes;
 }
 
-function GetResources() {
-    var sources = creep.room.find(FIND_SOURCES_ACTIVE);
-    if ( sources.length > 1 ) {
-        for ( var source in sources) {
-            var id = source.id;
-        }
-    }
-}
 
 module.exports.loop = function () {
 
@@ -41,9 +38,9 @@ module.exports.loop = function () {
         }
     }
   
-    GetCreeps();
+    snowflakes = GetSnowflakes();
   
-    Populate.PopulateRoom();
+    Populate.PopulateRoom(snowflakes);
 
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
