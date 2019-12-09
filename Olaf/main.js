@@ -1,8 +1,5 @@
 var _ = require("lodash");
 
-//Setting up the room
-require('roomvars');
-
 // Creep roles
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
@@ -13,7 +10,10 @@ var Populate = require('populate');
 
 module.exports.loop = function () {
 
-    var creepRoom = creep.room.name;
+    //Setting up our memory
+    require('memory');
+
+    var creepRoom = _.room.name;
 
     //Cleanup destroyed things
     for(var name in Memory.creeps) {

@@ -1,6 +1,7 @@
 //Lets first add a shortcut prototype to the sources memory:
 Source.prototype.memory = undefined;
 
+// Get all sources in a Room
 for(var roomName in Game.rooms){//Loop through all rooms your creeps/structures are in
     var room = Game.rooms[roomName];
     if(!room.memory.sources){//If this room has no sources memory yet
