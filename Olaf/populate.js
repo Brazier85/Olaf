@@ -1,4 +1,6 @@
 
+var harvestercount = false;
+
 let harvester = {
     memory: {memory: {
         role: 'harvester'
@@ -42,6 +44,8 @@ function spawnHarvester() {
                 console.log('Spawning ' + creeptype.name);
                 creeptype.memory.memory.sourceId = sourceIndex;
                 doSpawn(creeptype);
+            } else {
+                harvestercount = true;
             }
         }
     }
@@ -51,17 +55,23 @@ function spawnHarvester() {
 function PopulateRooms() {
 
     // Count creeps by type
-    //var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
+    var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } );
     var upgraders = _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
     var builders = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
 
+    console.log(typeof harvesters);
+    console.log(harvesters);
+
+    harvestercount = false;
     spawnHarvester();
-/*
-    if ( upgraders < 1 ) {
-        doSpawn(upgrader);
-    } else if ( builders < 1 ) {
-        doSpawn(builder);
-    } */
+
+    if (harvestercount) {
+        if ( upgraders < 1 ) {
+            doSpawn(upgrader);
+        } else if ( builders < 1 ) {
+            doSpawn(builder);
+        }
+    }
 }
 
 module.exports.populate = PopulateRooms;
