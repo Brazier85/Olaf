@@ -42,7 +42,7 @@ function spawnHarvester() {
             if(myMiners.length < 1 || myMiners.length == undefined){
                 console.log('Spawning ' + creeptype.name);
                 creeptype.memory.memory.sourceId = sourceIndex;
-                Game.spawns['Spawn1'].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
+                doSpawn(creepytype);
             }
         }
     }
