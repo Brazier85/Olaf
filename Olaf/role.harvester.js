@@ -1,3 +1,5 @@
+Source.prototype.memory = undefined;
+
 
 function do_harvest(creep) {
 
