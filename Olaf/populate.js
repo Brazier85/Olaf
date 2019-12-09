@@ -1,5 +1,8 @@
 let harvester = {
-    memory: {memory: {role: 'harvester'}},
+    memory: {memory: {
+        role: 'harvester',
+        sourceID: sourceIndex
+    }},
     body: [WORK,CARRY,MOVE,MOVE],
     name: "Harvester_" + Game.time
 }
@@ -20,26 +23,33 @@ function doSpawn(creeptype) {
     if(Game.spawns['Spawn1'].spawning) {
         //Is spawning have to wait
     } else {
+        console.log('Spawning ' + creeptype.name);
         Game.spawns['Spawn1'].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
+    }
+}
+
+function spawnHarvester() {
+    for(let sourceIndex in Game.rooms[creepRoom].memory.sources){
+        myMiners = _.filter(Game.creeps, i => i.memory.sourceId === sourceIndex);
+        if(myMiners.length < 1){
+            Game.spawns[0].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
+        }
     }
 }
 
 
 function PopulateRoom() {
 
-    // Check if there are two harvesters
+    // Count creeps by type
     var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
     var upgraders = _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
     var builders = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
 
-    if ( harvesters < 2 ) {
-        console.log('Spawning new harvester');
-        doSpawn(harvester);
-    } else if ( upgraders < 1 ) {
-        console.log('Spawning new upgrader');
+    spawnHarvester();
+
+    if ( upgraders < 1 ) {
         doSpawn(upgrader);
     } else if ( builders < 1 ) {
-        console.log('Spawning new builder');
         doSpawn(builder);
     } 
 }

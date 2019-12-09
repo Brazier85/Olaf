@@ -1,5 +1,9 @@
 var _ = require("lodash");
 
+// Overall vars
+var creepRoom = creep.room.name;
+
+// Creep roles
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
