@@ -1,22 +1,16 @@
 Source.prototype.memory = undefined;
 
-
-function do_harvest(creep) {
-
-    var source = Game.getObjectById(creep.memory.sourceId);
-
-    if(creep.energy < creep.energyCapacity) {
-        creep.moveTo(source);
-        creep.harvest(source);
-    }
-}
-
 var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
         if(creep.store.getFreeCapacity() > 0) {
-            do_harvest();
+            var source = Game.getObjectById(creep.memory.sourceId);
+
+            if(creep.energy < creep.energyCapacity) {
+                creep.moveTo(source);
+                creep.harvest(source);
+            }
         }
         else {
             var targets = creep.room.find(FIND_STRUCTURES, {
