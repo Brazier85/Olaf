@@ -34,6 +34,7 @@ function doSpawn(creeptype) {
 }
 
 function spawnHarvester() {
+    let creeptype = harvester;
     for(var roomName in Game.rooms){ //Loop through all rooms
         var room = Game.rooms[roomName];
         for(let sourceIndex in room.memory.sources){
