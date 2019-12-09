@@ -5,6 +5,9 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
+//Variables
+var creepRoom = Game.spawns.Spawn1.room;
+
 //Room functions
 var Populate = require('populate');
 
@@ -12,8 +15,6 @@ module.exports.loop = function () {
 
     //Setting up our memory
     require('memory');
-
-    var creepRoom = Game.spawns.Spawn1.room;
 
     //Cleanup destroyed things
     for(var name in Memory.creeps) {
