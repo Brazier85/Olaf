@@ -1,34 +1,11 @@
+require("lodash");
+
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
 //Room functions
 var Populate = require('populate');
-
-//Our creeps
-var snowflakes = [];
-
-function GetSnowflakes() {
-    var flakes = new Array(
-        {name: "harvester", count: 0},
-        {name: "upgrader", count: 0},
-        {name: "builder", count: 0},
-    )
-
-    for (var creepname in Game.creeps){
-      var role = Game.creeps[creepname].memory.role;
-      if (role == "harvester") {
-          flakes["harvester"]++;
-      } else if ( role == "upgrader" ) {
-          flakes["upgrader"]++;
-      } else if ( role == "builder" ) {
-          flakes["builder"]++;
-      }
-    }
-    console.log(flakes["harvester"]);
-    return flakes;
-}
-
 
 module.exports.loop = function () {
 
@@ -39,10 +16,9 @@ module.exports.loop = function () {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
-  
-    snowflakes = GetSnowflakes();
-  
-    Populate.PopulateRoom(snowflakes);
+   
+    // Populating the room
+    Populate.PopulateRoom();
 
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
