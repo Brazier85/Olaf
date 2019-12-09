@@ -1,3 +1,5 @@
+require("lodash");
+
 function PopulateRoom() {
 
     // Check if there are two harvesters
