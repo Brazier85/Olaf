@@ -22,8 +22,6 @@ let upgrader = {
     name: "Upgrader_" + Game.time
 }
 
-var creepRoom = Game.spawns.Spawn1.room;
-
 function doSpawn(creeptype) {
     if(Game.spawns['Spawn1'].spawning) {
         //Is spawning have to wait
@@ -34,17 +32,20 @@ function doSpawn(creeptype) {
 }
 
 function spawnHarvester() {
-    for(let sourceIndex in Game.rooms.creepRoom.memory.sources){
-        let myMiners = _.filter(Game.creeps, i => i.memory.sourceId === sourceIndex);
-        if(myMiners.length < 1){
-            creeptype.memory.memory.push({sourceId: sourceIndex})
-            Game.spawns[0].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
+    for(var roomName in Game.rooms){ //Loop through all rooms
+        var room = Game.rooms[roomName];
+        for(let sourceIndex in Game.rooms[room].memory.sources){
+            let myMiners = _.filter(Game.creeps, i => i.memory.sourceId === sourceIndex);
+            if(myMiners.length < 1){
+                creeptype.memory.memory.push({sourceId: sourceIndex})
+                Game.spawns[0].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
+            }
         }
     }
 }
 
 
-function PopulateRoom() {
+function PopulateRooms() {
 
     // Count creeps by type
     var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
@@ -60,4 +61,4 @@ function PopulateRoom() {
     } 
 }
 
-module.exports.populate = PopulateRoom;
+module.exports.populate = PopulateRooms;
