@@ -56,12 +56,12 @@ function PopulateRooms() {
     var builders = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
 
     spawnHarvester();
-
+/*
     if ( upgraders < 1 ) {
         doSpawn(upgrader);
     } else if ( builders < 1 ) {
         doSpawn(builder);
-    } 
+    } */
 }
 
 module.exports.populate = PopulateRooms;
