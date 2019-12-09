@@ -22,6 +22,8 @@ let upgrader = {
     name: "Upgrader_" + Game.time
 }
 
+var creepRoom = Game.spawns.Spawn1.room;
+
 function doSpawn(creeptype) {
     if(Game.spawns['Spawn1'].spawning) {
         //Is spawning have to wait
