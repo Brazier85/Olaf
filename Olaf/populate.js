@@ -34,7 +34,7 @@ function doSpawn(creeptype) {
 }
 
 function spawnHarvester() {
-    for(let sourceIndex in Game.rooms[creepRoom].memory.sources){
+    for(let sourceIndex in Game.rooms.creepRoom.memory.sources){
         let myMiners = _.filter(Game.creeps, i => i.memory.sourceId === sourceIndex);
         if(myMiners.length < 1){
             creeptype.memory.memory.push({sourceId: sourceIndex})
