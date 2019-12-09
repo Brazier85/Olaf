@@ -1,5 +1,8 @@
 var _ = require("lodash");
 
+//Setting up the room
+require('roomvars');
+
 // Creep roles
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');

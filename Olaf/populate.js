@@ -1,20 +1,23 @@
 let harvester = {
     memory: {memory: {
-        role: 'harvester',
-        sourceID: sourceIndex
+        role: 'harvester'
     }},
     body: [WORK,CARRY,MOVE,MOVE],
     name: "Harvester_" + Game.time
 }
 
 let builder = {
-    memory: {memory: {role: 'builder'}},
+    memory: {memory: {
+        role: 'builder'
+    }},
     body: [WORK,CARRY,MOVE],
     name: "Builder_" + Game.time
 }
 
 let upgrader = {
-    memory: {memory: {role: 'upgrader'}},
+    memory: {memory: {
+        role: 'upgrader'
+    }},
     body: [WORK,CARRY,MOVE],
     name: "Upgrader_" + Game.time
 }
@@ -30,8 +33,9 @@ function doSpawn(creeptype) {
 
 function spawnHarvester() {
     for(let sourceIndex in Game.rooms[creepRoom].memory.sources){
-        myMiners = _.filter(Game.creeps, i => i.memory.sourceId === sourceIndex);
+        let myMiners = _.filter(Game.creeps, i => i.memory.sourceId === sourceIndex);
         if(myMiners.length < 1){
+            creeptype.memory.memory.push({sourceId: sourceIndex})
             Game.spawns[0].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
         }
     }

@@ -3,8 +3,8 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
         if(creep.store.getFreeCapacity() > 0) {
-            if(creep.harvest(creep.memory.sourceID) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.memory.sourceID, {visualizePathStyle: {stroke: '#ffaa00'}});
+            if(creep.harvest(creep.memory.sourceId) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(creep.memory.sourceId, {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
         else {
