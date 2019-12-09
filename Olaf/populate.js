@@ -1,5 +1,7 @@
 Source.prototype.memory = undefined;
 
+var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } )
+
 let harvester = {
     memory: {memory: {
         role: 'harvester'
@@ -38,8 +40,9 @@ function spawnHarvester() {
     for(var roomName in Game.rooms){ //Loop through all rooms
         var room = Game.rooms[roomName];
         for(let sourceIndex in room.memory.sources){
-            let myMiners = _.filter(Game.creeps, i => i.memory.sourceId === sourceIndex);
+            let myMiners = harvesters.filter(memory.sourceId === sourceIndex);
             if(myMiners.length < 1){
+                console.log('Spawning ' + creeptype.name);
                 creeptype.memory.memory.sourceId = sourceIndex;
                 Game.spawns['Spawn1'].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
             }
@@ -51,7 +54,7 @@ function spawnHarvester() {
 function PopulateRooms() {
 
     // Count creeps by type
-    var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
+    //var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
     var upgraders = _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
     var builders = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
 
