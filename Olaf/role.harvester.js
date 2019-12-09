@@ -1,13 +1,20 @@
-Source.prototype.memory = undefined;
+
+function do_harvest(creep) {
+
+    var source = Game.getObjectById(creep.memory.sourceId);
+
+    if(creep.energy < creep.energyCapacity) {
+        creep.moveTo(source);
+        creep.harvest(source);
+    }
+}
 
 var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
         if(creep.store.getFreeCapacity() > 0) {
-            if(creep.harvest(creep.memory.sourceId) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.memory.sourceId, {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
+            do_harvest();
         }
         else {
             var targets = creep.room.find(FIND_STRUCTURES, {
