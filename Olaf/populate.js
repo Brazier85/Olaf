@@ -37,9 +37,9 @@ function spawnHarvester() {
     let creeptype = harvester;
     for(var roomName in Game.rooms){ //Loop through all rooms
         var room = Game.rooms[roomName];
-        for(let sourceIndex in room.memory.sources){
+        for(let sourceIndex in room.memory.sources){         
             let myMiners = harvesters.filter({ memory: { sourceId: sourceIndex } });
-            if(myMiners.length < 1){
+            if(myMiners.length < 1 || myMiners.length == undefined){
                 console.log('Spawning ' + creeptype.name);
                 creeptype.memory.memory.sourceId = sourceIndex;
                 Game.spawns['Spawn1'].spawnCreep(creeptype.body, creeptype.name, creeptype.memory);
