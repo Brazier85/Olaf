@@ -1,3 +1,5 @@
+Source.prototype.memory = undefined;
+
 var roleHarvester = {
 
     /** @param {Creep} creep **/
