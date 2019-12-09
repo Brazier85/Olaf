@@ -39,10 +39,10 @@ function spawnHarvester() {
         var room = Game.rooms[roomName];
         for(let sourceIndex in room.memory.sources){         
             let myMiners = harvesters.filter({ memory: { sourceId: sourceIndex } });
-            if(myMiners.length < 1 || myMiners.length == undefined){
+            if(myMiners.length < 1){
                 console.log('Spawning ' + creeptype.name);
                 creeptype.memory.memory.sourceId = sourceIndex;
-                doSpawn(creepytype);
+                doSpawn(creeptype);
             }
         }
     }
