@@ -13,7 +13,7 @@ module.exports.loop = function () {
     //Setting up our memory
     require('memory');
 
-    var creepRoom = _.room.name;
+    var creepRoom = Game.spawns.Spawn1.room;
 
     //Cleanup destroyed things
     for(var name in Memory.creeps) {
