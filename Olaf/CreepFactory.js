@@ -1,12 +1,21 @@
 var HelperFunctions = require('HelperFunctions');
+
 var CreepBase = require('CreepBase');
+var CreepBuilder = require('CreepBuilder');
+var CreepMiner = require('CreepMiner');
+var CreepSoldier = require('CreepSoldier');
+var CreepHealer = require('CreepHealer');
+var CreepScout = require('CreepScout');
+var CreepCarrier = require('CreepCarrier');
+var CreepShooter = require('CreepShooter');
 
-//load creeptypes
-var Harvester = require('role.Harvester');
-
-function CreepFactory(roomHandler) {
-    this.roomHander = roomHandler;
-}
+function CreepFactory(depositManager, resourceManager, constructionsManager, population, roomHandler) {
+	this.depositManager = depositManager;
+	this.resourceManager = resourceManager;
+	this.population = population;
+	this.constructionsManager = constructionsManager;
+	this.roomHandler = roomHandler;
+};
 
 CreepFactory.prototype.load = function(creep) {
 	var loadedCreep = null;
