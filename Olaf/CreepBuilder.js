@@ -38,7 +38,7 @@ CreepBuilder.prototype.act = function() {
 
 	if(!site) {
 		var site = this.constructionManager.getController();
-		this.creep.moveTo(site, {avoid: avoidArea});
+		this.creep.moveTo(site);
 		this.creep.upgradeController(site);
 	}
 
@@ -61,14 +61,14 @@ CreepBuilder.prototype.giveEnergy = function(site) {
 			});
 
 			if(closest != this.creep) {
-				this.creep.transferEnergy(closest);
+				this.creep.transfer(closest);
 			}
 			return;
 		}
 		for(var n in creepsNear){
 			if(creepsNear[n].memory.role === 'CreepBuilder'){
 				if(creepsNear[n].memory['last-energy'] > creepsNear[n].energy) {
-					this.creep.transferEnergy(creepsNear[n]);
+					this.creep.transfer(creepsNear[n]);
 				}
 			}
 		}

@@ -20,7 +20,7 @@ CreepShooter.prototype.act = function() {
     if(this.attackHostiles()) { return; }
     if(this.attackSpawns()) { return; }
 
-    this.creep.moveTo(25,25, {avoid: avoidArea});
+    this.creep.moveTo(25,25);
 }
 CreepShooter.prototype.attackHostiles = function() {
     var targets = this.creep.room.find(FIND_HOSTILE_CREEPS, {
@@ -38,7 +38,7 @@ CreepShooter.prototype.attackHostiles = function() {
 			return true;
         }
 
-        this.creep.moveTo(targets[0], {avoid: avoidArea});
+        this.creep.moveTo(targets[0]);
         return true;
     }
 }
@@ -51,7 +51,7 @@ CreepShooter.prototype.attackSpawns = function() {
 			return true;
         }
 
-        this.creep.moveTo(targets[0], {avoid: avoidArea});
+        this.creep.moveTo(targets[0]);
         return true;
     };
 }
