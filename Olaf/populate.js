@@ -23,4 +23,4 @@ function PopulateRoom() {
     } 
 }
 
-module.exports = PopulateRoom();
+module.exports.populate = PopulateRoom;

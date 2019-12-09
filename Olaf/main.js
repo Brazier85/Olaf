@@ -18,7 +18,7 @@ module.exports.loop = function () {
     }
    
     // Populating the room
-    Populate.PopulateRoom();
+    Populate.populate();
 
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
