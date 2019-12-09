@@ -1,4 +1,3 @@
-var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } )
 
 let harvester = {
     memory: {memory: {
@@ -38,7 +37,7 @@ function spawnHarvester() {
     for(var roomName in Game.rooms){ //Loop through all rooms
         var room = Game.rooms[roomName];
         for(let sourceIndex in room.memory.sources){         
-            let myMiners = harvesters.filter({ memory: { sourceId: sourceIndex } });
+            let myMiners = _(Game.creeps).filter( { memory: { role: 'harvester', sourceId: sourceIndex } } );
             if(myMiners.length < 1){
                 console.log('Spawning ' + creeptype.name);
                 creeptype.memory.memory.sourceId = sourceIndex;
