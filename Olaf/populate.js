@@ -1,5 +1,3 @@
-Source.prototype.memory = undefined;
-
 var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } )
 
 let harvester = {
