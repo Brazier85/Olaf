@@ -1,3 +1,0 @@
-function Miner(creep) {
-    
-};
