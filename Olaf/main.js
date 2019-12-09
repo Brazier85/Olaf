@@ -1,48 +1,44 @@
-var _ = require("lodash");
+var HelperFunctions = require('HelperFunctions');
+var RoomHandler = require('RoomHandler');
+var ScoutHandler = require('ScoutHandler');
+var Room = require('Room');
+var CreepBase = require('CreepBase');
+var CreepScout = require('CreepScout');
 
-// Creep roles
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
+//ScoutHandler.setRoomHandler(RoomHandler);
 
-//Room functions
-var Populate = require('populate');
+// Init rooms
+for(var n in Game.rooms) {
+	var roomHandler = new Room(Game.rooms[n], RoomHandler);
+	RoomHandler.set(Game.rooms[n].name, roomHandler);
+};
 
-module.exports.loop = function () {
+// Load rooms
+var rooms = RoomHandler.getRoomHandlers();
+for(var n in rooms) {
+	var room = rooms[n];
+	room.loadCreeps();
+	room.populate();
 
-    //Setting up our memory
-    require('memory');
+	console.log(
+		room.room.name + ' | ' +
+		'goals met:' +
+		room.population.goalsMet() +
+		', population: ' +
+		room.population.getTotalPopulation() + '/' + room.population.getMaxPopulation() +
+		' (' + room.population.getType('CreepBuilder').total + '/' +
+		room.population.getType('CreepMiner').total + '/' +
+		room.population.getType('CreepCarrier').total + '/' +
+		room.population.getType('CreepSoldier').total + 
+		'), ' +
+		'resources at: ' + parseInt( (room.depositManager.energy() / room.depositManager.energyCapacity())*100) +'%, ' +
+		'max resources: ' + room.depositManager.energyCapacity() +'u, ' +
+		'next death: ' + room.population.getNextExpectedDeath() +' ticks'
+	);
+};
 
-    //Cleanup destroyed things
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
-            delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
-        }
-    }
-   
-    // Populating the room
-    Populate.populate();
+// Load scouts.
+//ScoutHandler.loadScouts();
+//ScoutHandler.spawnNewScouts();
 
-    if(Game.spawns['Spawn1'].spawning) {
-        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-        Game.spawns['Spawn1'].room.visual.text(
-            '🛠️' + spawningCreep.memory.role,
-            Game.spawns['Spawn1'].pos.x + 1,
-            Game.spawns['Spawn1'].pos.y,
-            {align: 'left', opacity: 0.8});
-    }
-
-    for(var name in Game.creeps) {
-        var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-        }
-        if(creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
-        }
-        if(creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
-    }
-}
+HelperFunctions.garbageCollection();
