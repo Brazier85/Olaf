@@ -1,4 +1,4 @@
-require("lodash");
+var _ = require("lodash");
 
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
