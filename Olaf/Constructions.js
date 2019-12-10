@@ -89,7 +89,7 @@ Constructions.prototype.constructStructure = function(creep) {
 
     if(this.damagedStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.damagedStructures);
-        creep.creep.moveTo(site, {avoid: avoidArea});
+        creep.creep.moveTo(site);
         creep.creep.repair(site);
 
         return site;
@@ -97,7 +97,7 @@ Constructions.prototype.constructStructure = function(creep) {
 
     if(this.sites.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.sites);
-        creep.creep.moveTo(site, {avoid: avoidArea});
+        creep.creep.moveTo(site);
         creep.creep.build(site);
 
         return site;
@@ -105,7 +105,7 @@ Constructions.prototype.constructStructure = function(creep) {
 
     if(this.upgradeableStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.upgradeableStructures);
-        creep.creep.moveTo(site, {avoid: avoidArea});
+        creep.creep.moveTo(site);
         creep.creep.repair(site);
 
         return site;
