@@ -171,13 +171,12 @@ CreepCarrier.prototype.harvest = function() {
 		for(var n in creepsNear){
 			if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
 				creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
-			}
-            if(creepsNear[n].memory.role === 'CreepBuilder'){
+			} else if(creepsNear[n].memory.role === 'CreepBuilder'){
                 this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
+			} else {
+				this.creep.randomMovement();
 			}
 		}
-	} else {
-		this.creep.moveTo(this.resource);
 	}
 }
 
