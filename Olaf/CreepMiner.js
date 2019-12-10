@@ -42,13 +42,13 @@ CreepMiner.prototype.act = function() {
 	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
 		//return;
 		this.creep.say("full!")
-	} 
+	}
 	
 	if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
 		this.creep.moveTo(this.resource);
 	}
 	
-	this.remember('last-energy', this.creep.energy);
+	this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);
 }
 
 CreepMiner.prototype.giveEnergy = function() {
