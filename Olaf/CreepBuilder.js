@@ -31,7 +31,6 @@ CreepBuilder.prototype.init = function() {
 
 CreepBuilder.prototype.act = function() {
 	var site = false;
-	var avoidArea = this.getAvoidedArea();
 	if(!this.forceControllerUpgrade) {
 		site = this.constructionManager.constructStructure(this);
 	}

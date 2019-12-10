@@ -85,7 +85,6 @@ Constructions.prototype.getClosestConstructionSite = function(creep) {
 
 
 Constructions.prototype.constructStructure = function(creep) {
-    var avoidArea = creep.getAvoidedArea();
 
     if(this.damagedStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.damagedStructures);
