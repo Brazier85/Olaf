@@ -35,7 +35,8 @@ CreepMiner.prototype.init = function() {
 
 CreepMiner.prototype.act = function() {
 	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
-		//return;
+		// Hier muss eine Prüfung rein ob ein Carrier in der Nähe ist.
+		// Muss der Miner zum Spawn laufen und ausladen
 	} else {
 		if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(this.resource);
