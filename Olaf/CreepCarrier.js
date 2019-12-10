@@ -176,6 +176,8 @@ CreepCarrier.prototype.harvest = function() {
                 this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
 			}
 		}
+	} else {
+		this.creep.randomMovement;
 	}
 }
 
