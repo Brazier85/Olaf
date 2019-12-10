@@ -76,7 +76,7 @@ Room.prototype.populate = function() {
 			var types = this.population.getTypes()
 			for(var i = 0; i < types.length; i++) {
 				var ctype = this.population.getType(types[i]);
-				if(this.depositManager.deposits.length > ctype.minExtensions) {
+				if((this.depositManager.deposits.length > ctype.minExtensions) || (!this.depositManager.length)) {
 					if((ctype.goalPercentage > ctype.currentPercentage && ctype.total < ctype.max) || ctype.total == 0 || ctype.total < ctype.max*0.75) {
 						this.creepFactory.new(types[i], this.depositManager.getSpawnDeposit());
 						break;
