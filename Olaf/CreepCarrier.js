@@ -89,7 +89,7 @@ CreepCarrier.prototype.depositEnergy = function() {
 	if(this.depositFor == DEPOSIT_FOR.POPULATION) {
 		var deposit = this.getDeposit();
 		this.creep.moveTo(deposit);
-		this.creep.transfer(deposit);
+		this.creep.transfer(deposit, RESOURCE_ENERGY);
 	}
 
 	if(this.depositFor == DEPOSIT_FOR.CONSTRUCTION) {
@@ -168,10 +168,10 @@ CreepCarrier.prototype.harvest = function() {
 	if(creepsNear.length){
 		for(var n in creepsNear){
 			if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
-				creepsNear[n].transfer(this.creep);
+				creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
 			}
             if(creepsNear[n].memory.role === 'CreepBuilder'){
-                this.creep.transfer(creepsNear[n]);
+                this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
 			}
 		}
 	}

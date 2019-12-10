@@ -61,14 +61,14 @@ CreepBuilder.prototype.giveEnergy = function(site) {
 			});
 
 			if(closest != this.creep) {
-				this.creep.transfer(closest);
+				this.creep.transfer(closest, RESOURCE_ENERGY);
 			}
 			return;
 		}
 		for(var n in creepsNear){
 			if(creepsNear[n].memory.role === 'CreepBuilder'){
 				if(creepsNear[n].memory['last-energy'] > creepsNear[n].store[RESOURCE_ENERGY]) {
-					this.creep.transfer(creepsNear[n]);
+					this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
 				}
 			}
 		}

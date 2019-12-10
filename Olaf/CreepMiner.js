@@ -55,7 +55,7 @@ CreepMiner.prototype.giveEnergy = function() {
 		for(var n in creepsNear){
 			if(creepsNear[n].memory.role === 'CreepMiner'){
 				if(creepsNear[n].memory['last-energy'] == creepsNear[n].energy && creepsNear[n].energy < creepsNear[n].energyCapacity) {
-					this.creep.transfer(creepsNear[n]);
+					this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
 				}
 			}
 		}
