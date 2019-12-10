@@ -169,10 +169,18 @@ CreepCarrier.prototype.harvest = function() {
 	var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
 	if(creepsNear.length){
 		for(var n in creepsNear){
+			//Wenn Miner dann Energie abholen
 			if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
 				creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
-			} else if(creepsNear[n].memory.role === 'CreepBuilder'){
+			}
+			//Wenn Builder dann Energie geben
+			if(creepsNear[n].memory.role === 'CreepBuilder'){
                 this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
+			}
+
+			//Wenn ich mich selbst gefunden habe
+			if(creepsNear[n].name == this.creep.name) {
+				this.creep.moveTo(this.resource);
 			}
 		}
 	}
