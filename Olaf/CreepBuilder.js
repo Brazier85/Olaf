@@ -45,16 +45,16 @@ CreepBuilder.prototype.act = function() {
 	if(this.creep.pos.inRangeTo(site, 3)) {
 		this.giveEnergy(site);
 	}
-	this.remember('last-energy', this.creep.energy);
+	this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);
 };
 
 CreepBuilder.prototype.giveEnergy = function(site) {
 	var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
 	if(creepsNear.length){
 		if(site) {
-			var closest = site.pos.findClosest(creepsNear.concat(this.creep),{
+			var closest = site.pos.findClosestByRange(creepsNear.concat(this.creep),{
 				filter: function(c) {
-					if(c.energy == 0) {
+					if(c.store[RESOURCE_ENERGY] == 0) {
 						return true;
 					}
 				}
@@ -67,7 +67,7 @@ CreepBuilder.prototype.giveEnergy = function(site) {
 		}
 		for(var n in creepsNear){
 			if(creepsNear[n].memory.role === 'CreepBuilder'){
-				if(creepsNear[n].memory['last-energy'] > creepsNear[n].energy) {
+				if(creepsNear[n].memory['last-energy'] > creepsNear[n].store[RESOURCE_ENERGY]) {
 					this.creep.transfer(creepsNear[n]);
 				}
 			}
