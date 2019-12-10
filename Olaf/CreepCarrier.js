@@ -156,7 +156,7 @@ CreepCarrier.prototype.pickupEnergy = function() {
 CreepCarrier.prototype.harvestEnergy = function() {
 
 	if(this.creep.pos.inRangeTo(this.resource, 2)) {
-		this.creep.say("HARVEST");
+		this.creep.say("⛽️");
 		this.harvest();
 	} else {
 		this.creep.moveTo(this.resource);
