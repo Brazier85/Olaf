@@ -93,7 +93,7 @@ CreepCarrier.prototype.depositEnergy = function() {
 	}
 
 	if(this.depositFor == DEPOSIT_FOR.CONSTRUCTION) {
-		this.creep.say("👷");
+		this.creep.say("🔧");
 		var worker = this.getWorker();
 		var range = 1;
 		if(!worker) {
