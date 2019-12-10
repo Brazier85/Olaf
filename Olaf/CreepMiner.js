@@ -38,7 +38,7 @@ CreepMiner.prototype.init = function() {
 };
 
 CreepMiner.prototype.act = function() {
-	this.giveEnergy();
+	//this.giveEnergy();
 	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
 		//return;
 		this.creep.say("full!")

@@ -41,9 +41,10 @@ CreepBuilder.prototype.act = function() {
 		this.creep.upgradeController(site);
 	}
 
+	/*
 	if(this.creep.pos.inRangeTo(site, 3)) {
 		this.giveEnergy(site);
-	}
+	} */
 	this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);
 };
 
