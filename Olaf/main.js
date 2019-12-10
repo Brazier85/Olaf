@@ -19,7 +19,7 @@ for(var n in rooms) {
 	var room = rooms[n];
 	room.loadCreeps();
 	room.populate();
-/*
+
 	console.log(
 		room.room.name + ' | ' +
 		'goals met:' +
@@ -34,7 +34,7 @@ for(var n in rooms) {
 		'resources at: ' + parseInt( (room.depositManager.energy() / room.depositManager.energyCapacity())*100) +'%, ' +
 		'max resources: ' + room.depositManager.energyCapacity() +'u, ' +
 		'next death: ' + room.population.getNextExpectedDeath() +' ticks'
-	);*/
+	);
 };
 
 // Load scouts.

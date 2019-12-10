@@ -3,6 +3,7 @@
  */
 
 var Cache = require('Cache');
+
 var ACTIONS = {
 	HARVEST: 1,
 	DEPOSIT: 2
@@ -70,6 +71,7 @@ CreepCarrier.prototype.act = function() {
 		this.harvestEnergy();
 	} else {
 		this.depositEnergy();
+
 	}
 };
 
@@ -84,12 +86,14 @@ CreepCarrier.prototype.depositEnergy = function() {
 	}
 
 	if(this.depositFor == DEPOSIT_FOR.POPULATION) {
+		this.creep.say("💑");
 		var deposit = this.getDeposit();
 		this.creep.moveTo(deposit);
 		this.creep.transfer(deposit, RESOURCE_ENERGY);
 	}
 
 	if(this.depositFor == DEPOSIT_FOR.CONSTRUCTION) {
+		this.creep.say("👷");
 		var worker = this.getWorker();
 		var range = 1;
 		if(!worker) {
@@ -150,11 +154,12 @@ CreepCarrier.prototype.pickupEnergy = function() {
 	}
 };
 CreepCarrier.prototype.harvestEnergy = function() {
-	//this.creep.moveTo(0,0);
 
-	this.creep.moveTo(this.resource);
-	if(this.creep.pos.inRangeTo(this.resource, 3)) {
+	if(this.creep.pos.inRangeTo(this.resource, 2)) {
+		this.creep.say("HARVEST");
 		this.harvest();
+	} else {
+		this.creep.moveTo(this.resource);
 	}
 	this.remember('last-action', ACTIONS.HARVEST);
 	this.forget('closest-deposit');
