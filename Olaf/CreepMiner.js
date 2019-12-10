@@ -53,10 +53,11 @@ CreepMiner.prototype.act = function() {
 				this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
 			}
 		}
+	} else {
+		this.creep.moveTo(this.resource);
+		this.creep.harvest(this.resource);
+		this.remember('last-energy', this.creep.energy);
 	}
-	this.creep.moveTo(this.resource);
-	this.creep.harvest(this.resource);
-	this.remember('last-energy', this.creep.energy);
 }
 
 CreepMiner.prototype.giveEnergy = function() {
