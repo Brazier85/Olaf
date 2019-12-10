@@ -174,7 +174,7 @@ CreepCarrier.prototype.harvest = function() {
 			} else if(creepsNear[n].memory.role === 'CreepBuilder'){
                 this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
 			} else {
-				this.creep.randomMovement();
+				this.creep.moveTo(this.resource);
 			}
 		}
 	}
