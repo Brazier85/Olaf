@@ -77,7 +77,6 @@ CreepCarrier.prototype.act = function() {
 };
 
 CreepCarrier.prototype.depositEnergy = function() {
-	var avoidArea = this.getAvoidedArea();
 
 	if(this.depositManager.getEmptyDeposits().length == 0 && this.depositManager.getSpawnDeposit().energy == this.depositManager.getSpawnDeposit().energyCapacity) {
 		this.depositFor = DEPOSIT_FOR.CONSTRUCTION;
@@ -144,8 +143,7 @@ CreepCarrier.prototype.getDeposit = function() {
 	)
 };
 CreepCarrier.prototype.pickupEnergy = function() {
-	var avoidArea = this.getAvoidedArea();
-	if(this.creep.energy == this.creep.energyCapacity) {
+	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
 		return false;
 	}
 
@@ -169,7 +167,7 @@ CreepCarrier.prototype.harvest = function() {
 	var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
 	if(creepsNear.length){
 		for(var n in creepsNear){
-			if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].energy != 0){
+			if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
 				creepsNear[n].transfer(this.creep);
 			}
             if(creepsNear[n].memory.role === 'CreepBuilder'){
