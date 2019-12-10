@@ -57,6 +57,14 @@ CreepMiner.prototype.giveEnergy = function() {
 				}
 			}
 		}
+	} else {
+		var spawnNear = this.creep.pos.findInRange(FIND_MY_SPAWNS, 1);
+		if(spawnNear.length){
+			for(var n in spawnNear){
+				this.creep.transfer(spawnNear[n]);
+			}
+
+		}	
 	}
 }
 
