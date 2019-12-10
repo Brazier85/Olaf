@@ -1,4 +1,8 @@
-var Cache = require('Cache');
+/*
+ * Repariert Dinge
+ */
+
+ var Cache = require('Cache');
 function CreepHealer(creep) {
     this.cache = new Cache();
     this.creep = creep;
@@ -18,7 +22,6 @@ CreepHealer.prototype.init = function() {
 };
 
 CreepHealer.prototype.act = function() {
-    var avoidArea = this.getAvoidedArea();
     var injured = this.getInjuredCreep();
     if(injured) {
         this.creep.moveTo(injured);
@@ -28,7 +31,7 @@ CreepHealer.prototype.act = function() {
 }
 
 CreepHealer.prototype.getInjuredCreep = function() {
-    return this.creep.pos.findClosest(FIND_MY_CREEPS, {
+    return this.creep.pos.findClosestByRage(FIND_MY_CREEPS, {
         filter: function(c) {
             if(c.hits < c.hitsMax) {
                 return true;

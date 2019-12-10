@@ -1,4 +1,8 @@
-var Cache = require('Cache');
+/*
+ * Scannt die Gegend
+ */
+
+ var Cache = require('Cache');
 var CreepScout = function(creep, roomHandler) {
     this.cache = new Cache();
     this.creep = creep;

@@ -15,7 +15,6 @@ CreepShooter.prototype.init = function() {
 };
 
 CreepShooter.prototype.act = function() {
-    var avoidArea = this.getAvoidedArea();
 
     if(this.attackHostiles()) { return; }
     if(this.attackSpawns()) { return; }

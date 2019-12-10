@@ -83,7 +83,6 @@ CreepBase.moveToNewRoom = function() {
 }
 
 CreepBase.randomMovement = function() {
-	var avoidArea = this.getAvoidedArea();
 	if(!this.remember('temp-pos')) {
 		this.remember('temp-pos', {x:parseInt(Math.random()*50), y:parseInt(Math.random()*50)});
 	}

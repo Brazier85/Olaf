@@ -1,9 +1,5 @@
 /*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('harvester'); // -> 'a thing'
+ * Baut Energie ab
  */
 var Cache = require('Cache');
 var ACTIONS = {
@@ -38,7 +34,6 @@ CreepMiner.prototype.init = function() {
 };
 
 CreepMiner.prototype.act = function() {
-	//this.giveEnergy();
 	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
 		//return;
 	} else {
@@ -48,19 +43,6 @@ CreepMiner.prototype.act = function() {
 	}
 	
 	this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);
-}
-
-CreepMiner.prototype.giveEnergy = function() {
-	var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
-	if(creepsNear.length){
-		for(var n in creepsNear){
-			if(creepsNear[n].memory.role === 'CreepMiner'){
-				if(creepsNear[n].memory['last-energy'] == creepsNear[n].energy && creepsNear[n].energy < creepsNear[n].energyCapacity) {
-					this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
-				}
-			}
-		}
-	}
 }
 
 module.exports = CreepMiner;

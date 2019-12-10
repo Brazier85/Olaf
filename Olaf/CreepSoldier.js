@@ -16,7 +16,6 @@ CreepSoldier.prototype.init = function() {
 };
 
 CreepSoldier.prototype.act = function() {
-    var avoidArea = this.getAvoidedArea();
 
 
     if(this.attackHostiles()) { return; }
@@ -26,7 +25,6 @@ CreepSoldier.prototype.act = function() {
     this.creep.moveTo(25,25);
 }
 CreepSoldier.prototype.attackHostiles = function() {
-    var avoidArea = this.getAvoidedArea();
     var targets = this.creep.room.find(FIND_HOSTILE_CREEPS, {
         filter: function(t) {
             if(t.name == 'Source Keeper') {
@@ -41,7 +39,6 @@ CreepSoldier.prototype.attackHostiles = function() {
     }
 }
 CreepSoldier.prototype.attackSpawns = function() {
-    var avoidArea = this.getAvoidedArea();
     var targets = this.creep.room.find(FIND_HOSTILE_SPAWNS);
     if(targets.length) {
         var rangedTargets = this.creep.pos.findInRange(FIND_HOSTILE_SPAWNS, 3);
