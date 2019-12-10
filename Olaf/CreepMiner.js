@@ -41,6 +41,18 @@ CreepMiner.prototype.act = function() {
 	this.giveEnergy();
 	if(this.creep.energy == this.creep.energyCapacity) {
 		//return;
+		console.log(this.creep.name + " energy full!");
+		var targets = creep.room.find(FIND_STRUCTURES, {
+			filter: (structure) => {
+				return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+			}
+		});
+		if(targets.length > 0) {
+			if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+			}
+		}
 	}
 	this.creep.moveTo(this.resource);
 	this.creep.harvest(this.resource);
@@ -57,14 +69,6 @@ CreepMiner.prototype.giveEnergy = function() {
 				}
 			}
 		}
-	} else {
-		var spawnNear = this.creep.pos.findInRange(FIND_MY_SPAWNS, 1);
-		if(spawnNear.length){
-			for(var n in spawnNear){
-				this.creep.transfer(spawnNear[n]);
-			}
-
-		}	
 	}
 }
 
