@@ -177,7 +177,7 @@ CreepCarrier.prototype.harvest = function() {
 			}
 		}
 	} else {
-		this.creep.randomMovement();
+		this.creep.moveTo(this.resource);
 	}
 }
 
