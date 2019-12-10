@@ -156,7 +156,6 @@ CreepCarrier.prototype.pickupEnergy = function() {
 };
 CreepCarrier.prototype.harvestEnergy = function() {
 	//this.creep.moveTo(0,0);
-	var avoidArea = this.getAvoidedArea();
 
 	this.creep.moveTo(this.resource);
 	if(this.creep.pos.inRangeTo(this.resource, 3)) {

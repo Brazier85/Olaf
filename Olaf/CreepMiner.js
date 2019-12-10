@@ -38,8 +38,6 @@ CreepMiner.prototype.init = function() {
 };
 
 CreepMiner.prototype.act = function() {
-	var avoidArea = this.getAvoidedArea();
-
 	this.giveEnergy();
 	if(this.creep.energy == this.creep.energyCapacity) {
 		//return;
