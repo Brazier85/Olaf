@@ -142,7 +142,6 @@ function filterExtensions(structure) {
 	if(structure.structureType == STRUCTURE_EXTENSION) {
 		return true;
 	}
-
 	return false;
 }
 
