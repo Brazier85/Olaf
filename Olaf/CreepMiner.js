@@ -44,8 +44,10 @@ CreepMiner.prototype.act = function() {
 		this.creep.say("full!")
 	} 
 	
-	this.creep.moveTo(this.resource);
-	this.creep.harvest(this.resource);
+	if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
+		this.creep.moveTo(this.resource);
+	}
+	
 	this.remember('last-energy', this.creep.energy);
 }
 
