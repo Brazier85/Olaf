@@ -69,7 +69,7 @@ CreepCarrier.prototype.act = function() {
 
 	this.pickupEnergy();
 
-	if(this.creep.store[RESOURCE_ENERGY] < creep.store.getCapacity() && continueDeposit == false) {
+	if(this.creep.store[RESOURCE_ENERGY] < this.creep.store.getCapacity() && continueDeposit == false) {
 		this.harvestEnergy();
 	} else {
 		this.depositEnergy();
