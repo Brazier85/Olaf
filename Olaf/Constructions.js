@@ -77,7 +77,7 @@ Constructions.prototype.getController = function() {
 Constructions.prototype.getClosestConstructionSite = function(creep) {
     var site = false;
     if(this.sites.length != 0) {
-        site = creep.pos.findClosest(this.sites);
+        site = creep.pos.findClosestByRange(this.sites);
     }
 
     return site;
@@ -88,7 +88,7 @@ Constructions.prototype.constructStructure = function(creep) {
     var avoidArea = creep.getAvoidedArea();
 
     if(this.damagedStructures.length != 0) {
-        site = creep.creep.pos.findClosest(this.damagedStructures);
+        site = creep.creep.pos.findClosestByRange(this.damagedStructures);
         creep.creep.moveTo(site, {avoid: avoidArea});
         creep.creep.repair(site);
 
@@ -96,7 +96,7 @@ Constructions.prototype.constructStructure = function(creep) {
     }
 
     if(this.sites.length != 0) {
-        site = creep.creep.pos.findClosest(this.sites);
+        site = creep.creep.pos.findClosestByRange(this.sites);
         creep.creep.moveTo(site, {avoid: avoidArea});
         creep.creep.build(site);
 
@@ -104,7 +104,7 @@ Constructions.prototype.constructStructure = function(creep) {
     }
 
     if(this.upgradeableStructures.length != 0) {
-        site = creep.creep.pos.findClosest(this.upgradeableStructures);
+        site = creep.creep.pos.findClosestByRange(this.upgradeableStructures);
         creep.creep.moveTo(site, {avoid: avoidArea});
         creep.creep.repair(site);
 
