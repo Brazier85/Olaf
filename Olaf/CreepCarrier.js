@@ -180,6 +180,7 @@ CreepCarrier.prototype.harvest = function() {
 
 			//Wenn ich mich selbst gefunden habe
 			if(creepsNear[n].name == this.creep.name) {
+				this.creep.say("❌");
 				this.creep.moveTo(this.resource);
 			}
 		}
