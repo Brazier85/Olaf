@@ -63,13 +63,13 @@ CreepCarrier.prototype.getDepositFor = function() {
 
 CreepCarrier.prototype.act = function() {
     var continueDeposit = false;
-	if(this.creep.energy != 0 && this.remember('last-action') == ACTIONS.DEPOSIT) {
+	if(this.creep.store[RESOURCE_ENERGY] != 0 && this.remember('last-action') == ACTIONS.DEPOSIT) {
 		continueDeposit = true;
 	}
 
 	this.pickupEnergy();
 
-	if(this.creep.energy < this.creep.energyCapacity && continueDeposit == false) {
+	if(this.creep.store[RESOURCE_ENERGY] < creep.store.getCapacity() && continueDeposit == false) {
 		this.harvestEnergy();
 	} else {
 		this.depositEnergy();
