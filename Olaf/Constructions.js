@@ -16,25 +16,18 @@ function Constructions(room) {
 
 
 Constructions.prototype.getDamagedStructures = function() {
-    return this.cache.remember(
-        'damaged-structures',
-        function() {
-            return this.room.find(
-                FIND_MY_STRUCTURES,
-                {
-                    filter: function(s) {
-                        var targets = s.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
-						if(targets.length != 0) {
-						    return false;
-						}
-                        if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX)) {
-                            return true;
-                        }
-                    }
-                }
-            );
-        }.bind(this)
-    );
+    console.log("Searching Damaged");
+    return this.room.find(FIND_MY_STRUCTURES, {
+        filter: function(s) {
+            var targets = s.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
+			if(targets.length != 0) {
+				return false;
+			}
+            if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX)) {
+                return true;
+            }
+        }
+    });
 };
 
 Constructions.prototype.getUpgradeableStructures = function() {
@@ -85,8 +78,6 @@ Constructions.prototype.getClosestConstructionSite = function(creep) {
 
 
 Constructions.prototype.constructStructure = function(creep) {
-
-    console.log(creep.creep.name);
 
     // Wenn etwas kaputt ist mach es ganz!
     if(this.damagedStructures.length != 0) {
