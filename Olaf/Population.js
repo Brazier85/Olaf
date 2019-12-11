@@ -9,7 +9,7 @@ function Population(room) {
 			total: 0,
 			goalPercentage: 0.2,
 			currentPercentage: 0,
-			max: this.room.find(FIND_SOURCES)*2,
+			max: this.room.find(FIND_SOURCES)*2, //Maximal 2 Miner pro source
 			minExtensions: 0
 		},
 		CreepCarrier: {

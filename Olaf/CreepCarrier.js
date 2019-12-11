@@ -181,8 +181,8 @@ CreepCarrier.prototype.harvest = function() {
 				job = true;
 			}
 
-			//Wenn ich mich selbst gefunden habe
-			if( (creepsNear[n].name == this.creep.name) && job ) {
+			//Wenn ich mich selbst gefunden habe und sonst nichts
+			if( (creepsNear[n].name == this.creep.name) && !job ) {
 				this.creep.say("❌");
 				this.creep.moveTo(this.resource);
 			}
