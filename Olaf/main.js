@@ -26,9 +26,9 @@ for(var n in rooms) {
 		room.population.goalsMet() +
 		', population: ' +
 		room.population.getTotalPopulation() + '/' + room.population.getMaxPopulation() +
-		' (' + room.population.getType('CreepBuilder').total + '/' +
-		room.population.getType('CreepMiner').total + '/' +
-		room.population.getType('CreepCarrier').total + '/' +
+		' (B' + room.population.getType('CreepBuilder').total + '/M' +
+		room.population.getType('CreepMiner').total + '/C' +
+		room.population.getType('CreepCarrier').total + '/S' +
 		room.population.getType('CreepSoldier').total + 
 		'), ' +
 		'resources at: ' + parseInt( (room.depositManager.energy() / room.depositManager.energyCapacity())*100) +'%, ' +
