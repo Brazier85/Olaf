@@ -37,7 +37,7 @@ CreepBuilder.prototype.act = function() {
 		this.creep.say("📡");
 		var site = this.constructionManager.getController();
 		if(this.creep.upgradeController(site) == ERR_NOT_IN_RANGE) {
-			this.moveTo(site);
+			this.creep.moveTo(site);
 		}
 	}
 
