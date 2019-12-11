@@ -16,7 +16,7 @@ function Constructions(room) {
 
 
 Constructions.prototype.getDamagedStructures = function() {
-    console.log("Searching Damaged");
+    console.log("Searching Damaged Structure");
     var dmgStructures = this.room.find(FIND_STRUCTURES, {
         filter: function(s) {
             console.log(s);
