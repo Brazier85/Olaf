@@ -29,12 +29,12 @@ CreepBuilder.prototype.init = function() {
 CreepBuilder.prototype.act = function() {
 	var site = false;
 	if(!this.forceControllerUpgrade) {
-		console.log("bauen");
+		console.log(this.creep.name + " bauen");
 		site = this.constructionManager.constructStructure(this);
 	}
 
 	if(!site || this.forceControllerUpgrade) {
-		console.log("Force upgrade");
+		console.log(this.creep.name + " Force upgrade");
 		var site = this.constructionManager.getController();
 		if (!site) {
 			if(this.room.controller) {
