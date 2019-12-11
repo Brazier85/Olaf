@@ -88,6 +88,7 @@ Constructions.prototype.constructStructure = function(creep) {
 
     // Wenn etwas kaputt ist mach es ganz!
     if(this.damagedStructures.length != 0) {
+        console.log("Kaputt");
         site = creep.creep.pos.findClosestByRange(this.damagedStructures);
         if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
@@ -97,6 +98,7 @@ Constructions.prototype.constructStructure = function(creep) {
 
     // Wenn es etwas zu bauen gibt geh hin!
     if(this.sites.length != 0) {
+        console.log("Gibt was zum bauen");
         site = creep.creep.pos.findClosestByRange(this.sites);
         if(creep.creep.build(site) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
@@ -106,6 +108,7 @@ Constructions.prototype.constructStructure = function(creep) {
 
     // Wenn es etwas zum Upgraden gibt mach es!
     if(this.upgradeableStructures.length != 0) {
+        console.log("UPGRADE");
         site = creep.creep.pos.findClosestByRange(this.upgradeableStructures);
         if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
