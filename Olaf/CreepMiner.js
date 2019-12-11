@@ -35,8 +35,7 @@ CreepMiner.prototype.init = function() {
 
 CreepMiner.prototype.act = function() {
 	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
-		// Hier muss eine Prüfung rein ob ein Carrier in der Nähe ist.
-		// Muss der Miner zum Spawn laufen und ausladen
+
 		var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 5);
 		var carrierinRange = false;
 		if(creepsNear.length){
@@ -48,9 +47,10 @@ CreepMiner.prototype.act = function() {
 			}
 		}
 
-		if(carrierinRange) {
+		if(carrierinRange && ACTIONS.HARVEST) {
 			//Alles okay
 		} else {
+			this.remeber('action', ACTIONS.DEPOSIT);
 			var targets = this.creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
@@ -64,6 +64,7 @@ CreepMiner.prototype.act = function() {
             }
 		}
 	} else {
+		this.remeber('action', ACTIONS.HARVEST);
 		if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(this.resource);
 		}
