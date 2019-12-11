@@ -97,10 +97,12 @@ CreepBase.randomMovement = function() {
 
 // Wenn creep stribt
 CreepBase.dying = function() {
-	if ( this.creep.ticksToLive < 5 ) {
+	var timeToLive = this.creep.ticksToLive
+	if ( timeToLive < 20 ) {
 		this.creep.say("☠️");
+	}
+	if ( timeToLive < 5 )
 		this.creep.drop(RESOURCE_ENERGY);
-		this.creep.suicide()
 		return true;
 	}	
 	return false;
