@@ -101,7 +101,7 @@ CreepBase.dying = function() {
 	if ( timeToLive < 20 ) {
 		this.creep.say("☠️");
 	}
-	if ( timeToLive < 5 )
+	if ( timeToLive < 5 ) {
 		this.creep.drop(RESOURCE_ENERGY);
 		return true;
 	}	
