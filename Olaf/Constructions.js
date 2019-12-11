@@ -86,6 +86,8 @@ Constructions.prototype.getClosestConstructionSite = function(creep) {
 
 Constructions.prototype.constructStructure = function(creep) {
 
+    console.log(creep.creep.name);
+
     // Wenn etwas kaputt ist mach es ganz!
     if(this.damagedStructures.length != 0) {
         console.log("Kaputt");
