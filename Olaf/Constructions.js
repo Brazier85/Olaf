@@ -17,7 +17,7 @@ function Constructions(room) {
 
 Constructions.prototype.getDamagedStructures = function() {
     console.log("Searching Damaged");
-    var dmgStructures = this.room.find(FIND_MY_STRUCTURES, {
+    var dmgStructures = this.room.find(FIND_STRUCTURES, {
         filter: function(s) {
             console.log(s);
             var targets = s.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
