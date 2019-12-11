@@ -102,7 +102,7 @@ CreepBase.dying = function() {
 		this.creep.say("☠️");
 		this.creep.moveTo(0,0); //Zur mitte laufen
 	}
-	if ( timeToLive < 5 ) {
+	if ( timeToLive < 10 ) {
 		this.creep.drop(RESOURCE_ENERGY);
 		return true;
 	}	
