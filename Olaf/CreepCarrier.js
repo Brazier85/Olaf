@@ -180,12 +180,6 @@ CreepCarrier.prototype.harvest = function() {
 				job = true;
 				this.creep.transfer(creepsNear[n], RESOURCE_ENERGY);
 			}
-
-			//Wenn ich mich selbst gefunden habe und sonst nichts
-			if( (creepsNear[n].name == this.creep.name) && !job ) {
-				this.creep.say("❌");
-				this.randomMovement();
-			}
 		}
 	}
 }
