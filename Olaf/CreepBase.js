@@ -100,6 +100,7 @@ CreepBase.dying = function() {
 	var timeToLive = this.creep.ticksToLive
 	if ( timeToLive < 20 ) {
 		this.creep.say("☠️");
+		this.creep.moveTo(0,0); //Zur mitte laufen
 	}
 	if ( timeToLive < 5 ) {
 		this.creep.drop(RESOURCE_ENERGY);
