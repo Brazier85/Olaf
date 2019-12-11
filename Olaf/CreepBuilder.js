@@ -34,6 +34,13 @@ CreepBuilder.prototype.act = function() {
 
 	if(!site) {
 		var site = this.constructionManager.getController();
+		if (!site) {
+			if(this.room.controller) {
+				if(this.creep.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
+					this.moveTo(this.room.controller);
+				}
+			}
+		}
 	}
 
 	this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);

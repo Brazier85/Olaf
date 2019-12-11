@@ -113,14 +113,6 @@ Constructions.prototype.constructStructure = function(creep) {
         return site;
     }
 
-    // Wenn alles andere nicht zutrifft
-    if (creep.creep.room.controller) {
-        if(creep.creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-            creep.creep.moveTo(creep.room.controller);
-        }
-        return true;
-    }
-
     return false;
 };
 
