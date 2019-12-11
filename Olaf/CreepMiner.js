@@ -47,10 +47,10 @@ CreepMiner.prototype.act = function() {
 			}
 		}
 
-		if(carrierinRange && ACTIONS.HARVEST) {
+		if(carrierinRange && this.remember('action') == ACTIONS.HARVEST) {
 			//Alles okay
 		} else {
-			this.remeber('action', ACTIONS.DEPOSIT);
+			this.remember('action', ACTIONS.DEPOSIT);
 			var targets = this.creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
@@ -64,7 +64,7 @@ CreepMiner.prototype.act = function() {
             }
 		}
 	} else {
-		this.remeber('action', ACTIONS.HARVEST);
+		this.remember('action', ACTIONS.HARVEST);
 		if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(this.resource);
 		}
