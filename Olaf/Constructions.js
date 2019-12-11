@@ -86,27 +86,30 @@ Constructions.prototype.getClosestConstructionSite = function(creep) {
 
 Constructions.prototype.constructStructure = function(creep) {
 
+    // Wenn etwas kaputt ist mach es ganz!
     if(this.damagedStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.damagedStructures);
-        creep.creep.moveTo(site);
-        creep.creep.repair(site);
-
+        if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
+            creep.creep.moveTo(site);
+        }
         return site;
     }
 
+    // Wenn es etwas zu bauen gibt geh hin!
     if(this.sites.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.sites);
-        creep.creep.moveTo(site);
-        creep.creep.build(site);
-
+        if(creep.creep.build(site) == ERR_NOT_IN_RANGE) {
+            creep.creep.moveTo(site);
+        }
         return site;
     }
 
+    // Wenn es etwas zum Upgraden gibt mach es!
     if(this.upgradeableStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.upgradeableStructures);
-        creep.creep.moveTo(site);
-        creep.creep.repair(site);
-
+        if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
+            creep.creep.moveTo(site);
+        }
         return site;
     }
 
