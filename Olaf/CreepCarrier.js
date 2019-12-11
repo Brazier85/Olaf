@@ -60,18 +60,20 @@ CreepCarrier.prototype.getDepositFor = function() {
 }
 
 CreepCarrier.prototype.act = function() {
-    var continueDeposit = false;
-	if(this.creep.store[RESOURCE_ENERGY] != 0 && this.remember('last-action') == ACTIONS.DEPOSIT) {
-		continueDeposit = true;
-	}
+	if (!this.dying()) {
+		var continueDeposit = false;
+		if(this.creep.store[RESOURCE_ENERGY] != 0 && this.remember('last-action') == ACTIONS.DEPOSIT) {
+			continueDeposit = true;
+		}
 
-	this.pickupEnergy();
+		this.pickupEnergy();
 
-	if(this.creep.store[RESOURCE_ENERGY] < this.creep.store.getCapacity() && continueDeposit == false) {
-		this.harvestEnergy();
-	} else {
-		this.depositEnergy();
+		if(this.creep.store[RESOURCE_ENERGY] < this.creep.store.getCapacity() && continueDeposit == false) {
+			this.harvestEnergy();
+		} else {
+			this.depositEnergy();
 
+		}
 	}
 };
 

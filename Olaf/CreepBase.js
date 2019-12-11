@@ -1,6 +1,8 @@
 var CreepBase = {};
 var Cache = require('Cache');
 var universalCache = new Cache();
+
+// Etwas in den Memory schreiben
 CreepBase.remember = function(key, value) {
 	if(value === undefined) {
 		return this.creep.memory[key];
@@ -11,10 +13,12 @@ CreepBase.remember = function(key, value) {
 	return value;
 }
 
+// Etwas aus dem Memory löschen
 CreepBase.forget = function(key) {
 	delete this.creep.memory[key];
 }
 
+// Aus zu neuen Ufern!
 CreepBase.moveToNewRoom = function() {
 	var targetRoom = this.remember('targetRoom');
 	var srcRoom = this.remember('srcRoom');
@@ -36,6 +40,7 @@ CreepBase.moveToNewRoom = function() {
 
 }
 
+// Beweg dich!
 CreepBase.randomMovement = function() {
 	if(!this.remember('temp-pos')) {
 		this.remember('temp-pos', {x:parseInt(Math.random()*50), y:parseInt(Math.random()*50)});
@@ -89,5 +94,15 @@ CreepBase.randomMovement = function() {
 
 	return false;
 };
+
+// Wenn creep stribt
+CreepBase.dying = function() {
+	if ( this.creep.ticksToLive > 100 ) {
+		this.creep.say("☠️");
+		this.creep.moveTo(20, 20);
+		return true;
+	}	
+	return false;
+}
 
 module.exports = CreepBase;
