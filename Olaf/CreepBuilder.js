@@ -29,12 +29,12 @@ CreepBuilder.prototype.init = function() {
 CreepBuilder.prototype.act = function() {
 	var site = false;
 	if(!this.forceControllerUpgrade) {
-		console.log(this.creep.name + " bauen");
+		this.creep.say("🛠");
 		site = this.constructionManager.constructStructure(this);
 	}
 
 	if(!site || this.forceControllerUpgrade) {
-		console.log(this.creep.name + " Force upgrade");
+		this.creep.say("📡");
 		var site = this.constructionManager.getController();
 		if(this.creep.upgradeController(site) == ERR_NOT_IN_RANGE) {
 			this.moveTo(site);
