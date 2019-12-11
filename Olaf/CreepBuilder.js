@@ -36,12 +36,8 @@ CreepBuilder.prototype.act = function() {
 	if(!site || this.forceControllerUpgrade) {
 		console.log(this.creep.name + " Force upgrade");
 		var site = this.constructionManager.getController();
-		if (!site) {
-			if(this.room.controller) {
-				if(this.creep.upgradeController(this.room.controller) == ERR_NOT_IN_RANGE) {
-					this.moveTo(this.room.controller);
-				}
-			}
+		if(this.creep.upgradeController(site) == ERR_NOT_IN_RANGE) {
+			this.moveTo(site);
 		}
 	}
 
