@@ -37,10 +37,11 @@ CreepShooter.prototype.attackSpawns = function() {
     if(targets.length) {
         var rangedTargets = this.creep.pos.findInRange(FIND_HOSTILE_SPAWNS, 3);
         if(rangedTargets.length > 0) {
-            this.creep.rangedAttack(rangedTargets[0]);
+            if(this.creep.rangedAttack(rangedTargets[0]) == ERR_NOT_IN_RANGE) {
+                this.creep.moveTo(rangedTargets[0]);
+            }
 			return true;
         }
-
         this.creep.moveTo(targets[0]);
         return true;
     };
