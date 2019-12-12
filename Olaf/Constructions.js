@@ -7,7 +7,7 @@ var Cache = require('Cache');
 function Constructions(room) {
     this.room = room;
     this.cache = new Cache();
-    this.sites = this.room.find(FIND_CONSTRUCTION_SITES);
+    this.sites = this.room.find(FIND_MY_CONSTRUCTION_SITES);
     this.structures = this.room.find(FIND_MY_STRUCTURES);
     this.damagedStructures = this.getDamagedStructures();
     this.upgradeableStructures = this.getUpgradeableStructures();
