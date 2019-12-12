@@ -101,7 +101,7 @@ CreepBase.dying = function() {
 	var isDying = false;
 	if ( timeToLive < 20 ) {
 		this.creep.say("☠️");
-		this.creep.moveTo(0,0); //Zur mitte laufen
+		this.creep.moveTo(25,25); //Zur mitte laufen
 		isDying = true;
 	}
 	if ( timeToLive < 10 ) {
@@ -109,11 +109,7 @@ CreepBase.dying = function() {
 		isDying = true;
 	}	
 
-	if (isDying) {
-		return true;
-	}
-	
-	return false;
+	return isDying;
 }
 
 module.exports = CreepBase;
