@@ -61,7 +61,7 @@ CreepMiner.prototype.act = function() {
 				// Wenn kein Carrier in der Nähe ist oder wir schon auf dem Weg zum abladen sind
 				if(!carrierinRange || this.remember('action') == ACTIONS.DEPOSIT) {
 					this.remember('action', ACTIONS.DEPOSIT);
-					var targets = this.creep.room.find(FIND_STRUCTURES, {
+					var targets = this.creep.room.find(FIND_MY_STRUCTURES, {
 						filter: (structure) => {
 							return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
 								structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
@@ -86,7 +86,15 @@ CreepMiner.prototype.act = function() {
 }
 
 CreepMiner.prototype.checkContainer = function() {
-	this.creep.room.find();
+	var Container = this.creep.pos.findInRange(FIND_MY_STRUCTURES, 0, {
+		filter: (structure) => {
+			return (structure.structureType == STRUCTURE_CONTAINER)
+		}
+	});
+	if (Container.lenght) {
+		console.log(this.creep.name + " is dropping its resources!");
+		this.remeber('harvest', HARVEST.DROP);
+	}
 }
 
 module.exports = CreepMiner;
