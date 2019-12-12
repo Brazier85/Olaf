@@ -139,7 +139,9 @@ Deposits.prototype.getFullDeposits = function() {
 
 // PRIVATE
 function filterExtensions(structure) {
-	if ((structure.structureType == STRUCTURE_EXTENSION) || structure.structureType == StructureContainer) {
+	if (structure.structureType == STRUCTURE_EXTENSION ||
+		structure.structureType == STRUCTURE_STORAGE ||
+		structure.structureType == STRUCTURE_CONTAINER) {
 		return true;
 	}
 	return false;
