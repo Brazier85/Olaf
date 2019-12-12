@@ -14,7 +14,7 @@ function Population(room) {
 		},
 		CreepCarrier: {
 			total: 0,
-			goalPercentage: 0.3,
+			goalPercentage: 0.5,
 			currentPercentage: 0,
 			max: 15,
 			minExtensions: 0
