@@ -25,16 +25,11 @@ CreepSoldier.prototype.act = function() {
     this.creep.moveTo(25,25);
 }
 CreepSoldier.prototype.attackHostiles = function() {
-    var targets = this.creep.room.find(FIND_HOSTILE_CREEPS, {
-        filter: function(t) {
-            if(t.name == 'Source Keeper') {
-                return false;
-            }
+    var target = this.creep.room.findClosestByRange(FIND_HOSTILE_CREEPS);
+    if(target) {
+        if(this.creep.attack(target) == ERR_NOT_IN_RANGE) {
+            this.creep.moveTo(target);
         }
-    });
-    if(targets.length) {
-        this.creep.moveTo(targets[0]);
-        this.creep.attack(targets[0]);
         return true;
     }
 }
