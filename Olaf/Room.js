@@ -166,6 +166,8 @@ Room.prototype.distributeCarriers = function() {
 		counter++;
 	}
 
+	console.log(builders);
+
 	// Alle Carrier duchgehen
 	counter = 0;
 	for(var i = 0; i < carriers.length; i++) {
@@ -182,7 +184,6 @@ Room.prototype.distributeCarriers = function() {
 		}
 		counter++;
 		if(counter >= builders.length) {
-			console.log("Counter auf 0");
 			counter = 0;
 		}
 	}
