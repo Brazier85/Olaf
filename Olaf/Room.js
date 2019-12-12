@@ -206,4 +206,15 @@ Room.prototype.distributeResources = function(type) {
 	}
 };
 
+Room.prototype.defendRoom = function() {
+    var hostiles = this.room.find(FIND_HOSTILE_CREEPS);
+    if(hostiles.length > 0) {
+        var username = hostiles[0].owner.username;
+        Game.notify(`User ${username} spotted in room ${this.room.name}`);
+        var towers = this.room.find(
+            FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+        towers.forEach(tower => tower.attack(hostiles[0]));
+    }
+}
+
 module.exports = Room;

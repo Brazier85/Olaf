@@ -19,6 +19,7 @@ for(var n in rooms) {
 	var room = rooms[n];
 	room.loadCreeps();
 	room.populate();
+	room.defendRoom();
 
 	console.log(
 		room.room.name + ' | ' +
