@@ -167,12 +167,14 @@ Room.prototype.distributeCarriers = function() {
 	}
 
 	console.log(builders);
+	console.log(carriers.length);
 
 	// Alle Carrier duchgehen
 	counter = 0;
 	for(var i = 0; i < carriers.length; i++) {
 		var creep = carriers[i];
 		if(creep.remember('role') != 'CreepCarrier') { //Nochmal prüfen ob wirklich ein Carrier
+			console.log("Kein Carrier");
 			continue;
 		}
 		if(!builders[counter]) { // Wenn kein Builder mehr da ist
