@@ -166,25 +166,21 @@ Room.prototype.distributeCarriers = function() {
 		counter++;
 	}
 
-	console.log(builders);
-	console.log(carriers.length);
-
 	// Alle Carrier duchgehen
 	counter = 0;
 	for(var i = 0; i < carriers.length; i++) {
 		var creep = carriers[i];
 		if(creep.remember('role') != 'CreepCarrier') { //Nochmal prüfen ob wirklich ein Carrier
-			console.log("Kein Carrier");
 			continue;
 		}
 		if(!builders[counter]) { // Wenn kein Builder mehr da ist
-			console.log("Kein Builder da");
 			continue;
 		}
-		var id = creep.remember('target-worker'); // Worker zuweisen
-		if(!Game.getObjectById(id)) {
+		//var id = creep.remember('target-worker'); // Aktuellen Worker abrufen
+		//if(!Game.getObjectById(id)) {
 			creep.remember('target-worker', builders[counter].id);
-		}
+		//}
+		
 		counter++;
 		if(counter >= builders.length) {
 			counter = 0;

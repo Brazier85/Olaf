@@ -152,7 +152,7 @@ CreepCarrier.prototype.pickupEnergy = function() {
 		return false;
 	}
 
-	var target = this.creep.pos.findInRange(FIND_DROPPED_RESOURCES,2);
+	var target = this.creep.pos.findInRange(FIND_DROPPED_RESOURCES,4);
 	if(target.length) {
 	    this.creep.pickup(target[0]);
 	}
