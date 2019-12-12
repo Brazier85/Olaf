@@ -113,6 +113,15 @@ Constructions.prototype.constructStructure = function(creep) {
         return site;
     }
 
+    // Wenn es einen Tower ohne Energie gibt füll sie auf
+    if(this.emptyTowers.lenght != 0) {
+        site = creep.creep.pos.findClosestByRange(this.emptyTowers);
+        if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep.creep.moveTo(site);
+        }
+        return site;
+    }
+
     // Wenn es etwas zu bauen gibt geh hin!
     if(this.sites.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.sites);
@@ -126,15 +135,6 @@ Constructions.prototype.constructStructure = function(creep) {
     if(this.upgradeableStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.upgradeableStructures);
         if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
-            creep.creep.moveTo(site);
-        }
-        return site;
-    }
-
-    // Wenn es einen Tower ohne Energie gibt füll sie auf
-    if(this.emptyTowers.lenght != 0) {
-        site = creep.creep.pos.findClosestByRange(this.emptyTowers);
-        if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
         }
         return site;
