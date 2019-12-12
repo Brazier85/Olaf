@@ -25,7 +25,7 @@ CreepSoldier.prototype.act = function() {
     this.creep.moveTo(25,25);
 }
 CreepSoldier.prototype.attackHostiles = function() {
-    var targets = this.creep.room.findClosestByRange(FIND_HOSTILE_CREEPS);
+    var targets = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
     if(targets.length) {
         if(this.creep.attack(target[0]) == ERR_NOT_IN_RANGE) {
             this.creep.moveTo(target[0]);
