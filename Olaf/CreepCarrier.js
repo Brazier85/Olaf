@@ -115,12 +115,14 @@ CreepCarrier.prototype.depositEnergy = function() {
 }
 
 CreepCarrier.prototype.getWorker = function() {
+	// Wird in Room.distributeCarriers zugewiesen
 	if(this.remember('target-worker')) {
 		return Game.getObjectById(this.remember('target-worker'));
 	}
 
 	return false;
 }
+
 CreepCarrier.prototype.getDeposit = function() {
 	return this.cache.remember(
 		'selected-deposit',

@@ -136,19 +136,23 @@ Room.prototype.distributeBuilders = function() {
 		}
 	}
 }
+
+// Verteile Carrier
 Room.prototype.distributeCarriers = function() {
 	var counter = 0;
 	var builders = [];
 	var carriers = [];
+
+	// Alles creeps im Raum durchgehen
 	for(var i = 0; i < this.creeps.length; i++) {
 		var creep = this.creeps[i];
-		if(creep.remember('role') == 'CreepBuilder') {
+		if(creep.remember('role') == 'CreepBuilder') { // Wenn Builder zur Liste hinzufügen
 			builders.push(creep.creep);
 		}
-		if(creep.remember('role') != 'CreepCarrier') {
+		if(creep.remember('role') != 'CreepCarrier') { // Wenn kein Carrier nächsten Schleifendurchlauf starten
 			continue;
 		}
-		carriers.push(creep);
+		carriers.push(creep); // Zu Carrier Liste hinzufügen
 		if(!creep.getDepositFor()) {
 			if(counter%2) {
 				// Construction
@@ -161,21 +165,24 @@ Room.prototype.distributeCarriers = function() {
 
 		counter++;
 	}
+
+	// Alle Carrier duchgehen
 	counter = 0;
 	for(var i = 0; i < carriers.length; i++) {
 		var creep = carriers[i];
-		if(creep.remember('role') != 'CreepCarrier') {
+		if(creep.remember('role') != 'CreepCarrier') { //Nochmal prüfen ob wirklich ein Carrier
 			continue;
 		}
-		if(!builders[counter]) {
+		if(!builders[counter]) { // Wenn kein Builder mehr da ist
 			continue;
 		}
-		var id = creep.remember('target-worker');
+		var id = creep.remember('target-worker'); // Worker zuweisen
 		if(!Game.getObjectById(id)) {
 			creep.remember('target-worker', builders[counter].id);
 		}
 		counter++;
 		if(counter >= builders.length) {
+			console.log("Counter auf 0");
 			counter = 0;
 		}
 	}
