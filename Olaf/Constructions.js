@@ -128,7 +128,7 @@ Constructions.prototype.constructStructure = function(creep) {
     // Wenn es einen Tower ohne Energie gibt füll sie auf
     if(this.emptyTowers.lenght != 0) {
         site = creep.creep.pos.findClosestByRange(this.emptyTowers);
-        if(creep.creep.transfer(site) == ERR_NOT_IN_RANGE) {
+        if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
         }
         return site;
