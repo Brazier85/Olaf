@@ -22,10 +22,10 @@ CreepShooter.prototype.act = function() {
     this.creep.moveTo(25,25);
 }
 CreepShooter.prototype.attackHostiles = function() {
-    var targets = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-    if(targets.length) {
-        if(this.creep.rangedAttack(target[0]) == ERR_NOT_IN_RANGE) {
-            this.creep.moveTo(target[0]);
+    var target = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+    if(target) {
+        if(this.creep.rangedAttack(target) == ERR_NOT_IN_RANGE) {
+            this.creep.moveTo(target);
         }
         return true;
     }
