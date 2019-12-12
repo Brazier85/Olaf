@@ -92,6 +92,7 @@ Constructions.prototype.getEmptyTowers = function() {
                 {
                     filter: function(s) {
                         if( s.structureType == STRUCTURE_TOWER && s.store.getFreeCapacity(RESOURCE_ENERGY) > 0) {
+                            console.log(s.name);
                             return true;
                         } else {
                             return false;
@@ -116,7 +117,7 @@ Constructions.prototype.constructStructure = function(creep) {
     }
 
     // Wenn es einen Tower ohne Energie gibt füll sie auf
-    if(this.emptyTowers.lenght != 0) {
+    if(this.emptyTowers.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.emptyTowers);
         if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
