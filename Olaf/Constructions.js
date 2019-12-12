@@ -17,18 +17,24 @@ function Constructions(room) {
 
 
 Constructions.prototype.getDamagedStructures = function() {
-    var dmgStructures = this.room.find(FIND_STRUCTURES, {
-        filter: function(s) {
-            var targets = s.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
-			if(targets.length != 0) {
-				return false;
-			}
-            if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX)) {
-                return true;
-            }
-        }
-    });
-    return dmgStructures;
+    return this.cache.remember(
+        'damaged-stuctures',
+        function() {
+            return this.room.find(
+                FIND_STRUCTURES, {
+                    filter: function(s) {
+                        var targets = s.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
+                        if(targets.length != 0) {
+                            return false;
+                        }
+                        if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX)) {
+                            return true;
+                        }
+                    }
+                }
+            );
+        }.bind(this)
+    );
 };
 
 Constructions.prototype.getUpgradeableStructures = function() {

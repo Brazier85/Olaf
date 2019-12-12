@@ -27,7 +27,6 @@ CreepHealer.prototype.act = function() {
         this.creep.moveTo(injured);
         this.creep.heal(injured);
     }
-
 }
 
 CreepHealer.prototype.getInjuredCreep = function() {
