@@ -176,6 +176,7 @@ Room.prototype.distributeCarriers = function() {
 			continue;
 		}
 		if(!builders[counter]) { // Wenn kein Builder mehr da ist
+			console.log("Kein Builder da");
 			continue;
 		}
 		var id = creep.remember('target-worker'); // Worker zuweisen
