@@ -49,7 +49,7 @@ Deposits.prototype.getEmptyDeposits = function() {
 };
 
 Deposits.prototype.isEmptyDeposit = function(deposit) {
-	if(deposit.energy / deposit.energyCapacity < CONSTS.EMPTY_LEVEL) {
+	if(deposit.store[RESOURCE_ENERGY] / deposit.store.getCapacity() < CONSTS.EMPTY_LEVEL) {
 		return true;
 	}
 

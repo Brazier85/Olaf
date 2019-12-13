@@ -18,28 +18,6 @@ CreepBase.forget = function(key) {
 	delete this.creep.memory[key];
 }
 
-// Aus zu neuen Ufern!
-CreepBase.moveToNewRoom = function() {
-	var targetRoom = this.remember('targetRoom');
-	var srcRoom = this.remember('srcRoom');
-
-	if(targetRoom) {
-		if(targetRoom != this.creep.room.name) {
-			var exitDir = this.creep.room.findExitTo(targetRoom);
-			var exit = this.creep.pos.findClosest(exitDir);
-			this.creep.moveTo(exit);
-			return true;
-		} else {
-			this.creep.moveTo(30,30);
-			var targetRoom = this.remember('targetRoom', false);
-			var srcRoom = this.remember('srcRoom', this.creep.room.name);
-		}
-	} else {
-		return false;
-	}
-
-}
-
 // Beweg dich!
 CreepBase.randomMovement = function() {
 	if(!this.remember('temp-pos')) {
@@ -65,7 +43,7 @@ CreepBase.randomMovement = function() {
 	var lastPos = this.remember('last-pos');
 	var currPos = this.creep.pos;
 
-	if(lastEnergy != this.creep.energy) {
+	if(lastEnergy != this.creep.store[RESOURCE_ENERGY]) {
 		moveAttempts = this.remember('move-attempts', 0);
 	}
 
@@ -90,7 +68,7 @@ CreepBase.randomMovement = function() {
 	}
 
 	this.remember('last-pos', {x:this.creep.pos.x, y:this.creep.pos.y});
-	this.remember('last-energy', this.creep.energy);
+	this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);
 
 	return false;
 };
