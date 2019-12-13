@@ -187,7 +187,7 @@ Room.prototype.defendRoom = function() {
 	
 	// Wenn keine Gegner da sind
 	if(hostiles.length === 0) {
-		for(var tower in towers){
+		towers.forEach(tower => {
 			if(tower.store[RESOURCE_ENERGY] > tower.store.getFreeCapacity(RESOURCE_ENERGY)){
 
 				//Find the closest damaged Structure
@@ -197,7 +197,7 @@ Room.prototype.defendRoom = function() {
 					 console.log("The tower is repairing buildings.");
 				}
 			}
-		}
+		})
 	}
 }
 
