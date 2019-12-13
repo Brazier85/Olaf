@@ -107,19 +107,19 @@ Constructions.prototype.getEmptyTowers = function() {
 
 Constructions.prototype.constructStructure = function(creep) {
 
-    // Wenn etwas kaputt ist mach es ganz!
-    if(this.damagedStructures.length != 0) {
-        site = creep.creep.pos.findClosestByRange(this.damagedStructures);
-        if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
+    // Wenn es einen Tower ohne Energie gibt füll sie auf
+    if(this.emptyTowers.length != 0) {
+        site = creep.creep.pos.findClosestByRange(this.emptyTowers);
+        if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
         }
         return site;
     }
 
-    // Wenn es einen Tower ohne Energie gibt füll sie auf
-    if(this.emptyTowers.length != 0) {
-        site = creep.creep.pos.findClosestByRange(this.emptyTowers);
-        if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+    // Wenn etwas kaputt ist mach es ganz!
+    if(this.damagedStructures.length != 0) {
+        site = creep.creep.pos.findClosestByRange(this.damagedStructures);
+        if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
         }
         return site;
