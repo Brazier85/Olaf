@@ -92,7 +92,6 @@ Constructions.prototype.getEmptyTowers = function() {
                 {
                     filter: function(s) {
                         if( s.structureType == STRUCTURE_TOWER && s.store.getFreeCapacity(RESOURCE_ENERGY) > 0) {
-                            console.log(s.name);
                             return true;
                         } else {
                             return false;
