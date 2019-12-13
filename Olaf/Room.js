@@ -20,17 +20,19 @@ function Room(room, roomHandler) {
 	this.creepFactory = new CreepFactory(this.depositManager, this.resourceManager, this.constructionManager, this.population, this.roomHandler);
 }
 
+// Creeps in Raum erzeugen
 Room.prototype.populate = function() {
-	if(this.depositManager.spawns.length == 0 && this.population.getTotalPopulation() < 10) {
-		this.askForReinforcements()
-	}
 
 	for(var i = 0; i < this.depositManager.spawns.length; i++) {
+
+		// Prüfen ob Spawn bereits am spawnen ist
 		var spawn = this.depositManager.spawns[i];
 		if(spawn.spawning) {
 			continue;
 		}
 
+		// Prüfen ob Energie vorhanden ist
+		console.log((this.depositManager.energy() / this.depositManager.energyCapacity()));
 		if((this.depositManager.energy() / this.depositManager.energyCapacity()) > 0.2) {
 			var types = this.population.getTypes()
 			for(var i = 0; i < types.length; i++) {
