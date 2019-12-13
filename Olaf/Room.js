@@ -23,6 +23,8 @@ function Room(room, roomHandler) {
 // Creeps in Raum erzeugen
 Room.prototype.populate = function() {
 
+	console.log(this.resourceManager.getSources().length*2);
+
 	for(var i = 0; i < this.depositManager.spawns.length; i++) {
 
 		// Prüfen ob Spawn bereits am spawnen ist
