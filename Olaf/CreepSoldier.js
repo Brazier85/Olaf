@@ -27,7 +27,7 @@ CreepSoldier.prototype.act = function() {
 CreepSoldier.prototype.attackHostiles = function() {
     var target = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
     if(target) {
-        this.crrep.say("⚔️", true);
+        this.creep.say("⚔️", true);
         if(this.creep.attack(target) == ERR_NOT_IN_RANGE) {
             this.creep.moveTo(target);
         }
@@ -37,7 +37,7 @@ CreepSoldier.prototype.attackHostiles = function() {
 CreepSoldier.prototype.attackSpawns = function() {
     var targets = this.creep.room.find(FIND_HOSTILE_SPAWNS);
     if(targets.length) {
-        this.crrep.say("⚔️", true);
+        this.creep.say("⚔️", true);
         if(this.creep.attack(targets[0]) == ERR_NOT_IN_RANGE) {
             this.creep.moveTo(target[0]);
         }
