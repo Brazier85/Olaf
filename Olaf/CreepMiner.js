@@ -11,7 +11,7 @@ var HARVEST = {
 	DROP: 2
 }
 
-function CreepMinercreep, resourceManager) {
+function CreepMiner(creep, resourceManager) {
 	this.cache = new Cache();
 	this.creep = creep;
 	this.resourceManager = resourceManager;
