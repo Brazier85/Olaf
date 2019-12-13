@@ -40,7 +40,7 @@ CreepMiner.prototype.init = function() {
 CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
-		if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
+		if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity(RESOURCE_ENERGY)) {
 			// Suche nach Carrier in der Nähe
 			var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 5);
 			var carrierinRange = false;

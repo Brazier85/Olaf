@@ -68,7 +68,7 @@ CreepCarrier.prototype.act = function() {
 
 		this.pickupEnergy();
 
-		if(this.creep.store[RESOURCE_ENERGY] < this.creep.store.getCapacity() && continueDeposit == false) {
+		if(this.creep.store[RESOURCE_ENERGY] < this.creep.store.getCapacity(RESOURCE_ENERGY) && continueDeposit == false) {
 			this.harvestEnergy();
 		} else {
 			this.depositEnergy();
@@ -148,7 +148,7 @@ CreepCarrier.prototype.getDeposit = function() {
 	)
 };
 CreepCarrier.prototype.pickupEnergy = function() {
-	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity()) {
+	if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity(RESOURCE_ENERGY)) {
 		return false;
 	}
 

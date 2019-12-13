@@ -49,7 +49,7 @@ Deposits.prototype.getEmptyDeposits = function() {
 };
 
 Deposits.prototype.isEmptyDeposit = function(deposit) {
-	if(deposit.store[RESOURCE_ENERGY] / deposit.store.getCapacity() < CONSTS.EMPTY_LEVEL) {
+	if(deposit.store[RESOURCE_ENERGY] / deposit.store.getCapacity(RESOURCE_ENERGY) < CONSTS.EMPTY_LEVEL) {
 		return true;
 	}
 
@@ -105,14 +105,15 @@ Deposits.prototype.energyCapacity = function() {
 		'deposits-energy-capacity',
 		function() {
 			var energyCapacity = 0;
+			console.log(this.deposits);
 			var resources = this.deposits;
 			for(var i = 0; i < resources.length; i++) {
 				var res = resources[i];
-				energyCapacity += res.store.getCapacity();
+				energyCapacity += res.store.getCapacity(RESOURCE_ENERGY);
 			}
 
 			for(var i = 0; i < this.spawns.length; i++) {
-				energyCapacity += this.spawns[i].store.getCapacity();
+				energyCapacity += this.spawns[i].store.getCapacity(RESOURCE_ENERGY);
 			}
 
 			return energyCapacity;
@@ -128,7 +129,7 @@ Deposits.prototype.getFullDeposits = function() {
 			var deposits = this.deposits;
 			for(var i = 0; i < deposits.length; i++) {
 				var deposit = deposits[i];
-				if(deposit.store[RESOURCE_ENERGY] == deposit.store.getCapacity()) {
+				if(deposit.store[RESOURCE_ENERGY] == deposit.store.getCapacity(RESOURCE_ENERGY)) {
 					full.push(deposit);
 				}
 			}
