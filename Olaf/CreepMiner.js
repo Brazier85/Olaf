@@ -40,38 +40,8 @@ CreepMiner.prototype.init = function() {
 CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
-		if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity(RESOURCE_ENERGY)) {
-			// Suche nach Carrier in der Nähe
-			var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 5);
-			var carrierinRange = false;
-			if(creepsNear.length){
-				for(var n in creepsNear){
-					if(creepsNear[n].memory.role === 'CreepCarrier'){
-						carrierinRange = true;
-					}
-				}
-			}
-
-			// Wenn kein Carrier in der Nähe ist oder wir schon auf dem Weg zum abladen sind
-			if(!carrierinRange || this.remember('action') == ACTIONS.DEPOSIT) {
-				this.remember('action', ACTIONS.DEPOSIT);
-				var targets = this.creep.room.find(FIND_MY_STRUCTURES, {
-					filter: (structure) => {
-						return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
-							structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
-					}
-				});
-				if(targets.length > 0) {
-					if(this.creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-					}
-				}
-			}
-		} else {
-			this.remember('action', ACTIONS.HARVEST);
-			if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
-				this.creep.moveTo(this.resource);
-			}
+		if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
+			this.creep.moveTo(this.resource);
 		}
 		
 		this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);

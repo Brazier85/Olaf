@@ -6,6 +6,8 @@ var CONSTS = {
 function Deposits(room) {
 	this.cache = new Cache();
 	this.room = room;
+	this.energy = this.room.energyAvailable;
+	this.energyCapacity = this.room.energyCapacityAvailable;
 	this.deposits = this.room.find(
 		FIND_MY_STRUCTURES,
 		{
@@ -77,47 +79,6 @@ Deposits.prototype.getClosestEmptyDeposit = function(creep) {
 	}
 
 	return resource;
-};
-
-Deposits.prototype.energy = function() {
-	return this.cache.remember(
-		'deposits-energy',
-		function() {
-			var energy = 0;
-			var resources = this.deposits;
-
-			for(var i = 0; i < resources.length; i++) {
-				var res = resources[i];
-				energy += res.store[RESOURCE_ENERGY];
-			}
-
-			for(var i = 0; i < this.spawns.length; i++) {
-				energy += this.spawns[i].store[RESOURCE_ENERGY];
-			}
-
-			return energy;
-		}.bind(this)
-	);
-};
-
-Deposits.prototype.energyCapacity = function() {
-	return this.cache.remember(
-		'deposits-energy-capacity',
-		function() {
-			var energyCapacity = 0;
-			var resources = this.deposits;
-			for(var i = 0; i < resources.length; i++) {
-				var res = resources[i];
-				energyCapacity += res.store.getCapacity(RESOURCE_ENERGY);
-			}
-
-			for(var i = 0; i < this.spawns.length; i++) {
-				energyCapacity += this.spawns[i].store.getCapacity(RESOURCE_ENERGY);
-			}
-
-			return energyCapacity;
-		}.bind(this)
-	);
 };
 
 Deposits.prototype.getFullDeposits = function() {
