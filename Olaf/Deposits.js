@@ -105,7 +105,6 @@ Deposits.prototype.energyCapacity = function() {
 		'deposits-energy-capacity',
 		function() {
 			var energyCapacity = 0;
-			console.log(this.deposits);
 			var resources = this.deposits;
 			for(var i = 0; i < resources.length; i++) {
 				var res = resources[i];
