@@ -184,7 +184,22 @@ Room.prototype.defendRoom = function() {
         var towers = this.room.find(
             FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
         towers.forEach(tower => tower.attack(hostiles[0]));
-    }
+	}
+	
+	// Wenn keine Gegner da sind
+	if(hostiles.length === 0) {
+		for(var tower in towers){
+			if(tower.store[RESOURCE_ENERGY] > ((tower.store.getFreeCapacity(RESOURCE_ENERGY) / 10)* 9)){
+
+				//Find the closest damaged Structure
+				var closestDamagedStructure = towers.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART});
+				if(closestDamagedStructure) {
+					 towers.repair(closestDamagedStructure);
+					 console.log("The tower is repairing buildings.");
+				}
+			}
+		}
+	}
 }
 
 module.exports = Room;
