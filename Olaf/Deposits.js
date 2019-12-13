@@ -88,11 +88,11 @@ Deposits.prototype.energy = function() {
 
 			for(var i = 0; i < resources.length; i++) {
 				var res = resources[i];
-				energy += res.energy;
+				energy += res.store[RESOURCE_ENERGY];
 			}
 
 			for(var i = 0; i < this.spawns.length; i++) {
-				energy += this.spawns[i].energy;
+				energy += this.spawns[i].store[RESOURCE_ENERGY];
 			}
 
 			return energy;
@@ -108,11 +108,11 @@ Deposits.prototype.energyCapacity = function() {
 			var resources = this.deposits;
 			for(var i = 0; i < resources.length; i++) {
 				var res = resources[i];
-				energyCapacity += res.energyCapacity;
+				energyCapacity += res.store.getCapacity();
 			}
 
 			for(var i = 0; i < this.spawns.length; i++) {
-				energyCapacity += this.spawns[i].energyCapacity;
+				energyCapacity += this.spawns[i].store.getCapacity();
 			}
 
 			return energyCapacity;
@@ -128,7 +128,7 @@ Deposits.prototype.getFullDeposits = function() {
 			var deposits = this.deposits;
 			for(var i = 0; i < deposits.length; i++) {
 				var deposit = deposits[i];
-				if(deposit.energy == deposit.energyCapacity) {
+				if(deposit.store[RESOURCE_ENERGY] == deposit.store.getCapacity()) {
 					full.push(deposit);
 				}
 			}
@@ -139,8 +139,8 @@ Deposits.prototype.getFullDeposits = function() {
 
 // PRIVATE
 function filterExtensions(structure) {
-	if (structure.structureType == STRUCTURE_EXTENSION //||
-		//structure.structureType == STRUCTURE_STORAGE
+	if (structure.structureType == STRUCTURE_EXTENSION ||
+		structure.structureType == STRUCTURE_STORAGE
 	){
 		return true;
 	}

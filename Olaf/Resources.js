@@ -1,4 +1,5 @@
 var Cache = require('Cache');
+
 function Resources(room, population) {
 	this.cache = new Cache();
 	this.room = room;
@@ -19,18 +20,7 @@ Resources.prototype.getSources = function(room) {
 	return this.cache.remember(
 		'sources',
 		function() {
-			return this.room.find(
-				FIND_SOURCES, {
-					filter: function(src) {
-						var targets = src.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
-						if(targets.length == 0) {
-						    return true;
-						}
-
-						return false;
-					}
-				}
-			);
+			return this.room.find(FIND_SOURCES);
 		}.bind(this)
 	);
 };
