@@ -33,7 +33,7 @@ Room.prototype.populate = function() {
 
 		// Prüfen ob Energie vorhanden ist
 		console.log((this.depositManager.energy() / this.depositManager.energyCapacity()));
-		if((this.depositManager.energy() / this.depositManager.energyCapacity()) > 0.2) {
+		if((this.depositManager.energy() / this.depositManager.energyCapacity()) > 0.2 || this.population.getTotalPopulation() < 10) {
 			var types = this.population.getTypes()
 			for(var i = 0; i < types.length; i++) {
 				var ctype = this.population.getType(types[i]);
