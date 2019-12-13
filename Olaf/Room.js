@@ -188,8 +188,8 @@ Room.prototype.defendRoom = function() {
 	// Wenn keine Gegner da sind
 	if(hostiles.length === 0) {
 		towers.forEach(tower => {
-			// Nur bis 10% Energie weg sind
-			if(tower.store[RESOURCE_ENERGY] > (tower.store.getFreeCapacity(RESOURCE_ENERGY)/10)*9){
+			// Nur bis 50% Energie
+			if(tower.store[RESOURCE_ENERGY] > tower.store.getFreeCapacity(RESOURCE_ENERGY){
 				var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART});
 				if(closestDamagedStructure) {
 					 tower.repair(closestDamagedStructure);
