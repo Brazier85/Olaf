@@ -188,7 +188,7 @@ Room.prototype.defendRoom = function() {
 	// Wenn keine Gegner da sind
 	if(hostiles.length === 0) {
 		for(var tower in towers){
-			if(tower.store[RESOURCE_ENERGY] > ((tower.store.getFreeCapacity(RESOURCE_ENERGY) / 10)* 9)){
+			if(tower.store[RESOURCE_ENERGY] > tower.store.getFreeCapacity(RESOURCE_ENERGY)){
 
 				//Find the closest damaged Structure
 				var closestDamagedStructure = towers.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART});
