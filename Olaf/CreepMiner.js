@@ -88,15 +88,7 @@ CreepMiner.prototype.act = function() {
 }
 
 CreepMiner.prototype.checkContainer = function() {
-	var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES, 0, {
-		filter: function(s) {
-				if ((s.structureType == STRUCTURE_CONTAINER) && (s.store[RESOURCE_ENERGY] < s.store.getCapacity(RESOURCE_ENERGY))) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		});
+	var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_CONTAINER})
 	if (containerNear.length) {
 		this.remember('harvest', HARVEST.DROP);
 	} else {
