@@ -32,7 +32,11 @@ Constructions.prototype.getDamagedStructures = function() {
                         }
                         // Keine Wände
                         if(s.structureType == STRUCTURE_WALL) {
-                            return false;
+                            if (s.hits < s.hitsMax / 2 ) {
+                                return true;
+                            } else {
+                                return false;
+                            }
                         }
                     }
                 }

@@ -4,7 +4,7 @@ Olaf is my screeps "ai"
 
 ### ToDo
 
-* Implement Room Memory instead of using Cache
+* Implement room memory instead of using Cache
 * Implement dynmic creep generation based on collected energy
-* If there is a Tower do now Repair Flag for Builders
-    * Except for Walls and Ramparts
+* If there is a Tower -> no repair for builders
+    * Except for walls...
