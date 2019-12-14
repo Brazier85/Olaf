@@ -40,6 +40,8 @@ CreepMiner.prototype.init = function() {
 CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
+		this.remember('harvest', HARVEST.STORE);
+
 		this.checkContainer();
 
 		if (this.remember('harvest') == HARVEST.STORE) {
@@ -99,7 +101,7 @@ CreepMiner.prototype.checkContainer = function() {
 		});
 	if (containerNear.lenght) {
 		console.log(this.creep.name + " is dropping its resources!");
-		this.remeber('harvest', HARVEST.DROP);
+		this.remember('harvest', HARVEST.DROP);
 	}
 }
 
