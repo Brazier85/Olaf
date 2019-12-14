@@ -2,14 +2,6 @@
  * Baut Energie ab
  */
 var Cache = require('Cache');
-var ACTIONS = {
-	HARVEST: 1,
-	DEPOSIT: 2
-};
-var HARVEST = {
-	STORE: 1,
-	DROP: 2
-}
 
 function CreepMiner(creep, resourceManager) {
 	this.cache = new Cache();
@@ -45,18 +37,6 @@ CreepMiner.prototype.act = function() {
 		}
 		
 		this.remember('last-energy', this.creep.store[RESOURCE_ENERGY]);
-	}
-}
-
-CreepMiner.prototype.checkContainer = function() {
-	var Container = this.creep.pos.findInRange(FIND_MY_STRUCTURES, 0, {
-		filter: (structure) => {
-			return (structure.structureType == STRUCTURE_CONTAINER)
-		}
-	});
-	if (Container.lenght) {
-		console.log(this.creep.name + " is dropping its resources!");
-		this.remeber('harvest', HARVEST.DROP);
 	}
 }
 

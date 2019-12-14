@@ -27,6 +27,8 @@ CreepHealer.prototype.act = function() {
         if(this.creep.heal(injured) == ERR_NOT_IN_RANGE) {
             this.creep.moveTo(injured);
         }
+    } else {
+        this.creep.moveTo(25,25);
     }
 }
 
