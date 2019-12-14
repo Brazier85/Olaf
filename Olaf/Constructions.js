@@ -130,7 +130,7 @@ Constructions.prototype.constructStructure = function(creep) {
     }
 
     // Wenn etwas kaputt ist mach es ganz!
-    if(( this.damagedStructures.length != 0) && (this.Towers.length != 0) ) {
+    if(( this.damagedStructures.length != 0) && (this.Towers.length == 0) ) {
         site = creep.creep.pos.findClosestByRange(this.damagedStructures);
         if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
