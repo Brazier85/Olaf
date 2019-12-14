@@ -6,12 +6,8 @@ var CONSTS = {
 function Deposits(room) {
 	this.cache = new Cache();
 	this.room = room;
-	this.deposits = this.room.find(
-		FIND_MY_STRUCTURES,
-		{
-			filter: filterExtensions
-		}
-	);
+	this.deposits = this.room.find(FIND_MY_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_EXTENSION});
+	this.storage = this.room.find(FIND_MY_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_STORAGE});
 
 	this.spawns = [];
 	for(var n in Game.spawns) {
@@ -119,16 +115,6 @@ Deposits.prototype.getFullDeposits = function() {
 		}.bind(this)
 	);
 };
-
-// PRIVATE
-function filterExtensions(structure) {
-	if (structure.structureType == STRUCTURE_EXTENSION // ||
-		//structure.structureType == STRUCTURE_STORAGE
-	){
-		return true;
-	}
-	return false;
-}
 
 
 module.exports = Deposits;
