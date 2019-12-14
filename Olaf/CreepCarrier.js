@@ -161,7 +161,23 @@ CreepCarrier.prototype.harvestEnergy = function() {
 
 	if(this.creep.pos.inRangeTo(this.resource, 2)) {
 		this.creep.say("⛽️");
+		var containerNear = this.creep.pos.findInRange(FIND_MY_STRUCTURES, 1, {
+			filter: function(s) {
+					if ((s.structureType == STRUCTURE_CONTAINER) && (s.store[RESOURCE_ENERGY] != 0)) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			});
 		var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
+		if(containerNear.length) {
+			for(var n in containerNear) {
+				if(this.creep.withdraw(containerNear[n], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+					this.creep.moveTo(containerNear[n]);
+				}
+			}
+		}
 		if(creepsNear.length){
 			for(var n in creepsNear){
 				//Wenn Miner dann Energie abholen
