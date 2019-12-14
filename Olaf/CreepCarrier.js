@@ -158,16 +158,15 @@ CreepCarrier.prototype.pickupEnergy = function() {
 	}
 };
 CreepCarrier.prototype.harvestEnergy = function() {
+
 	if(this.creep.pos.inRangeTo(this.resource, 2)) {
 		this.creep.say("⛽️");
-		var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 3);
+		var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
 		if(creepsNear.length){
 			for(var n in creepsNear){
 				//Wenn Miner dann Energie abholen
 				if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
-					if (creepsNear[n].transfer(this.creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						this.creep.moveTo(creepsNear[n]);
-					}
+					creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
 				}
 			}
 		}
