@@ -180,8 +180,8 @@ Room.prototype.defendRoom = function() {
 	var hostiles = this.room.find(FIND_HOSTILE_CREEPS);
 	var towers = this.room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     if(hostiles.length > 0) {
-        //var username = hostiles[0].owner.username;
-        //Game.notify(`User ${username} spotted in room ${this.room.name}`);
+        var username = hostiles[0].owner.username;
+        Game.notify(`User ${username} spotted in room ${this.room.name}`);
         towers.forEach(tower => tower.attack(hostiles[0]));
 	}
 	
