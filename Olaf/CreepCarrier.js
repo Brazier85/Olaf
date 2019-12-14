@@ -161,7 +161,7 @@ CreepCarrier.prototype.harvestEnergy = function() {
 
 	if(this.creep.pos.inRangeTo(this.resource, 2)) {
 		this.creep.say("⛽️");
-		var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES, 2, {
+		var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES, 4, {
 			filter: function(s) {
 					if ((s.structureType == STRUCTURE_CONTAINER) && (s.store[RESOURCE_ENERGY] > 0)) {
 						return true;
