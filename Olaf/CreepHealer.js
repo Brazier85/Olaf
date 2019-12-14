@@ -24,8 +24,9 @@ CreepHealer.prototype.init = function() {
 CreepHealer.prototype.act = function() {
     var injured = this.getInjuredCreep();
     if(injured) {
-        this.creep.moveTo(injured);
-        this.creep.heal(injured);
+        if(this.creep.heal(injured) == ERR_NOT_IN_RANGE) {
+            this.creep.moveTo(injured);
+        }
     }
 }
 
