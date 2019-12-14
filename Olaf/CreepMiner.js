@@ -98,10 +98,8 @@ CreepMiner.prototype.checkContainer = function() {
 			}
 		});
 	if (containerNear.length) {
-		console.log(this.creep.name + " is dropping its resources!");
 		this.remember('harvest', HARVEST.DROP);
 	} else {
-		console.log(this.creep.name + " is storing its resources!");
 		this.remember('harvest', HARVEST.STORE);
 	}
 }
