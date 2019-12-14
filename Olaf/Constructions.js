@@ -1,6 +1,6 @@
 var CONST = {
     RAMPART_MAX: 200000,
-    RAMPART_FIX: 50000,
+    RAMPART_FIX: 50000
 };
 var Cache = require('Cache');
 
@@ -11,7 +11,7 @@ function Constructions(room) {
     this.structures = this.room.find(FIND_MY_STRUCTURES);
     this.damagedStructures = this.getDamagedStructures();
     this.upgradeableStructures = this.getUpgradeableStructures();
-    this.emptyTowers = this.getEmptyTowers();
+    this.Towers = this.getTowers();
     this.controller = this.room.controller;
 };
 
@@ -29,6 +29,10 @@ Constructions.prototype.getDamagedStructures = function() {
                         }
                         if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX)) {
                             return true;
+                        }
+                        // Keine Wände!
+                        if(s.structureType == STRUCTURE_WALL) {
+                            return false;
                         }
                     }
                 }
@@ -83,7 +87,7 @@ Constructions.prototype.getClosestConstructionSite = function(creep) {
     return site;
 };
 
-Constructions.prototype.getEmptyTowers = function() {
+Constructions.prototype.getTowers = function() {
     return this.cache.remember(
         'empty-towers',
         function() {
@@ -91,7 +95,7 @@ Constructions.prototype.getEmptyTowers = function() {
                 FIND_MY_STRUCTURES,
                 {
                     filter: function(s) {
-                        if( s.structureType == STRUCTURE_TOWER && s.store.getFreeCapacity(RESOURCE_ENERGY) > 0) {
+                        if( s.structureType == STRUCTURE_TOWER) {
                             return true;
                         } else {
                             return false;
@@ -107,16 +111,26 @@ Constructions.prototype.getEmptyTowers = function() {
 Constructions.prototype.constructStructure = function(creep) {
 
     // Wenn es einen Tower ohne Energie gibt füll sie auf
-    if(this.emptyTowers.length != 0) {
-        site = creep.creep.pos.findClosestByRange(this.emptyTowers);
-        if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.creep.moveTo(site);
+    if(this.Towers.length != 0) {
+        var emptyTowers = [];
+        this.Towers.forEach( tower => {
+            // Wenn Tower keine Energie hat dann auffüllen
+            if (tower.store.getFreeCapacity(RESOURCE_ENERGY) > 0) {
+                emptyTowers.push(tower);
+            }
+        })
+
+        if (emptyTowers.length != 0) {
+            site = creep.creep.pos.findClosestByRange(this.emptyTowers);
+            if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.creep.moveTo(site);
+            }
         }
         return site;
     }
 
     // Wenn etwas kaputt ist mach es ganz!
-    if(this.damagedStructures.length != 0) {
+    if(( this.damagedStructures.length != 0) && (this.Towers.length != 0) ) {
         site = creep.creep.pos.findClosestByRange(this.damagedStructures);
         if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
             creep.creep.moveTo(site);
