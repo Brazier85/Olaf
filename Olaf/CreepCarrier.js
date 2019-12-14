@@ -170,19 +170,20 @@ CreepCarrier.prototype.harvestEnergy = function() {
 					}
 				}
 			});
-		var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
 		if(containerNear.length) {
 			for(var n in containerNear) {
 				if(this.creep.withdraw(containerNear[n], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 					this.creep.moveTo(containerNear[n]);
 				}
 			}
-		}
-		if(creepsNear.length){
-			for(var n in creepsNear){
-				//Wenn Miner dann Energie abholen
-				if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
-					creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
+		} else {
+			var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
+			if(creepsNear.length){
+				for(var n in creepsNear){
+					//Wenn Miner dann Energie abholen
+					if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
+						creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
+					}
 				}
 			}
 		}
