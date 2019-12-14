@@ -125,8 +125,8 @@ Constructions.prototype.constructStructure = function(creep) {
             if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.creep.moveTo(site);
             }
+            return site;
         }
-        return site;
     }
 
     // Wenn etwas kaputt ist mach es ganz!
