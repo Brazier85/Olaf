@@ -166,7 +166,7 @@ CreepCarrier.prototype.harvestEnergy = function() {
 				//Wenn Miner dann Energie abholen
 				if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
 					if (creepsNear[n].transfer(this.creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						creepsNear[n].moveTo(this.creep);
+						this.creep.moveTo(creepsNear[n]);
 					}
 				}
 			}
