@@ -89,11 +89,13 @@ CreepMiner.prototype.act = function() {
 }
 
 CreepMiner.prototype.checkContainer = function() {
-	var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES,0,{filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-	if (containerNear.length) {
-		this.remember('harvest', HARVEST.DROP);
-	} else {
-		this.remember('harvest', HARVEST.STORE);
+	if (this.remember('harvest') == HARVEST.STORE) {
+		var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES,0,{filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+		if (containerNear.length) {
+			this.remember('harvest', HARVEST.DROP);
+		} else {
+			this.remember('harvest', HARVEST.STORE);
+		}
 	}
 }
 
