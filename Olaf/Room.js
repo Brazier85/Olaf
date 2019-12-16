@@ -200,7 +200,6 @@ Room.prototype.defendRoom = function() {
 	
 	// If there are no hostiles
 	if(hostiles.length === 0) {
-		this.doFlag("StayHere", FLAG.REMOVE);
 		towers.forEach(tower => {
 			// Only till 50%
 			if(tower.store[RESOURCE_ENERGY] > tower.store.getFreeCapacity(RESOURCE_ENERGY)){
