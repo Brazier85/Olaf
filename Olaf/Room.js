@@ -186,13 +186,13 @@ Room.prototype.defendRoom = function() {
 	var towers = this.room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     if(hostiles.length > 0) {
 		var username = hostiles[0].owner.username;
-		var setFlag = false;
+		var setFlag = true;
         //Game.notify(`User ${username} spotted in room ${this.room.name}`);
         towers.forEach(tower => {
 			var EnemysInRange = tower.pos.findInRange(FIND_HOSTILE_CREEPS,20);
 			if (EnemysInRange.length) {
 				tower.attack(EnemysInRange[0]);
-				setFlag = true;
+				setFlag = false;
 			}
 		});
 		if(setFlag) {
