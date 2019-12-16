@@ -50,15 +50,17 @@ CreepShooter.prototype.attackSpawns = function() {
 
 CreepShooter.prototype.stayFlag = function() {
     var flags = this.creep.room.find(FIND_FLAGS);
+    var ok = false;
     if (flags.length) {
         flags.forEach(flag => {
             if (flag.name = "StayHere") {
                 this.creep.say("🏳️");
                 this.creep.moveTo(flag);
-                return true;
+                ok = true;
             }
         })
     }
+    return ok;
 }
 
 module.exports = CreepShooter;
