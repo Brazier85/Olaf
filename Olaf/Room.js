@@ -215,7 +215,7 @@ Room.prototype.defendRoom = function() {
 }
 
 Room.prototype.doFlag = function(flagName, state, x, y) {
-	var flags = this.creep.room.find(FIND_FLAGS);
+	var flags = this.find(FIND_FLAGS);
 	var ok = false;
 	if (flags.length) {
 		flags.forEach(flag => {
