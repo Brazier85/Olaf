@@ -223,7 +223,6 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 					flag.remove();
 					ok = true;
 				} else {
-					flag.setPosition(x, y);
 					ok = true;
 				}
 			}
