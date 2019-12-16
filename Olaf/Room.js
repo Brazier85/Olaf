@@ -182,7 +182,12 @@ Room.prototype.defendRoom = function() {
     if(hostiles.length > 0) {
         var username = hostiles[0].owner.username;
         //Game.notify(`User ${username} spotted in room ${this.room.name}`);
-        towers.forEach(tower => tower.attack(hostiles[0]));
+        towers.forEach(tower => {
+			var EnemysInRange = tower.pos.findInRange(FIND_HOSTILE_CREEPS,20);
+			if (EnemyInRange) {
+				tower.attack(EnemysInRange[0]);
+			}
+		});
 	}
 	
 	// If there are no hostiles
