@@ -184,7 +184,7 @@ Room.prototype.defendRoom = function() {
         //Game.notify(`User ${username} spotted in room ${this.room.name}`);
         towers.forEach(tower => {
 			var EnemysInRange = tower.pos.findInRange(FIND_HOSTILE_CREEPS,20);
-			if (EnemyInRange) {
+			if (EnemysInRange) {
 				tower.attack(EnemysInRange[0]);
 			}
 		});
