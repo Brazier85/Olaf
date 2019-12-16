@@ -137,23 +137,8 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 			if(level <= 4) {
 				abilities = [TOUGH, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
 			} else
-			if(level <= 5) {
-				abilities = [TOUGH, TOUGH, TOUGH, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
-			} else
-			if(level <= 6) {
-				abilities = [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
-			} else
-			if(level <= 7) {
-				abilities = [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
-			} else
-			if(level <= 8) {
-				abilities = [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
-			} else
-			if(level <= 9) {
-				abilities = [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
-			} else
-			if(level >= 10) {
-				abilities = [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
+			if(level >= 5) {
+				abilities = this.maxCreep(creepType);
 			}
 		break;
 		case 'CreepShooter':
@@ -241,6 +226,10 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		break;
 		case 'CreepSoldier':
 			baseAbilities = [TOUGH, ATTACK, MOVE];
+			baseAbilitiesCost = 150;
+			updatePackage = [TOUGH, ATTACK, MOVE];
+			updatePackageCost = 150;
+			maxCost = 800;
 		break;
 		case 'CreepShooter':
 			baseAbilities = [TOUGH, TOUGH, TOUGH, MOVE, RANGED_ATTACK, RANGED_ATTACK, MOVE];
@@ -250,6 +239,10 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		break;
 		case 'CreepHealer':
 			baseAbilities = [MOVE, MOVE, MOVE, HEAL, MOVE];
+			baseAbilitiesCost = 400;
+			updatePackage = [HEAL];
+			updatePackageCost = 200;
+			maxCost = 800;
 		break;
 	}
 
@@ -257,7 +250,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	if (availableEnergy > maxCost) {
 		availableEnergy = maxCost;
 	}
-	
+
 	availableEnergy = availableEnergy - baseAbilitiesCost;
 	var upgradeCount = Math.floor(availableEnergy / updatePackageCost);
 	maxAbilities = baseAbilities;
