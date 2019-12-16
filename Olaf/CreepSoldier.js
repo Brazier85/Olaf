@@ -17,9 +17,9 @@ CreepSoldier.prototype.init = function() {
 
 CreepSoldier.prototype.act = function() {
 
-    if(this.stayFlag()) { return; }
-    if(this.attackHostiles()) { return; }
-    if(this.attackSpawns()) { return; }
+    if(this.stayFlag()) { return true; }
+    if(this.attackHostiles()) { return true; }
+    if(this.attackSpawns()) { return true; }
     
     this.creep.moveTo(25,25);
 }
