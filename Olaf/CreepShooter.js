@@ -16,11 +16,11 @@ CreepShooter.prototype.init = function() {
 
 CreepShooter.prototype.act = function() {
 
-    if(this.stayFlag()) { return; } else
-    if(this.attackHostiles()) { return; } else
-    if(this.attackSpawns()) { return; } else {
-        this.creep.moveTo(25,25);
-    }
+    if(this.stayFlag()) { return; }
+    if(this.attackHostiles()) { return; }
+    if(this.attackSpawns()) { return; }
+
+    this.creep.moveTo(25,25);
 }
 CreepShooter.prototype.attackHostiles = function() {
     var target = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
@@ -54,7 +54,7 @@ CreepShooter.prototype.stayFlag = function() {
         flags.forEach(flag => {
             if (flag.name = "StayHere") {
                 this.creep.say("🏳️");
-                this.creep.moveTo(Game.flags.StayHere);
+                this.creep.moveTo(flag);
                 return true;
             }
         })
