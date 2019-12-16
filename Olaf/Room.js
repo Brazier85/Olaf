@@ -202,6 +202,8 @@ Room.prototype.defendRoom = function() {
 			this.doFlag("StayHere", FLAG.REMOVE);
 		}
 	}
+
+	this.doFlag("StayHere", FLAG.REMOVE);
 	
 	// If there are no hostiles
 	if(hostiles.length === 0) {
@@ -223,9 +225,9 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 	var ok = false;
 	if (flags.length) {
 		flags.forEach(flag => {
-			if (flag.name = flagName) {
-				if ( state = FLAG.REMOVE ) {
-					//flag.remove();
+			if (flag.name == flagName) {
+				if ( state == FLAG.REMOVE ) {
+					flag.remove();
 					ok = true;
 				}
 			}
