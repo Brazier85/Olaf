@@ -53,6 +53,7 @@ CreepShooter.prototype.stayFlag = function() {
     if (flags.length) {
         flags.forEach(flag => {
             if (flag.name = "StayHere") {
+                this.creep.say("🏳️");
                 this.creep.moveTo(Game.flags.StayHere);
                 return true;
             }
