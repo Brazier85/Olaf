@@ -16,6 +16,7 @@ CreepShooter.prototype.init = function() {
 
 CreepShooter.prototype.act = function() {
 
+    if(this.stayFlag()) { return; }
     if(this.attackHostiles()) { return; }
     if(this.attackSpawns()) { return; }
 
@@ -45,6 +46,18 @@ CreepShooter.prototype.attackSpawns = function() {
         this.creep.moveTo(targets[0]);
         return true;
     };
+}
+
+CreepShooter.prototype.stayFlag = function() {
+    var flags = this.creep.room.find(FIND_FLAGS);
+    if (flags.length) {
+        flags.forEach(flag => {
+            if (flag.name = "StayHere") {
+                this.creep.moveTo(Game.flags.StayHere);
+                return true;
+            }
+        })
+    }
 }
 
 module.exports = CreepShooter;
