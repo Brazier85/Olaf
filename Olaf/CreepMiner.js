@@ -66,20 +66,20 @@ CreepMiner.prototype.act = function() {
 						}
 					});
 					if(targets.length > 0) {
-						if(this.creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+						if(this.creep.transfer(targets[0], RESOURCE_ENERGY) != OK) {
 							this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
 						}
 					}
 				}
 			} else {
 				this.remember('action', ACTIONS.HARVEST);
-				if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
+				if(this.creep.harvest(this.resource) != OK) {
 					this.creep.moveTo(this.resource);
 				}
 			}
 		} else {
 			this.remember('action', ACTIONS.HARVEST);
-			if(this.creep.harvest(this.resource) == ERR_NOT_IN_RANGE) {
+			if(this.creep.harvest(this.resource) != OK) {
 				this.creep.moveTo(this.resource);
 			}
 		}
