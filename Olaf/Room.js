@@ -5,8 +5,8 @@ var Resources = require('Resources');
 var Constructions = require('Constructions');
 
 const FLAG = {
-	SET,
-	REMOVE
+	SET: 1,
+	REMOVE: 2
 }
 
 function Room(room, roomHandler) {
