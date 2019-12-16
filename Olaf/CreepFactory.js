@@ -120,7 +120,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 			if(level <= 4) {
 				abilities = [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
 			} else
-			if(level <= 5) {
+			if(level >= 5) {
 				abilities = this.maxCreep(creepType);
 			}
 		break;
@@ -254,8 +254,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	var upgradeCount = Math.floor(availableEnergy / updatePackageCost);
 	maxAbilities = baseAbilities;
 	for ( var i = 0; i < upgradeCount; i++) {
-		updatePackage.forEach(abilitie => maxAbilities.push(abilitie));
-		
+		updatePackage.forEach(abilitie => maxAbilities.push(abilitie));	
 	}
 	console.log(maxAbilities);
 
