@@ -1,6 +1,6 @@
 var Cache = require('Cache');
 var CONSTS = {
-	EMPTY_LEVEL: 0.5
+	EMPTY_LEVEL: 0.3
 };
 
 function Deposits(room) {

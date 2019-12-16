@@ -79,20 +79,18 @@ CreepCarrier.prototype.act = function() {
 
 CreepCarrier.prototype.depositEnergy = function() {
 
-	if(this.depositManager.getEmptyDeposits().length == 0 && this.depositManager.getSpawnDeposit().energy == this.depositManager.getSpawnDeposit().energyCapacity) {
-		this.depositFor = DEPOSIT_FOR.CONSTRUCTION;
-	}
-
-	console.log(this.depositManager.energy() / this.depositManager.energyCapacity());
 	if( (this.depositManager.energy() / this.depositManager.energyCapacity() ) < 0.2) {
 		this.depositFor = DEPOSIT_FOR.POPULATION;
+	} else {
+		this.depositFor = DEPOSIT_FOR.CONSTRUCTION;
 	}
 
 	if(this.depositFor == DEPOSIT_FOR.POPULATION) {
 		this.creep.say("💑");
 		var deposit = this.getDeposit();
-		this.creep.moveTo(deposit);
-		this.creep.transfer(deposit, RESOURCE_ENERGY);
+		if(this.creep.transfer(deposit, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+			this.creep.moveTo(deposit);
+		}
 	}
 
 	if(this.depositFor == DEPOSIT_FOR.CONSTRUCTION) {
