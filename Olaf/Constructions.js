@@ -99,7 +99,7 @@ Constructions.prototype.getEmptyTowers = function() {
                 FIND_MY_STRUCTURES,
                 {
                     filter: function(s) {
-                        if( s.structureType == STRUCTURE_TOWER && s.store.getFreeCapacity(RESOURCE_ENERGY) > 0) {
+                        if( s.structureType == STRUCTURE_TOWER && s.store.getFreeCapacity(RESOURCE_ENERGY) > 100) {
                             return true;
                         } else {
                             return false;
