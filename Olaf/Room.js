@@ -191,6 +191,7 @@ Room.prototype.defendRoom = function() {
         towers.forEach(tower => {
 			var EnemysInRange = tower.pos.findInRange(FIND_HOSTILE_CREEPS,20);
 			if (EnemysInRange.length) {
+				console.log("in Range");
 				tower.attack(EnemysInRange[0]);
 				setFlag = false;
 			}
