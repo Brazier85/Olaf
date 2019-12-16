@@ -225,7 +225,7 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 		flags.forEach(flag => {
 			if (flag.name = flagName) {
 				if ( state = FLAG.REMOVE ) {
-					flag.remove();
+					//flag.remove();
 					ok = true;
 				}
 			}
