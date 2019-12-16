@@ -28,6 +28,7 @@ CreepHealer.prototype.act = function() {
             this.creep.moveTo(injured);
         }
     } else {
+        if(this.stayFlag()) { return true; }
         this.creep.moveTo(25,25);
     }
 }
@@ -40,6 +41,21 @@ CreepHealer.prototype.getInjuredCreep = function() {
             }
         }
     })
+}
+
+CreepHealer.prototype.stayFlag = function() {
+    var flags = this.creep.room.find(FIND_FLAGS);
+    var ok = false;
+    if (flags.length) {
+        flags.forEach(flag => {
+            if (flag.name = "StayHere") {
+                this.creep.say("🏳️");
+                this.creep.moveTo(flag);
+                ok = true;
+            }
+        })
+    }
+    return ok;
 }
 
 module.exports = CreepHealer;
