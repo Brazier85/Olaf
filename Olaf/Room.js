@@ -234,7 +234,7 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 		})
 	};
 	if (!ok && state == FLAG.SET) {
-		this.room.createFlag(x, y, flagName);
+		this.room.createFlag(x, y, flagName, COLOR_RED);
 		ok = true;
 	};
 }
