@@ -20,18 +20,18 @@ function Room(room, roomHandler) {
 	this.creepFactory = new CreepFactory(this.depositManager, this.resourceManager, this.constructionManager, this.population, this.roomHandler);
 }
 
-// Creeps in Raum erzeugen
+// Populate the room
 Room.prototype.populate = function() {
 
 	for(var i = 0; i < this.depositManager.spawns.length; i++) {
 
-		// Prüfen ob Spawn bereits am spawnen ist
+		// Is there something spawning?
 		var spawn = this.depositManager.spawns[i];
 		if(spawn.spawning) {
 			continue;
 		}
 
-		// Prüfen ob Energie vorhanden ist
+		// Is there enough energy?
 		if((this.depositManager.energy() / this.depositManager.energyCapacity()) > 0.2) {
 			var types = this.population.getTypes()
 			for(var i = 0; i < types.length; i++) {
@@ -62,7 +62,7 @@ Room.prototype.loadCreeps = function() {
 	this.distributeCarriers();
 };
 
-// Builders verteilen
+// Distribute the builders
 Room.prototype.distributeBuilders = function() {
 	var builderStats = this.population.getType('CreepBuilder');
 	if(this.depositManager.spawns.length == 0) {
@@ -100,22 +100,22 @@ Room.prototype.distributeBuilders = function() {
 	}
 }
 
-// Verteile Carrier
+// Distibute the carriers
 Room.prototype.distributeCarriers = function() {
 	var counter = 0;
 	var builders = [];
 	var carriers = [];
 
-	// Alles creeps im Raum durchgehen
+	// Collect all builders and carriers
 	for(var i = 0; i < this.creeps.length; i++) {
 		var creep = this.creeps[i];
-		if(creep.remember('role') == 'CreepBuilder') { // Wenn Builder zur Liste hinzufügen
+		if(creep.remember('role') == 'CreepBuilder') { // Add to builder list
 			builders.push(creep.creep);
 		}
-		if(creep.remember('role') != 'CreepCarrier') { // Wenn kein Carrier nächsten Schleifendurchlauf starten
+		if(creep.remember('role') != 'CreepCarrier') { // Do nothing when not a carrier
 			continue;
 		}
-		carriers.push(creep); // Zu Carrier Liste hinzufügen
+		carriers.push(creep); // Add to carrier list
 		if(!creep.getDepositFor()) {
 			if(counter%2) {
 				// Construction
@@ -129,14 +129,14 @@ Room.prototype.distributeCarriers = function() {
 		counter++;
 	}
 
-	// Alle Carrier duchgehen
+	// Loop all carriers
 	counter = 0;
 	for(var i = 0; i < carriers.length; i++) {
 		var creep = carriers[i];
-		if(creep.remember('role') != 'CreepCarrier') { //Nochmal prüfen ob wirklich ein Carrier
+		if(creep.remember('role') != 'CreepCarrier') { // Is it really a carrier?
 			continue;
 		}
-		if(!builders[counter]) { // Wenn kein Builder mehr da ist
+		if(!builders[counter]) { // All builders done?
 			continue;
 		}
 		//var id = creep.remember('target-worker'); // Aktuellen Worker abrufen
@@ -185,12 +185,12 @@ Room.prototype.defendRoom = function() {
         towers.forEach(tower => tower.attack(hostiles[0]));
 	}
 	
-	// Wenn keine Gegner da sind
+	// If there are no hostiles
 	if(hostiles.length === 0) {
 		towers.forEach(tower => {
-			// Nur bis 50% Energie
+			// Only till 50%
 			if(tower.store[RESOURCE_ENERGY] > tower.store.getFreeCapacity(RESOURCE_ENERGY)){
-				// Nur Dinge die 50% kaputt sind
+				// Only things that are below 50%
 				var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART});
 				if(closestDamagedStructure) {
 					 tower.repair(closestDamagedStructure);

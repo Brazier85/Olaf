@@ -1,5 +1,5 @@
 /*
- * Trägt Energie von a nach b
+ * Moves energy from a to b
  */
 
 var Cache = require('Cache');
@@ -114,7 +114,7 @@ CreepCarrier.prototype.depositEnergy = function() {
 }
 
 CreepCarrier.prototype.getWorker = function() {
-	// Wird in Room.distributeCarriers zugewiesen
+	// From Room.distributeCarriers
 	if(this.remember('target-worker')) {
 		return Game.getObjectById(this.remember('target-worker'));
 	}
@@ -179,7 +179,7 @@ CreepCarrier.prototype.harvestEnergy = function() {
 			var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
 			if(creepsNear.length){
 				for(var n in creepsNear){
-					//Wenn Miner dann Energie abholen
+					// If CreepMiner get resource
 					if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
 						creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
 					}
@@ -194,7 +194,7 @@ CreepCarrier.prototype.harvestEnergy = function() {
 }
 
 CreepCarrier.prototype.giveEnergy = function() {
-	// Builder mit Energie versorgen
+	// Give energy to builder
 	var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1, { 
 		filter: function(c) {
 			if(c.memory.role === 'CreepBuilder') {

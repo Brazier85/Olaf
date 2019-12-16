@@ -1,5 +1,5 @@
 /*
- * Baut Dinge und macht Upgrades
+ * Build stuff and upgrades the room
  */
 
 var CreepBuilder = function(creep, depositManager, constructionManager) {

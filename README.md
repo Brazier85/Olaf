@@ -1,6 +1,6 @@
 # Olaf
 
-Olaf is my screeps "ai"
+Olaf is my screeps "ai/bot" -> more a script than everything else
 
 ### ToDo
 

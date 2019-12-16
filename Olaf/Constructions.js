@@ -30,7 +30,7 @@ Constructions.prototype.getDamagedStructures = function() {
                         if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX)) {
                             return true;
                         }
-                        // Keine Wände
+                        // No walls
                         if(s.structureType == STRUCTURE_WALL) {
                             if (s.hits < s.hitsMax / 2 ) {
                                 return true;
@@ -114,7 +114,7 @@ Constructions.prototype.getEmptyTowers = function() {
 
 Constructions.prototype.constructStructure = function(creep) {
 
-    // Wenn es einen Tower ohne Energie gibt füll sie auf
+    // If there is a tower without energy -> fill it up
     if(this.emptyTowers.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.emptyTowers);
         if(creep.creep.transfer(site, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -123,7 +123,7 @@ Constructions.prototype.constructStructure = function(creep) {
         return site;
     }
 
-    // Wenn etwas kaputt ist mach es ganz!
+    // Repair damaged stuff
     if(this.damagedStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.damagedStructures);
         if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {
@@ -132,7 +132,7 @@ Constructions.prototype.constructStructure = function(creep) {
         return site;
     }
 
-    // Wenn es etwas zu bauen gibt geh hin!
+    // If there is something to build -> do it!
     if(this.sites.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.sites);
         if(creep.creep.build(site) == ERR_NOT_IN_RANGE) {
@@ -141,7 +141,7 @@ Constructions.prototype.constructStructure = function(creep) {
         return site;
     }
 
-    // Wenn es etwas zum Upgraden gibt mach es!
+    // Upgrade when nothing else is to do
     if(this.upgradeableStructures.length != 0) {
         site = creep.creep.pos.findClosestByRange(this.upgradeableStructures);
         if(creep.creep.repair(site) == ERR_NOT_IN_RANGE) {

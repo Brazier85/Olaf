@@ -1,5 +1,5 @@
 /*
- * Baut Energie ab
+ * Mines stuff
  */
 var Cache = require('Cache');
 var ACTIONS = {
@@ -40,11 +40,12 @@ CreepMiner.prototype.init = function() {
 CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
+		// Check for container mining
 		this.checkContainer();
 
 		if (this.remember('harvest') == HARVEST.STORE) {
 			if(this.creep.store[RESOURCE_ENERGY] == this.creep.store.getCapacity(RESOURCE_ENERGY)) {
-				// Suche nach Carrier in der Nähe
+				// If there is a carrier nearby
 				var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 5);
 				var carrierinRange = false;
 				if(creepsNear.length){
@@ -55,7 +56,7 @@ CreepMiner.prototype.act = function() {
 					}
 				}
 
-				// Wenn kein Carrier in der Nähe ist oder wir schon auf dem Weg zum abladen sind
+				// Move to spawn when no carrier is there
 				if(!carrierinRange || this.remember('action') == ACTIONS.DEPOSIT) {
 					this.remember('action', ACTIONS.DEPOSIT);
 					var targets = this.creep.room.find(FIND_MY_STRUCTURES, {
