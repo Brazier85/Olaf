@@ -17,12 +17,11 @@ CreepSoldier.prototype.init = function() {
 
 CreepSoldier.prototype.act = function() {
 
-    if(this.stayFlag()) { return; }
-    if(this.attackHostiles()) { return; }
-    if(this.attackSpawns()) { return; }
-
-
-    this.creep.moveTo(25,25);
+    if(this.stayFlag()) { return; } else
+    if(this.attackHostiles()) { return; } else
+    if(this.attackSpawns()) { return; } else {
+        this.creep.moveTo(25,25);
+    }
 }
 CreepSoldier.prototype.attackHostiles = function() {
     var target = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);

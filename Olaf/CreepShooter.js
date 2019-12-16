@@ -18,9 +18,9 @@ CreepShooter.prototype.act = function() {
 
     if(this.stayFlag()) { return; } else
     if(this.attackHostiles()) { return; } else
-    if(this.attackSpawns()) { return; }
-
-    this.creep.moveTo(25,25);
+    if(this.attackSpawns()) { return; } else {
+        this.creep.moveTo(25,25);
+    }
 }
 CreepShooter.prototype.attackHostiles = function() {
     var target = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
@@ -54,8 +54,7 @@ CreepShooter.prototype.stayFlag = function() {
         flags.forEach(flag => {
             if (flag.name = "StayHere") {
                 this.creep.say("🏳️");
-                let res = this.creep.moveTo(Game.flags.StayHere);
-                console.log(`${this.creep} tried moving to ${Game.flags.StayHere}. Result: ${res}`);
+                this.creep.moveTo(Game.flags.StayHere);
                 return true;
             }
         })
