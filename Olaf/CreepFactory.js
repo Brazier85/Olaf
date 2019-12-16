@@ -220,19 +220,19 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		case 'CreepMiner':
 			baseAbilities = [WORK, CARRY, MOVE, MOVE, MOVE];
 			baseAbilitiesCost = 300;
-			updatePackage = WORK;
+			updatePackage = [WORK];
 			updatePackageCost = 100;
 		break;
 		case 'CreepBuilder':
 			baseAbilities = [WORK, CARRY, CARRY, MOVE];
 			baseAbilitiesCost = 250;
-			updatePackage = WORK, MOVE;
+			updatePackage = [WORK, MOVE];
 			updatePackageCost = 150;
 		break;
 		case 'CreepCarrier':
 			baseAabilities = [CARRY, MOVE];
 			baseAbilitiesCost = 100;
-			updatePackage = CARRY, MOVE;
+			updatePackage = [CARRY, MOVE];
 			updatePackageCost = 100;
 		break;
 		case 'CreepSoldier':
@@ -254,7 +254,8 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	var upgradeCount = Math.floor(availableEnergy / updatePackageCost);
 	maxAbilities = baseAbilities;
 	for ( var i = 0; i <= upgradeCount; i++) {
-		maxAbilities.push(updatePackage);
+		updatePackage.forEach(abilitie => maxAbilities.push(abilitie));
+		
 	}
 	console.log(maxAbilities);
 
