@@ -45,7 +45,7 @@ CreepSoldier.prototype.attackSpawns = function() {
 }
 
 CreepSoldier.prototype.stayFlag = function() {
-    var flags = this.creep.pos.find(FIND_FLAGS);
+    var flags = this.creep.room.find(FIND_FLAGS);
     if (flags.length) {
         flags.forEach(flag => {
             if (flag.name = "StayHere") {
