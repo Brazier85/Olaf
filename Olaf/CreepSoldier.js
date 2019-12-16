@@ -50,7 +50,7 @@ CreepSoldier.prototype.stayFlag = function() {
         flags.forEach(flag => {
             if (flag.name = "StayHere") {
                 this.creep.say("🏳️");
-                this.creep.moveTo(flag);
+                this.creep.moveTo(flag.pos);
                 return true;
             }
         })
