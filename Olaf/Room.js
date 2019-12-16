@@ -4,6 +4,11 @@ var Population = require('Population');
 var Resources = require('Resources');
 var Constructions = require('Constructions');
 
+const FLAG = {
+	SET,
+	REMOVE
+}
+
 function Room(room, roomHandler) {
 	this.room = room;
 	this.roomHandler = roomHandler;
@@ -186,6 +191,9 @@ Room.prototype.defendRoom = function() {
 			var EnemysInRange = tower.pos.findInRange(FIND_HOSTILE_CREEPS,20);
 			if (EnemysInRange) {
 				tower.attack(EnemysInRange[0]);
+				this.doFlag("StayHere", FLAG.REMOVE);
+			} else {
+				this.doFlag("StayHere", FLAG.SET, 21, 29);
 			}
 		});
 	}
@@ -202,6 +210,28 @@ Room.prototype.defendRoom = function() {
 				}
 			}
 		})
+	}
+}
+
+Room.prototype.doFlag = function(flagName, state, x, y) {
+	var flags = this.creep.room.find(FIND_FLAGS);
+	var ok = false;
+	if (flags.length) {
+		flags.forEach(flag => {
+			if (flag.name = flagName) {
+				if ( state = FLAG.REMOVE ) {
+					flag.remove();
+					ok = true;
+				} else {
+					flag.setPosition(x, y);
+					ok = true;
+				}
+			}
+		})
+	}
+	if (!ok && state == FLAG.SET) {
+		this.room.createFlag(x, y, flagName);
+		ok = true;
 	}
 }
 
