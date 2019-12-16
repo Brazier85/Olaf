@@ -17,7 +17,7 @@ CreepSoldier.prototype.init = function() {
 
 CreepSoldier.prototype.act = function() {
 
-
+    if(this.stayFlag()) { return; }
     if(this.attackHostiles()) { return; }
     if(this.attackSpawns()) { return; }
 
@@ -43,6 +43,18 @@ CreepSoldier.prototype.attackSpawns = function() {
         }
         return true;
     };
+}
+
+CreepSoldier.prototype.stayFlag = function() {
+    var flags = this.creep.room.find(FIND_FLAGS);
+    if (flags.length) {
+        flags.forEach(flag => {
+            if (flag.name = "StayHere") {
+                this.creep.moveTo(flag);
+                return true;
+            }
+        })
+    }
 }
 
 module.exports = CreepSoldier;
