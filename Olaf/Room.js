@@ -227,16 +227,14 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 				if ( state = FLAG.REMOVE ) {
 					flag.remove();
 					ok = true;
-				} else {
-					ok = true;
 				}
 			}
 		})
-	}
+	};
 	if (!ok && state == FLAG.SET) {
 		this.room.createFlag(x, y, flagName);
 		ok = true;
-	}
+	};
 }
 
 module.exports = Room;
