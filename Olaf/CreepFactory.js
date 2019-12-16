@@ -87,22 +87,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 				abilities = [WORK, WORK, WORK, CARRY, MOVE, MOVE];
 			} else
 			if(level <= 5) {
-				abilities = [WORK, WORK, WORK, WORK, CARRY, MOVE];
-			} else
-			if(level <= 6) {
-				abilities = [WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE];
-			} else
-			if(level <= 7) {
-				abilities = [WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
-			} else
-			if(level <= 8) {
-				abilities = [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
-			} else
-			if(level <= 9) {
-				abilities = [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE];
-			} else
-			if(level >= 10) {
-				abilities = [WORK, WORK, WORK, WORK, WORK, WORK, WROK, MOVE, CARRY, MOVE];
+				abilities = this.maxCreep(creepType);
 			}
 		break;
 		case 'CreepBuilder':
@@ -119,22 +104,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 				abilities = [WORK, WORK, WORK, CARRY, MOVE, MOVE];
 			} else
 			if(level <= 5) {
-				abilities = [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE];
-			} else
-			if(level <= 6) {
-				abilities = [WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE];
-			} else
-			if(level <= 7) {
-				abilities = [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE];
-			} else
-			if(level <= 8) {
-				abilities = [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE];
-			} else
-			if(level <= 9) {
-				abilities = [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
-			} else
-			if(level >= 10) {
-				abilities = [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
+				abilities = this.maxCreep(creepType);
 			}
 		break;
 		case 'CreepCarrier':
@@ -244,5 +214,63 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 	console.log('Spawn level ' + level + ' ' + creepType + '(' + creepLevel + '/' + resourceLevel + ')');
 	spawn.createCreep(abilities, creepType + '-' + id, {role: creepType});
 };
+
+CreepFactory.prototype.maxCreep = function(creepType) {
+	var maxAbilities = [];
+	var baseAbilities = [];
+	var baseAbilitiesCost = 0;
+	var updatePackage = [];
+	var updatePackageCost = 0;
+	var availableEnergy = this.depositManager.energy();
+
+	// TOUGH          10
+	// MOVE           50
+	// CARRY          50
+	// ATTACK         80
+	// WORK           100
+	// RANGED_ATTACK  150
+	// HEAL           200
+
+	switch(creepType) {
+		case 'CreepMiner':
+			baseAbilities = [WORK, CARRY, MOVE];
+			baseAbilitiesCost = 200;
+			updatePackage = WORK;
+			updatePackageCost = 100;
+		break;
+		case 'CreepBuilder':
+			baseAbilities = [WORK, CARRY, MOVE];
+		break;
+		case 'CreepCarrier':
+			baseAabilities = [CARRY, MOVE];
+			baseAbilitiesCost = 100;
+			updatePackage = CARRY, MOVE;
+			updatePackageCost = 100;
+		break;
+		case 'CreepSoldier':
+			baseAbilities = [TOUGH, ATTACK, MOVE];
+		break;
+		case 'CreepShooter':
+			baseAbilities = [TOUGH, TOUGH, TOUGH, MOVE, RANGED_ATTACK, RANGED_ATTACK, MOVE];
+		break;
+		case 'CreepScout':
+			abilities = [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
+		break;
+		case 'CreepHealer':
+			baseAbilities = [MOVE, MOVE, MOVE, HEAL, MOVE];
+		break;
+	}
+
+	// calculate
+	availableEnergy = availableEnergy - baseAbilitiesCost;
+	var upgradeCount = Math.floor(availableEnergy / updatePackageCost);
+	maxAbilities = baseAbilities;
+	for ( var i = 0; upgradeCount; i++) {
+		maxAbilities.push(updatePackage);
+	}
+	console.log(maxAbilities);
+
+	return maxAbilities;
+}
 
 module.exports = CreepFactory;
