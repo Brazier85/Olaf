@@ -206,6 +206,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	var baseAbilitiesCost = 0;
 	var updatePackage = [];
 	var updatePackageCost = 0;
+	var maxCost = 0;
 	var availableEnergy = this.depositManager.energy();
 
 	// TOUGH          10
@@ -222,18 +223,21 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 			baseAbilitiesCost = 300;
 			updatePackage = [WORK];
 			updatePackageCost = 100;
+			maxCost = 1000;
 		break;
 		case 'CreepBuilder':
 			baseAbilities = [WORK, CARRY, CARRY, MOVE];
 			baseAbilitiesCost = 250;
 			updatePackage = [WORK, MOVE];
 			updatePackageCost = 150;
+			maxCost = 1000;
 		break;
 		case 'CreepCarrier':
 			baseAabilities = [CARRY, MOVE];
 			baseAbilitiesCost = 100;
 			updatePackage = [CARRY, MOVE];
 			updatePackageCost = 100;
+			maxCost = 1000;
 		break;
 		case 'CreepSoldier':
 			baseAbilities = [TOUGH, ATTACK, MOVE];
@@ -250,7 +254,11 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	}
 
 	// calculate
-	availableEnergy = availableEnergy - baseAbilitiesCost - 100;
+	if (availableEnergy > maxCost) {
+		availableEnergy = maxCost;
+	}
+	
+	availableEnergy = availableEnergy - baseAbilitiesCost;
 	var upgradeCount = Math.floor(availableEnergy / updatePackageCost);
 	maxAbilities = baseAbilities;
 	for ( var i = 0; i <= upgradeCount; i++) {
