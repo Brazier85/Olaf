@@ -83,7 +83,8 @@ CreepCarrier.prototype.depositEnergy = function() {
 		this.depositFor = DEPOSIT_FOR.CONSTRUCTION;
 	}
 
-	if(this.depositManager.energy() / this.depositManager.energyCapacity() < 0.5) {
+	console.log(this.depositManager.energy() / this.depositManager.energyCapacity());
+	if( (this.depositManager.energy() / this.depositManager.energyCapacity() ) < 0.2) {
 		this.depositFor = DEPOSIT_FOR.POPULATION;
 	}
 
