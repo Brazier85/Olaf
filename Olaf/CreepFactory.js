@@ -121,22 +121,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 				abilities = [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
 			} else
 			if(level <= 5) {
-				abilities = [CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
-			} else
-			if(level <= 6) {
-				abilities = [CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
-			} else
-			if(level <= 7) {
-				abilities = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
-			} else
-			if(level <= 8) {
-				abilities = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
-			} else
-			if(level <= 9) {
-				abilities = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
-			} else
-			if(level >= 10) {
-				abilities = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,  CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
+				abilities = this.maxCreep(creepType);
 			}
 		break;
 		case 'CreepSoldier':
@@ -233,13 +218,16 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 
 	switch(creepType) {
 		case 'CreepMiner':
-			baseAbilities = [WORK, CARRY, MOVE];
-			baseAbilitiesCost = 200;
+			baseAbilities = [WORK, CARRY, MOVE, MOVE, MOVE];
+			baseAbilitiesCost = 300;
 			updatePackage = WORK;
 			updatePackageCost = 100;
 		break;
 		case 'CreepBuilder':
-			baseAbilities = [WORK, CARRY, MOVE];
+			baseAbilities = [WORK, CARRY, CARRY, MOVE];
+			baseAbilitiesCost = 250;
+			updatePackage = WORK, MOVE;
+			updatePackageCost = 150;
 		break;
 		case 'CreepCarrier':
 			baseAabilities = [CARRY, MOVE];
@@ -262,7 +250,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	}
 
 	// calculate
-	availableEnergy = availableEnergy - baseAbilitiesCost;
+	availableEnergy = availableEnergy - baseAbilitiesCost - 100;
 	var upgradeCount = Math.floor(availableEnergy / updatePackageCost);
 	maxAbilities = baseAbilities;
 	for ( var i = 0; i <= upgradeCount; i++) {
