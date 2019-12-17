@@ -1,3 +1,5 @@
+const Notifications = require('notifications');
+
 var HelperFunctions = {};
 HelperFunctions.extend = function(target, source) {
 	for(var n in source) {
@@ -18,6 +20,7 @@ HelperFunctions.garbageCollection = function() {
 		var c = Game.creeps[n];
 		if(!c) {
 			delete Memory.creeps[n];
+			Notifications.add(`The creep ${n} died.`)
 			counter++;
 		}
 	}
