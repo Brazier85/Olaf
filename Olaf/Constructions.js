@@ -1,6 +1,8 @@
 var CONST = {
     RAMPART_MAX: 200000,
-    RAMPART_FIX: 50000
+    RAMPART_FIX: 50000,
+    WALL_MAX: 200000,
+    WALL_FIX: 50000
 };
 var Cache = require('Cache');
 
@@ -27,17 +29,11 @@ Constructions.prototype.getDamagedStructures = function() {
                         if(targets.length != 0) {
                             return false;
                         }
-                        if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX)) {
-                            return true;
-                        }
-                        // No walls
-                        if(s.structureType == STRUCTURE_WALL) {
-                            if (s.hits < s.hitsMax / 2 ) {
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        }
+                        if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) ||
+                            (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX) ||
+                            (s.structureType == STRUCTURE_WALL && s.hits < CONST.WALL_FIX))
+                            { return true; }
+
                     }
                 }
             );
@@ -58,7 +54,9 @@ Constructions.prototype.getUpgradeableStructures = function() {
                             return false;
                         }
 
-                        if((s.hits < s.hitsMax && s.structureType != STRUCTURE_RAMPART) || (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_MAX)) {
+                        if((s.hits < s.hitsMax && s.structureType != STRUCTURE_RAMPART) ||
+                            (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_MAX) ||
+                            (s.structureType == STRUCTURE_WALL && s.hits < CONST.WALL_MAX)) {
 
                             return true;
                         }
