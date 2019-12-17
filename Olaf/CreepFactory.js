@@ -166,7 +166,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 			abilities = [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
 		break;
 		case 'CreepHealer':
-			abilities = [MOVE, MOVE, MOVE, HEAL, MOVE];
+			abilities = this.maxCreep(creepType);
 		break;
 	}
 
@@ -233,7 +233,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		case 'CreepHealer':
 			baseAbilities = [MOVE, MOVE, MOVE, HEAL, MOVE];
 			updatePackage = [HEAL];
-			maxCost = 800;
+			maxCost = 1000;
 		break;
 	}
 
