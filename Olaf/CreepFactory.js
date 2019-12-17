@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var HelperFunctions = require('HelperFunctions');
 
 var CreepBase = require('CreepBase');
@@ -70,7 +71,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 	// ATTACK         80
 	// WORK           100
 	// RANGED_ATTACK  150
-	// HEAL           200
+	// HEAL           250
 
 	switch(creepType) {
 		case 'CreepMiner':
@@ -200,35 +201,27 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	// ATTACK         80
 	// WORK           100
 	// RANGED_ATTACK  150
-	// HEAL           200
+	// HEAL           250
 
 	switch(creepType) {
 		case 'CreepMiner':
 			baseAbilities = [WORK, CARRY, MOVE, MOVE, MOVE];
-			baseAbilitiesCost = 300;
 			updatePackage = [WORK];
-			updatePackageCost = 100;
 			maxCost = 1000;
 		break;
 		case 'CreepBuilder':
 			baseAbilities = [WORK, CARRY, CARRY, MOVE];
-			baseAbilitiesCost = 250;
 			updatePackage = [WORK, MOVE];
-			updatePackageCost = 150;
 			maxCost = 1000;
 		break;
 		case 'CreepCarrier':
 			baseAabilities = [CARRY, MOVE];
-			baseAbilitiesCost = 100;
 			updatePackage = [CARRY, MOVE];
-			updatePackageCost = 100;
 			maxCost = 1000;
 		break;
 		case 'CreepSoldier':
 			baseAbilities = [TOUGH, ATTACK, MOVE];
-			baseAbilitiesCost = 150;
 			updatePackage = [TOUGH, ATTACK, MOVE];
-			updatePackageCost = 150;
 			maxCost = 800;
 		break;
 		case 'CreepShooter':
@@ -239,9 +232,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		break;
 		case 'CreepHealer':
 			baseAbilities = [MOVE, MOVE, MOVE, HEAL, MOVE];
-			baseAbilitiesCost = 400;
 			updatePackage = [HEAL];
-			updatePackageCost = 200;
 			maxCost = 800;
 		break;
 	}
@@ -251,8 +242,8 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		availableEnergy = maxCost;
 	}
 
-	availableEnergy = availableEnergy - baseAbilitiesCost;
-	var upgradeCount = Math.floor(availableEnergy / updatePackageCost);
+	availableEnergy = availableEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));;
+	var upgradeCount = Math.floor(availableEnergy / _.sum(updatePackage.map((b) => BODYPART_COST[b])) );
 	maxAbilities = baseAbilities;
 	for ( var i = 0; i <= upgradeCount; i++) {
 		updatePackage.forEach(abilitie => maxAbilities.push(abilitie));	

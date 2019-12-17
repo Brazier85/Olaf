@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 var HelperFunctions = require('HelperFunctions');
 var RoomHandler = require('RoomHandler');
 var ScoutHandler = require('ScoutHandler');
