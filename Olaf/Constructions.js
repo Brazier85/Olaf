@@ -29,7 +29,7 @@ Constructions.prototype.getDamagedStructures = function() {
                         if(targets.length != 0) {
                             return false;
                         }
-                        if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART) ||
+                        if((s.hits < s.hitsMax/2 && s.structureType != STRUCTURE_RAMPART && s.structureType != STRUCTURE_WALL) ||
                             (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_FIX) ||
                             (s.structureType == STRUCTURE_WALL && s.hits < CONST.WALL_FIX))
                             { return true; }
@@ -54,12 +54,10 @@ Constructions.prototype.getUpgradeableStructures = function() {
                             return false;
                         }
 
-                        if((s.hits < s.hitsMax && s.structureType != STRUCTURE_RAMPART) ||
+                        if((s.hits < s.hitsMax && s.structureType != STRUCTURE_RAMPART && s.structureType != STRUCTURE_WALL) ||
                             (s.structureType == STRUCTURE_RAMPART && s.hits < CONST.RAMPART_MAX) ||
-                            (s.structureType == STRUCTURE_WALL && s.hits < CONST.WALL_MAX)) {
-
-                            return true;
-                        }
+                            (s.structureType == STRUCTURE_WALL && s.hits < CONST.WALL_MAX))
+                            { return true; }
                     }
                 }
             );
