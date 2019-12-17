@@ -20,7 +20,7 @@ HelperFunctions.garbageCollection = function() {
 		var c = Game.creeps[n];
 		if(!c) {
 			delete Memory.creeps[n];
-			Notifications.add(`The creep ${n} died.`)
+			//Notifications.add(`The creep ${n} died.`)
 			counter++;
 		}
 	}
