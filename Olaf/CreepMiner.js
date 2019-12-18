@@ -89,7 +89,7 @@ CreepMiner.prototype.act = function() {
 }
 
 CreepMiner.prototype.checkContainer = function() {
-	console.log("checking for container");
+	console.log(this.remember('harvest'));
 	if (this.remember('harvest') == HARVEST.STORE) {
 		var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES,0,{filter: (s) => s.structureType == STRUCTURE_CONTAINER});
 		if (containerNear.length) {
