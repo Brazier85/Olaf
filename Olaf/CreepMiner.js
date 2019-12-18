@@ -41,6 +41,7 @@ CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
 		// Check for container mining
+		console.log("TEST");
 		this.checkContainer();
 
 		if (this.remember('harvest') == HARVEST.STORE) {

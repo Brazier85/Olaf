@@ -48,6 +48,11 @@ CreepSoldier.prototype.stayFlag = function() {
     var flags = this.creep.room.find(FIND_FLAGS);
     var ok = false;
     if (flags.length) {
+        var defenderFlags = flags.where({color: COLOR_WHITE})
+		_.forEach(defenderFlags, function(flagObject){
+            var flag = Game.flags[flagObject.name];
+            
+        })
         flags.forEach(flag => {
             if (flag.name = "StayHere") {
                 this.creep.say("🏳️");
