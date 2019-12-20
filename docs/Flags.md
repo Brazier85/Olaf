@@ -11,6 +11,10 @@
 
 Used to define defensive actions.
 
+| Color  | Type |
+| ------------- | ------------- |
+| WHITE + RED  | Hold Position |
+
 ### Orange flags
 
 Used to define economy based flags
@@ -21,4 +25,4 @@ Used to define economy based flags
 | ORANGE + PURPLE | Harvest pos2 for source 1 |
 | ORANGE + BLUE | Harvest pos1 for source 2 |
 | ORANGE + CYAN | Harvest pos1 for source 2 |
-| ORANGE + GREEN | Harvest pos1 for source 2 |
+| ORANGE + GREEN | Graveyard |

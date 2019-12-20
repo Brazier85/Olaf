@@ -3,20 +3,21 @@ var FlagsController = {};
 
 FlagsController.run = function(rooms, flags) {
     var orangeFlags = _.filter(flags, flag => flag.color === COLOR_ORANGE);
+    var whiteFlags = _.filter(flags, flag => flag.color === COLOR_WHITE);
     var purpleFlags = _.filter(flags, flag => flag.color === COLOR_PURPLE);
 
-    // Orange Flags
+    // Orange flags
     _.forEach(orangeFlags, function(flagObject){
         var flag = Game.flags[flagObject.name]
 
-        // Source Pos 1
+        // Source pos 1
         if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_BLUE) {
-            setPos(flag, 1);
+            setHarvesterPos(flag, 1);
         }
 
-        // Source Pos 2
+        // Source pos 2
         if(flag.secondaryColor == COLOR_PURPLE || flag.secondaryColor == COLOR_CYAN) {
-            setPos(flag, 2);
+            setHarvesterPos(flag, 2);
         }
 
         // Graveyard
@@ -28,12 +29,23 @@ FlagsController.run = function(rooms, flags) {
 
     })
   
+    // White flags
+    _.forEach(whiteFlags, function(flagObject){
+        var flag = Game.flags[flagObject.name];
+
+        if(flag.secondaryColor == COLOR_RED) {
+            flag.room.memory.holdPosition = flag.pos;
+            console.log("Set hold position");
+            flag.remove();
+        }
+    })
+
     _.forEach(purpleFlags, function(flagObject){
         var flag = Game.flags[flagObject.name];
     })
 }
 
-setPos = function(flag, position) {
+setHarvesterPos = function(flag, position) {
     var room = Game.rooms[flag.pos.roomName];
     var source = flag.pos.findClosestByRange(FIND_SOURCES);
 
