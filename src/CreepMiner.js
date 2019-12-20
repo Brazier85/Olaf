@@ -43,9 +43,7 @@ CreepMiner.prototype.init = function() {
 };
 
 CreepMiner.prototype.act = function() {
-	if (!this.dying()) {	
-
-		console.log(this.position.x, this.position.y, this.position.room);
+	if (!this.dying()) {
 
 		// Check for container mining
 		this.checkContainer();
@@ -81,13 +79,13 @@ CreepMiner.prototype.act = function() {
 			} else {
 				this.remember('action', ACTIONS.HARVEST);
 				if(this.creep.harvest(this.resource) != OK) {
-					this.creep.moveTo(new RoomPosition(this.position.x, this.position.y, this.position.room));
+					this.creep.moveTo(this.position.x, this.position.y);
 				}
 			}
 		} else {
 			this.remember('action', ACTIONS.HARVEST);
 			if(this.creep.harvest(this.resource) != OK) {
-				this.creep.moveTo(new RoomPosition(this.position.x, this.position.y, this.position.room));
+				this.creep.moveTo(this.position.x, this.position.y);
 			}
 		}
 		
