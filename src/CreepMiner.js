@@ -45,6 +45,11 @@ CreepMiner.prototype.init = function() {
 CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
+		//Check position
+		if (this.pos != this.position) {
+			this.creep.moveTo(this.position);
+		}
+
 		// Check for container mining
 		this.checkContainer();
 
@@ -79,13 +84,13 @@ CreepMiner.prototype.act = function() {
 			} else {
 				this.remember('action', ACTIONS.HARVEST);
 				if(this.creep.harvest(this.resource) != OK) {
-					this.creep.moveTo(this.resource);
+					this.creep.moveTo(this.position);
 				}
 			}
 		} else {
 			this.remember('action', ACTIONS.HARVEST);
 			if(this.creep.harvest(this.resource) != OK) {
-				this.creep.moveTo(this.resource);
+				this.creep.moveTo(this.position);
 			}
 		}
 		
