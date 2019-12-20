@@ -33,12 +33,12 @@ FlagsController.run = function(rooms, flags) {
         var flag = Game.flags[flagObject.name]
 
         // Source Pos 1
-        if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_PURPLE) {
+        if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_BLUE) {
             setPos(flag, 1);
         }
 
         // Source Pos 2
-        if(flag.secondaryColor == COLOR_BLUE || flag.secondaryColor == COLOR_CYAN) {
+        if(flag.secondaryColor == COLOR_PURPLE || flag.secondaryColor == COLOR_CYAN) {
             setPos(flag, 2);
         }
 
