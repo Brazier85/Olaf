@@ -34,8 +34,8 @@ FlagsController.run = function(rooms, flags) {
         var flag = Game.flags[flagObject.name];
 
         if(flag.secondaryColor == COLOR_RED) {
-            flag.room.memory.holdPosition = flag.pos;
-            console.log("Set hold position");
+            flag.room.memory.assemblyPoint = flag.pos;
+            console.log("Set assembly point");
             flag.remove();
         }
     })

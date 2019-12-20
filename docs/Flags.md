@@ -13,7 +13,7 @@ Used to define defensive actions.
 
 | Color  | Type |
 | ------------- | ------------- |
-| WHITE + RED  | Hold Position |
+| WHITE + RED  | Assembly point |
 
 ### Orange flags
 
