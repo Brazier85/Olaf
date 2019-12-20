@@ -32,29 +32,10 @@ FlagsController.run = function(rooms, flags) {
   
       _.forEach(orangeFlags, function(flagObject){
         var flag = Game.flags[flagObject.name]
-        var lookup = _.filter(flag.pos.look(), function(item){
-          return (item.type == 'source')
-        })[0]
-  
-        if(!lookup){
-            flag.remove()
-            return
-        }else{
-            var room = Game.rooms[flag.pos.roomName];
-            
-            if(!room.memory.sources){ // If there is no sources memory
-                room.memory.sources = {}; //Add it
-            }
 
-            var source = Game.getObjectById(lookup.source.id);
-            if(!room.memory.sources[source.id]){
-                source.memory = room.memory.sources[source.id] = {}; //Adding memory for source
-            }
-
-
-            _.forEach(lookup.source, function(l) {
-                console.log(JSON.stringify(l));
-            })
+        // Flag on Source
+        if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_CYAN) {
+            this.setSource(flag);
         }
       })
   
@@ -98,4 +79,26 @@ FlagsController.run = function(rooms, flags) {
       })
     }
   
+FlagsController.setSource = function(flag) {
+    var lookup = _.filter(flag.pos.look(), function(item){
+        return (item.type == 'source')
+    })[0]
+
+    if(!lookup){
+        console.log("Flag not on source!");
+        flag.remove();
+        return
+    }else{
+        var room = Game.rooms[flag.pos.roomName];
+
+        if(!room.memory.sources){ // If there is no sources memory
+            room.memory.sources = {}; //Add it
+        }
+
+        var source = Game.getObjectById(lookup.source.id);
+        if(!room.memory.sources[source.id]){
+            source.memory = room.memory.sources[source.id] = {}; //Adding memory for source
+        }
+    }
+}
   module.exports = FlagsController
