@@ -36,6 +36,17 @@ FlagsController.run = function(rooms, flags) {
         if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_CYAN) {
             setSource(flag);
         }
+
+        // Source Pos 1
+        if(flag.secondaryColor == COLOR_PURPLE || flag.secondaryColor == COLOR_GREEN) {
+            setPos(flag, 1);
+        }
+
+        // Source Pos 2
+        if(flag.secondaryColor == COLOR_BLUE || flag.secondaryColor == COLOR_YELLOW) {
+            setPos(flag, 2);
+        }
+
       })
   
       _.forEach(purpleFlags, function(flagObject){
@@ -100,4 +111,16 @@ setSource = function(flag) {
         }
     }
 }
-  module.exports = FlagsController
+
+setPos = function(flag, position) {
+    var source = flag.pos.findClosestByRange(FIND_SOURCES);
+    source.memory = this.memory.sources[source.id];
+    if (position = 1) {
+        source.memory.pos1 = flag.pos;
+    }
+    if (position = 2) {
+        source.memory.pos2 = flag.pos;
+    }
+}
+
+module.exports = FlagsController
