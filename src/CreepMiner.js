@@ -79,13 +79,13 @@ CreepMiner.prototype.act = function() {
 			} else {
 				this.remember('action', ACTIONS.HARVEST);
 				if(this.creep.harvest(this.resource) != OK) {
-					this.creep.moveTo(new RoomPosition(this.position));
+					this.creep.moveTo(new RoomPosition(this.position.x, this.position.y, this.position.room));
 				}
 			}
 		} else {
 			this.remember('action', ACTIONS.HARVEST);
 			if(this.creep.harvest(this.resource) != OK) {
-				this.creep.moveTo(new RoomPosition(this.position));
+				this.creep.moveTo(new RoomPosition(this.position.x, this.position.y, this.position.room));
 			}
 		}
 		
