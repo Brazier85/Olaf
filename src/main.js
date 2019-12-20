@@ -1,5 +1,8 @@
 var _ = require('lodash');
 
+//Gloabl required prototypes
+Source.prototype.memory = undefined;
+
 var HelperFunctions = require('HelperFunctions');
 var RoomHandler = require('RoomHandler');
 var ScoutHandler = require('ScoutHandler');
