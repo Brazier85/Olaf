@@ -237,6 +237,8 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		break;
 	}
 
+	console.log(availableEnergy);
+
 	// calculate
 	if (availableEnergy > maxCost) {
 		availableEnergy = maxCost;
