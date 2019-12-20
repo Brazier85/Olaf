@@ -21,7 +21,12 @@ CreepSoldier.prototype.act = function() {
     if(this.attackHostiles()) { return true; }
     if(this.attackSpawns()) { return true; }
     
-    this.creep.moveTo(25,25);
+    if (this.creep.room.memory.assemblyPoint) {
+        this.creep.moveTo(this.creep.room.memory.assemblyPoint);
+    } else {
+        this.creep.moveTo(25,25);
+    }
+    
 }
 CreepSoldier.prototype.attackHostiles = function() {
     var target = this.creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
