@@ -237,14 +237,13 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		break;
 	}
 
-	console.log(availableEnergy);
-
 	// calculate
 	if (availableEnergy > maxCost) {
 		availableEnergy = maxCost;
 	}
 
-	availableEnergy = availableEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));;
+	availableEnergy = availableEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
+	console.log(availableEnergy);
 	var upgradeCount = Math.floor(availableEnergy / _.sum(updatePackage.map((b) => BODYPART_COST[b])) );
 	maxAbilities = baseAbilities;
 	for ( var i = 0; i <= upgradeCount; i++) {
