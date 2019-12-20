@@ -41,13 +41,17 @@ FlagsController.run = function(rooms, flags) {
             return
         }else{
             var room = Game.rooms[flag.pos.roomName];
+            
             if(!room.memory.sources){ // If there is no sources memory
                 room.memory.sources = {}; //Add it
             }
 
             var source = Game.getObjectById(lookup.source.id);
-            console.log(source);
-            //source.memory = room.memory.sources[source.id] = {};
+            if(!room.memory.sources[source.id]){
+                source.memory = room.memory.sources[source.id] = {}; //Adding memory for source
+            }
+
+
             _.forEach(lookup.source, function(l) {
                 console.log(JSON.stringify(l));
             })
