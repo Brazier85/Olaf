@@ -32,12 +32,15 @@ CreepMiner.prototype.init = function() {
 	if(this.moveToNewRoom() == true) {
 		return;
 	}
-	if(this.remember('position')) {
-		this.position = this.remember('position');
-	}
 
 	this.resource = this.resourceManager.getResourceById(this.remember('source'));
-	this.position = this.remember('position');
+
+	if(!this.remember('position')) {
+		this.position = this.resource.pos;
+	} else {
+		this.position = this.remember('position');
+	}
+	
 
 	this.act();
 };
