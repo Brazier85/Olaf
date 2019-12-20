@@ -248,7 +248,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	for ( var i = 0; i <= upgradeCount; i++) {
 		updatePackage.forEach(ability => maxAbilities.push(ability));	
 	}
-	console.log(maxAbilities);
+	console.log("Spawning " + _.sum(maxAbilities.map((b) => BODYPART_COST[b])) + " with " + maxAbilities);
 
 	return maxAbilities;
 }
