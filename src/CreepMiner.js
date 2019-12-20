@@ -46,7 +46,7 @@ CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
 		//Check position
-		if (this.pos != this.position) {
+		if (this.creep.pos != this.position) {
 			this.creep.moveTo(this.position);
 		}
 
