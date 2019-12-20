@@ -43,7 +43,7 @@ FlagsController.run = function(rooms, flags) {
             console.log(flag);
             _.forEach(flag, function(f) {
                 console.log(f);
-            }
+            })
         //}
       })
   
