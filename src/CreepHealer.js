@@ -30,7 +30,8 @@ CreepHealer.prototype.act = function() {
     } else {
         if(this.stayFlag()) { return true; }
         if (this.creep.room.memory.assemblyPoint) {
-            this.creep.moveTo(this.creep.room.memory.assemblyPoint);
+            var asPoint = this.creep.room.memory.assemblyPoint;
+            this.creep.moveTo(asPoint.x, asPoint.y);
         } else {
             this.creep.moveTo(25,25);
         }

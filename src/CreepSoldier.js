@@ -22,7 +22,8 @@ CreepSoldier.prototype.act = function() {
     if(this.attackSpawns()) { return true; }
     
     if (this.creep.room.memory.assemblyPoint) {
-        this.creep.moveTo(this.creep.room.memory.assemblyPoint);
+        var asPoint = this.creep.room.memory.assemblyPoint;
+        this.creep.moveTo(asPoint.x, asPoint.y);
     } else {
         this.creep.moveTo(25,25);
     }
