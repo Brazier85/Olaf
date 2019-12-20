@@ -28,6 +28,7 @@ var FlagsController = {};
 
 FlagsController.run = function(rooms, flags) {
       var orangeFlags = _.filter(flags, flag => flag.color === COLOR_ORANGE);
+      var purpleFlags = _.filter(flags, flag => flag.color === COLOR_PURPLE);
   
       _.forEach(orangeFlags, function(flagObject){
         var flag = Game.flags[flagObject.name]
