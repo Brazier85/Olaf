@@ -79,14 +79,14 @@ CreepMiner.prototype.act = function() {
 					}
 				}
 			} else {
-				this.creep.moveTo(this.position.x, this.position.y);
+				if (this.creep.pos != this.position) { this.creep.moveTo(this.position.x, this.position.y); }
 				this.remember('action', ACTIONS.HARVEST);
 				if(this.creep.harvest(this.resource) != OK) {
 					this.creep.moveTo(this.position.x, this.position.y);
 				}
 			}
 		} else {
-			this.creep.moveTo(this.position.x, this.position.y);
+			if (this.creep.pos != this.position) { this.creep.moveTo(this.position.x, this.position.y); }
 			this.remember('action', ACTIONS.HARVEST);
 			if(this.creep.harvest(this.resource) != OK) {
 				this.creep.moveTo(this.position.x, this.position.y);
