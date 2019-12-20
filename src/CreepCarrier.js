@@ -165,7 +165,7 @@ CreepCarrier.prototype.pickupEnergy = function() {
 };
 CreepCarrier.prototype.harvestEnergy = function() {
 
-	if(this.creep.pos.inRangeTo(this.position, 1)) {
+	if(this.creep.pos.inRangeTo(this.resource, 2)) {
 		this.creep.say("⛽️");
 		var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES, 4, {
 			filter: function(s) {
