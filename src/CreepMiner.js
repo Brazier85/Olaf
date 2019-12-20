@@ -34,7 +34,7 @@ CreepMiner.prototype.init = function() {
 	}
 
 	this.resource = this.resourceManager.getResourceById(this.remember('source'));
-	this.position = this.creep.room.memory.sources[this.resource].pos1;
+	this.position = this.creep.room.memory.sources[this.remember('source')].pos1;
 
 	this.act();
 };
