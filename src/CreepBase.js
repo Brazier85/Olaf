@@ -100,9 +100,14 @@ CreepBase.randomMovement = function() {
 CreepBase.dying = function() {
 	var timeToLive = this.creep.ticksToLive;
 	var isDying = false;
+	var graveyard = this.creep.room.memory.graveyard;
 	if ( timeToLive < 20 ) {
 		this.creep.say("☠️");
-		this.creep.moveTo(25,25); // Move to the middle of the room
+		if (graveyard) {
+			this.creep.moveTo(graveyard.x, graveyard.y);
+		} else {
+			this.creep.moveTo(25,25); // Move to the middle of the room
+		}
 		isDying = true;
 	}
 	if ( timeToLive < 10 ) {
