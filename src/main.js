@@ -7,7 +7,7 @@ var Room = require('Room');
 var CreepBase = require('CreepBase');
 var CreepScout = require('CreepScout');
 
-var FlagController = require('Flags');
+var Flags = require('Flags');
 
 //ScoutHandler.setRoomHandler(RoomHandler);
 
