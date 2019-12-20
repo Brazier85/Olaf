@@ -9,7 +9,7 @@
 
 ### Orange Flags
 
-Used to define some positions in the room. For example mining positions.
+Used to define economy based flags
 
 | Color  | Type |
 | ------------- | ------------- |
@@ -17,3 +17,4 @@ Used to define some positions in the room. For example mining positions.
 | ORANGE + PURPLE | Harvest pos2 for source 1 |
 | ORANGE + BLUE | Harvest pos1 for source 2 |
 | ORANGE + CYAN | Harvest pos1 for source 2 |
+| ORANGE + GREEN | Harvest pos1 for source 2 |
