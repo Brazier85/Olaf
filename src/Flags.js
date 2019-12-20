@@ -23,19 +23,21 @@ for(var roomName in Game.rooms){//Loop through all rooms your creeps/structures 
     }
 }*/
 
+function FlagsController(rooms, flags) {
+    this.flags = flags;
+    this.rooms = rooms;
+};
 
-var FlagsController = {};
-
-FlagsController.run = function(rooms, flags) {
-      var orangeFlags = _.filter(flags, flag => flag.color === COLOR_ORANGE);
-      var purpleFlags = _.filter(flags, flag => flag.color === COLOR_PURPLE);
+FlagsController.prototype.run = function() {
+      var orangeFlags = _.filter(this.flags, flag => flag.color === COLOR_ORANGE);
+      var purpleFlags = _.filter(this.flags, flag => flag.color === COLOR_PURPLE);
   
       _.forEach(orangeFlags, function(flagObject){
         var flag = Game.flags[flagObject.name]
 
         // Flag on Source
         if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_CYAN) {
-            setSource(flag);
+            this.setSource(flag);
         }
       })
   
@@ -79,7 +81,7 @@ FlagsController.run = function(rooms, flags) {
       })
     }
   
-FlagsController.setSource = function(flag) {
+FlagsController.prototype.setSource = function(flag) {
     var lookup = _.filter(flag.pos.look(), function(item){
         return (item.type == 'source')
     })[0]
