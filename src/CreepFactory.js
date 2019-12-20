@@ -98,49 +98,15 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 			if(level <= 2) {
 				abilities = [WORK, WORK, CARRY, MOVE];
 			} else
-			if(level <= 3) {
-				abilities = [WORK, WORK, CARRY, MOVE, MOVE];
-			} else
-			if(level <= 4) {
-				abilities = [WORK, WORK, WORK, CARRY, MOVE, MOVE];
-			} else
-			if(level >= 5) {
+			if(level >= 3) {
 				abilities = this.maxCreep(creepType);
 			}
 		break;
 		case 'CreepCarrier':
-			if(level <= 1) {
-				abilities = [CARRY, MOVE];
-			} else
-			if(level <= 2) {
-				abilities = [CARRY, CARRY, MOVE];
-			} else
-			if(level <= 3) {
-				abilities = [CARRY, CARRY, MOVE, MOVE];
-			} else
-			if(level <= 4) {
-				abilities = [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
-			} else
-			if(level >= 5) {
 				abilities = this.maxCreep(creepType);
-			}
 		break;
 		case 'CreepSoldier':
-			if(level <= 1) {
-				abilities = [TOUGH, ATTACK, MOVE];
-			} else
-			if(level <= 2) {
-				abilities = [TOUGH, MOVE, ATTACK, MOVE];
-			} else
-			if(level <= 3) {
-				abilities = [TOUGH, MOVE, ATTACK, ATTACK, ATTACK, MOVE];
-			} else
-			if(level <= 4) {
-				abilities = [TOUGH, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, MOVE];
-			} else
-			if(level >= 5) {
 				abilities = this.maxCreep(creepType);
-			}
 		break;
 		case 'CreepShooter':
 			if(level <= 5) {
