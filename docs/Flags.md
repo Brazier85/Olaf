@@ -9,7 +9,7 @@
 
 ### White flags
 
-Used to define defensive actions.
+Used to define defensive positions
 
 | Color  | Type |
 | ------------- | ------------- |
@@ -17,7 +17,7 @@ Used to define defensive actions.
 
 ### Orange flags
 
-Used to define economy based flags
+Used to define economy based positions
 
 | Color  | Type |
 | ------------- | ------------- |
