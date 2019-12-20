@@ -7,6 +7,8 @@ var Room = require('Room');
 var CreepBase = require('CreepBase');
 var CreepScout = require('CreepScout');
 
+var Flags = require('Flags');
+
 //ScoutHandler.setRoomHandler(RoomHandler);
 
 // Init rooms
@@ -14,6 +16,8 @@ for(var n in Game.rooms) {
 	var roomHandler = new Room(Game.rooms[n], RoomHandler);
 	RoomHandler.set(Game.rooms[n].name, roomHandler);
 };
+
+Flags.FlagHander.run(Game.rooms, Game.flags);
 
 // Load rooms
 var rooms = RoomHandler.getRoomHandlers();
