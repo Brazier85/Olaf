@@ -1,7 +1,5 @@
 var Cache = require('Cache');
 
-Source.prototype.memory = undefined;
-
 function Resources(room, population) {
 	this.cache = new Cache();
 	this.room = room;

@@ -1,4 +1,3 @@
-Source.prototype.memory = undefined;
 
 var Deposits = require('Deposits');
 var CreepFactory = require('CreepFactory');

@@ -1,6 +1,4 @@
 
-Source.prototype.memory = undefined;
-
 var FlagsController = {};
 
 FlagsController.run = function(rooms, flags) {

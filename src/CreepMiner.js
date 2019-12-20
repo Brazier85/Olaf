@@ -36,7 +36,7 @@ CreepMiner.prototype.init = function() {
 	this.resource = this.resourceManager.getResourceById(this.remember('source'));
 
 	if(!this.remember('position')) {
-		this.position = this.resource.pos;
+		this.position = this.resource.pos; //Required for new creeps
 	} else {
 		this.position = this.remember('position');
 	}
