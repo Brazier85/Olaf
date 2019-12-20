@@ -34,7 +34,7 @@ FlagsController.run = function(rooms, flags) {
 
         // Flag on Source
         if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_CYAN) {
-            FlagController.setSource(flag);
+            setSource(flag);
         }
       })
   
@@ -78,7 +78,7 @@ FlagsController.run = function(rooms, flags) {
       })
     }
   
-FlagsController.setSource = function(flag) {
+setSource = function(flag) {
     var lookup = _.filter(flag.pos.look(), function(item){
         return (item.type == 'source')
     })[0]
