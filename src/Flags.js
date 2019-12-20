@@ -35,7 +35,7 @@ FlagsController.run = function(rooms, flags) {
 
         // Flag on Source
         if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_CYAN) {
-            this.setSource(flag);
+            setSource(flag);
         }
       })
   
