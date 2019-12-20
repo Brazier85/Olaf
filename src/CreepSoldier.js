@@ -50,6 +50,7 @@ CreepSoldier.prototype.attackSpawns = function() {
     };
 }
 
+/*
 CreepSoldier.prototype.stayFlag = function() {
     var flags = this.creep.room.find(FIND_FLAGS);
     var ok = false;
@@ -66,5 +67,5 @@ CreepSoldier.prototype.stayFlag = function() {
     }
     return ok;
 }
-
+*/
 module.exports = CreepSoldier;
