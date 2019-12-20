@@ -178,7 +178,7 @@ CreepCarrier.prototype.harvestEnergy = function() {
 			});
 		if(containerNear.length) {
 			for(var n in containerNear) {
-				if(this.creep.withdraw(containerNear[n], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+				if(this.creep.withdraw(containerNear[n], RESOURCE_ENERGY) != OK) {
 					this.creep.moveTo(containerNear[n]);
 				}
 			}
