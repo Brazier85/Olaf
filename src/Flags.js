@@ -24,8 +24,9 @@ for(var roomName in Game.rooms){//Loop through all rooms your creeps/structures 
 }*/
 
 
-var FlagsController = {
-    run: function(rooms, flags){
+var FlagsController = {};
+
+FlagsController.run = function(rooms, flags){
       var orangeFlags = flags.where({color: COLOR_ORANGE})
   
       _.forEach(orangeFlags, function(flagObject){
@@ -116,6 +117,5 @@ var FlagsController = {
         }
       })
     }
-  }
   
   module.exports = FlagsController
