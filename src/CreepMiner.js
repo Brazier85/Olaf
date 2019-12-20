@@ -45,11 +45,6 @@ CreepMiner.prototype.init = function() {
 CreepMiner.prototype.act = function() {
 	if (!this.dying()) {	
 
-		//Check position
-		if (this.creep.pos != this.position) {
-			this.creep.moveTo(this.position);
-		}
-
 		// Check for container mining
 		this.checkContainer();
 
