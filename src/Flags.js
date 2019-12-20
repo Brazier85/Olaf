@@ -116,10 +116,10 @@ setPos = function(flag, position) {
     var room = Game.rooms[flag.pos.roomName];
     var source = flag.pos.findClosestByRange(FIND_SOURCES);
     source.memory = room.memory.sources[source.id];
-    if (position = 1) {
+    if (position == 1) {
         source.memory.pos1 = flag.pos;
     }
-    if (position = 2) {
+    if (position == 2) {
         source.memory.pos2 = flag.pos;
     }
 }
