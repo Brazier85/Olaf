@@ -188,9 +188,9 @@ CreepCarrier.prototype.harvestEnergy = function() {
 				for(var n in creepsNear){
 					// If miner -> get resource
 					if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
-						creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
-					} else {
-						this.creep.moveTo(creepsNear[n]);
+						if (creepsNear[n].transfer(this.creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+							this.creep.moveTo(creepsNear[n]);
+						}
 					}
 				}
 			}
