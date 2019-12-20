@@ -26,8 +26,8 @@ for(var roomName in Game.rooms){//Loop through all rooms your creeps/structures 
 
 var FlagsController = {};
 
-FlagsController.run = function(rooms, flags){
-      var orangeFlags = flags.where({color: COLOR_ORANGE})
+FlagsController.run = function(rooms, flags) {
+      var orangeFlags = _.filter(flags, flag => flag.color === COLOR_ORANGE);
   
       _.forEach(orangeFlags, function(flagObject){
         var flag = Game.flags[flagObject.name]
