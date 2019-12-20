@@ -159,6 +159,7 @@ Room.prototype.distributeCarriers = function() {
 Room.prototype.distributeResources = function(type) {
 	var sources = this.resourceManager.getSources();
 	var perSource = Math.ceil(this.population.getType(type).total/sources.length);
+	var position= 1;
 	var counter = 0;
 	var source = 0;
 
@@ -173,9 +174,14 @@ Room.prototype.distributeResources = function(type) {
 		}
 
 		creep.remember('source', sources[source].id);
+		// set position to mine from
+		if (position == 1) { creep.remember('position', this.room.memory.sources[sources[source].id].pos1); }
+		if (position == 2) { creep.remember('position', this.room.memory.sources[sources[source].id].pos2); }
 		counter++;
+		position++;
 		if(counter >= perSource) {
 			counter = 0;
+			position = 1;
 			source++;
 		}
 	}

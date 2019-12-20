@@ -32,8 +32,8 @@ CreepMiner.prototype.init = function() {
 	if(this.moveToNewRoom() == true) {
 		return;
 	}
-	if(!this.remember('position')) {
-		this.remember('position', this.creep.room.memory.sources[this.remember('source')].pos1);
+	if(this.remember('position')) {
+		this.position = this.remember('position');
 	}
 
 	this.resource = this.resourceManager.getResourceById(this.remember('source'));
