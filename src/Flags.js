@@ -33,49 +33,16 @@ FlagsController.run = function(rooms, flags) {
       _.forEach(orangeFlags, function(flagObject){
         var flag = Game.flags[flagObject.name]
         var lookup = _.filter(flag.pos.look(), function(item){
-            console.log(item.type);
-            console.log(item);
-          return (item.type == 'constructionSite')
+          return (item.type == 'terrain')
         })[0]
   
         if(!lookup){
           flag.remove()
           return
         }else{
-          var site = lookup.constructionSite
-        }
-  
-        var siteJob = Utils.jobForTarget(site, jobs)
-  
-        if(siteJob.collect != 'harvest'){
-          siteJob.collect = 'harvest'
-  
-          var room = rooms.findOne({name: flag.room.name})
-          var sources = Utils.inflate(room.sources)
-  
-          var source = flag.pos.findClosestByRange(sources)
-  
-          siteJob.source = source.id
-  
-          jobs.update(siteJob)
-        }
-  
-        if(!Utils.findCreepForJob(siteJob)){
-          var nearestRoom = Utils.myNearestRoom(flag.room.name, rooms)
-  
-          spawnQueue.add({
-            creep: CreepDesigner.createCreep({
-              base: CreepDesigner.baseDesign.slowWork,
-              cap: CreepDesigner.caps.slowWork,
-              room: Game.rooms[nearestRoom]
-            }),
-            memory: {
-              jobHash: siteJob.hash
-            },
-            priority: siteJob.priority,
-            spawned: false,
-            room: nearestRoom
-          })
+            console.log(item.type);
+            console.log(item);
+            _.forEach(item, console.log(i))
         }
       })
   
