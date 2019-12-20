@@ -123,12 +123,12 @@ setPos = function(flag, position) {
 
     if (position == 1) {
         source.memory.pos1 = flag.pos;
-        console.log("Position set!");
+        console.log("Position 1 for Source "+source.id+" set!");
         flag.remove();
     }
     if (position == 2) {
         source.memory.pos2 = flag.pos;
-        console.log("Position set!");
+        console.log("Position 2 for Source "+source.id+" set!");
         flag.remove();
     }
 }
