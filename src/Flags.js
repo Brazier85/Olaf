@@ -45,7 +45,7 @@ FlagsController.run = function(rooms, flags) {
                 room.memory.sources = {}; //Add it
             }
 
-            var source = Game.getObjectById(lookup.source);
+            var source = Game.getObjectById(lookup.source.id);
             console.log(source);
             //source.memory = room.memory.sources[source.id] = {};
             _.forEach(lookup.source, function(l) {
