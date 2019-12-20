@@ -249,7 +249,12 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 		})
 	};
 	if (!ok && state == FLAG.SET) {
-		this.room.createFlag(x, y, flagName, COLOR_RED, COLOR_RED);
+		if(this.room.memory.defendPoint) {
+			var dPoint = this.room.memory.defendPoint;
+			this.room.createFlag(dPoint.x, dPoint.y, flagName, COLOR_WHITE);
+		} else {
+			this.room.createFlag(x, y, flagName, COLOR_WHITE);
+		}
 		ok = true;
 	};
 }

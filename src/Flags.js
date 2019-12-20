@@ -4,7 +4,7 @@ var FlagsController = {};
 FlagsController.run = function(rooms, flags) {
     var orangeFlags = _.filter(flags, flag => flag.color === COLOR_ORANGE);
     var whiteFlags = _.filter(flags, flag => flag.color === COLOR_WHITE);
-    var purpleFlags = _.filter(flags, flag => flag.color === COLOR_PURPLE);
+    var redFlags = _.filter(flags, flag => flag.color === COLOR_RED);
 
     // Orange flags
     _.forEach(orangeFlags, function(flagObject){
@@ -38,10 +38,21 @@ FlagsController.run = function(rooms, flags) {
             console.log("Set assembly point");
             flag.remove();
         }
+
+        if(flag.secondaryColor == COLOR_PURPLE) {
+            flag.room.memory.defendPoint = flag.pos;
+            console.log("Set defend point");
+            flag.remove();
+        }
     })
 
-    _.forEach(purpleFlags, function(flagObject){
+    // Red flags
+    _.forEach(redFlags, function(flagObject){
         var flag = Game.flags[flagObject.name];
+
+        if(flag.secondaryColor == COLOR_RED) {
+
+        }
     })
 }
 

@@ -14,6 +14,7 @@ Used to define defensive positions
 | Color  | Type |
 | ------------- | ------------- |
 | WHITE + RED  | Assembly point |
+| WHITE + PURPLE  | Defensive point |
 
 ### Orange flags
 
