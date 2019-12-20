@@ -176,8 +176,10 @@ Room.prototype.distributeResources = function(type) {
 
 		creep.remember('source', sources[source].id);
 		// set position to mine from
-		if (position == 1) { creep.remember('position', this.room.memory.sources[sources[source].id].pos1); }
-		if (position == 2) { creep.remember('position', this.room.memory.sources[sources[source].id].pos2); }
+		if (this.room.memory.sources[sources[source].id]) {
+			if (position == 1) { creep.remember('position', this.room.memory.sources[sources[source].id].pos1); }
+			if (position == 2) { creep.remember('position', this.room.memory.sources[sources[source].id].pos2); }
+		}
 		counter++;
 		position++;
 		if(counter >= perSource) {
