@@ -114,7 +114,7 @@ setSource = function(flag) {
 
 setPos = function(flag, position) {
     var source = flag.pos.findClosestByRange(FIND_SOURCES);
-    source.memory = this.memory.sources[source.id];
+    source.memory = romm.memory.sources[source.id];
     if (position = 1) {
         source.memory.pos1 = flag.pos;
     }
