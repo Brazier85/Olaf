@@ -21,6 +21,7 @@ function CreepCarrier(creep, depositManager, resourceManager, constructionsManag
 	this.constructionsManager = constructionsManager;
 	this.resource = false;
 	this.target = false;
+	this.position = false;
 };
 
 CreepCarrier.prototype.init = function() {
@@ -41,6 +42,12 @@ CreepCarrier.prototype.init = function() {
 
 	if(this.moveToNewRoom() == true) {
 		return;
+	}
+
+	if(!this.remember('position')) {
+		this.position = this.resource.pos; //Required for new creeps
+	} else {
+		this.position = this.remember('position');
 	}
 
 	if(this.randomMovement() == false) {
@@ -158,7 +165,7 @@ CreepCarrier.prototype.pickupEnergy = function() {
 };
 CreepCarrier.prototype.harvestEnergy = function() {
 
-	if(this.creep.pos.inRangeTo(this.resource, 2)) {
+	if(this.creep.pos.inRangeTo(this.position, 1)) {
 		this.creep.say("⛽️");
 		var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES, 4, {
 			filter: function(s) {
