@@ -7,7 +7,11 @@
 | WHITE  | Defensive  |
 | ORANGE  | Room Positions |
 
-### Orange Flags
+### White flags
+
+Used to define defensive actions.
+
+### Orange flags
 
 Used to define economy based flags
 

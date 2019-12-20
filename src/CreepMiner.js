@@ -41,7 +41,6 @@ CreepMiner.prototype.init = function() {
 		this.position = this.remember('position');
 	}
 	
-
 	this.act();
 };
 

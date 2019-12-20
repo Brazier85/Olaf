@@ -183,10 +183,10 @@ CreepCarrier.prototype.harvestEnergy = function() {
 				}
 			}
 		} else {
-			var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 1);
+			var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 2); //Search for miner
 			if(creepsNear.length){
 				for(var n in creepsNear){
-					// If CreepMiner get resource
+					// If miner -> get resource
 					if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
 						creepsNear[n].transfer(this.creep, RESOURCE_ENERGY);
 					}
