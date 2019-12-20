@@ -200,9 +200,14 @@ Room.prototype.defendRoom = function() {
         towers.forEach(tower => {
 			// Draw a shooting range line
 			tower.room.visual.circle(tower.pos, {fill: 'transparent', radius: 15, stroke: 'red', lineStyle: 'dotted'});
-			var EnemysInRange = tower.pos.findInRange(FIND_HOSTILE_CREEPS,15);
+			var EnemysInRange = tower.pos.findInRange(FIND_HOSTILE_CREEPS, 15);
 			if (EnemysInRange.length) {
-				tower.attack(EnemysInRange[0]);
+				var target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
+					filter: function(object) {
+						return object.getActiveBodyparts(ATTACK) == 0;
+					}
+				});
+				tower.attack(target);
 				setFlag = false;
 			}
 		});
