@@ -32,18 +32,19 @@ FlagsController.run = function(rooms, flags) {
   
       _.forEach(orangeFlags, function(flagObject){
         var flag = Game.flags[flagObject.name]
-        var lookup = _.filter(flag.pos.look(), function(item){
-          return (item.type == 'terrain')
-        })[0]
+        //var lookup = _.filter(flag.pos.look(), function(item){
+        //  return (item.type == 'terrain')
+        //})[0]
   
-        if(!lookup){
-          flag.remove()
-          return
-        }else{
-            console.log(item.type);
-            console.log(item);
-            _.forEach(item, console.log(i))
-        }
+        //if(!lookup){
+        //  flag.remove()
+        // return
+        //}else{
+            console.log(flag);
+            _.forEach(flag, function(f) {
+                console.log(f);
+            }
+        //}
       })
   
       _.forEach(purpleFlags, function(flagObject){
