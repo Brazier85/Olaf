@@ -45,7 +45,7 @@ FlagsController.run = function(rooms, flags) {
                 console.log(f);
             })
             _.forEach(flag.pos.look(), function(l) {
-                console.log(l);
+                console.log(JSON.stringify(l));
             })
         //}
       })
