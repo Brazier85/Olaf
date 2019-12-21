@@ -52,7 +52,6 @@ FlagsController.run = function(rooms, flags) {
         var flag = Game.flags[flagObject.name];
 
         if(flag.secondaryColor == COLOR_RED) {
-            flag.pos.findClosestByRange(FIND_HOSTILE_CREEP);
             flag.room.memory.roomTarget = flag.pos.findClosestByRange(FIND_HOSTILE_CREEP).id;
             flag.remove();
         }
