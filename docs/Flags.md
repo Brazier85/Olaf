@@ -31,7 +31,7 @@ Used to define economy based positions
 
 ### Blue flags
 
-Used to define defensive positions
+Used to define building positions
 
 | Color  | Type |
 | ------------- | ------------- |
