@@ -218,7 +218,7 @@ Room.prototype.defendRoom = function() {
 		var target = Game.getObjectById(this.room.memory.roomTarget);
 		towers.forEach(tower => {
 			if(tower.attack(target) != OK) {
-				delete this.room.memory[roomTarget];
+				delete this.room.memory['roomTarget'];
 			}
 		});
 	}
