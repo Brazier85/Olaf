@@ -67,6 +67,7 @@ FlagsController.run = function(rooms, flags) {
             for (var i = 0; i < path.length; i++) {
                 spawn.room.createConstructionSite(path[i].x,path[i].y, STRUCTURE_ROAD);
             }
+            flag.remove();
         }
     })
 }
