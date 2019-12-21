@@ -136,7 +136,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 		break;
 	}
 
-	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {role: creepType});
+	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType}});
 
 	if ( spawning != OK) {
 		console.log('Can not build creep: ' + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + ' ERR: ' + spawning);
