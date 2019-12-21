@@ -62,7 +62,7 @@ FlagsController.run = function(rooms, flags) {
 
         // Build a road from spawn to flag
         if(flag.secondaryColor == COLOR_BLUE) {
-            var spawn = flag.room.pos.findClosestByRange(FIND_MY_SPAWNS);
+            var spawn = flag.pos.findClosestByRange(FIND_MY_SPAWNS);
             var path = spawn.pos.findPathTo(flag.pos);
             for (var i = 0; i < path.length; i++) {
                 spawn.room.createConstructionSite(path[i].x,path[i].y, STRUCTURE_ROAD);
