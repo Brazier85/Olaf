@@ -7,6 +7,7 @@
 | WHITE  | Defensive  |
 | ORANGE  | Room positions |
 | BLUE  | Build stuff |
+| RED  | Agressive stuff |
 
 ### White flags
 
@@ -34,3 +35,11 @@ Used to define building positions
 | Color  | Type |
 | ------------- | ------------- |
 | BLUE + BLUE  | Road from spawn to flag |
+
+### RED flags
+
+Used for agressive things
+
+| Color  | Type |
+| ------------- | ------------- |
+| RED + RED | Defines a room target |

@@ -65,6 +65,9 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 	if(this.population.getTotalPopulation() < 5){
 		level = 1;
 	}
+	if(this.population.getTotalPopulation() > 10){
+		level = 5;
+	}
 	// TOUGH          10
 	// MOVE           50
 	// CARRY          50
@@ -152,7 +155,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	var updatePackage = [];
 	var updatePackageCost = 0;
 	var maxCost = 0;
-	var availableEnergy = this.depositManager.energy();
+	var availableEnergy = this.depositManager.energyCapacity();
 
 	// TOUGH          10
 	// MOVE           50
