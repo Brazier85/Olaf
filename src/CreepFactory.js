@@ -181,7 +181,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 			maxCost = 1000;
 		break;
 		case 'CreepCarrier':
-			baseAabilities = [CARRY, MOVE];
+			baseAbilities = [CARRY, MOVE];
 			updatePackage = [CARRY, MOVE];
 			maxCost = 1000;
 		break;
