@@ -52,15 +52,13 @@ FlagsController.run = function(rooms, flags) {
         var flag = Game.flags[flagObject.name];
 
         if(flag.secondaryColor == COLOR_RED) {
-            var hostiles = flag.room.find(FIND_HOSTILE_CREEPS);
-            var towers = flag.room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-
-            if(hostiles.length > 0) {
-                towers.forEach(tower => {
-                    var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-                    tower.attack(target);
-                });
-            }
+            const look = flag.pos.look();
+            look.forEach(function(lookObject) {
+                if(lookObject.type == LOOK_CREEPS) {
+                    flag.room.memory.roomTarget = lookObject[LOOK_CREEPS].id;
+                }
+            });
+            flag.remove();
         }
     })
 

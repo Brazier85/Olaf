@@ -214,6 +214,15 @@ Room.prototype.defendRoom = function() {
 		}
 	}
 
+	if(this.room.memory.roomTarget) {
+		var target = Game.getObjectById(this.room.memory.roomTarget);
+		towers.forEach(tower => {
+			if(tower.attack(target) != OK) {
+				delete this.room.memory[roomTarget];
+			}
+		});
+	}
+
 	
 	// If there are no hostiles
 	if(hostiles.length === 0) {
