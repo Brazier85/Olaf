@@ -214,7 +214,7 @@ Room.prototype.defendRoom = function() {
 		}
 	}
 
-	if(this.room.memory.roomTarget) {
+	if(this.room.memory.roomTarget != undefined) {
 		var target = Game.getObjectById(this.room.memory.roomTarget);
 		towers.forEach(tower => {
 			if(tower.attack(target) != OK) {
