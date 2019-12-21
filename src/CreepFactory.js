@@ -136,20 +136,13 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 		break;
 	}
 
-	var canBuild = spawn.canCreateCreep(
-		abilities,
-		creepType + '-' + id,
-		{
-			role: creepType
-		}
-	);
-	if(canBuild !== 0) {
-		console.log('Can not build creep: ' + creepType + ' @ ' + level);
-		return;
-	}
+	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {role: creepType});
 
-	console.log('Spawn level ' + level + ' ' + creepType + '(' + creepLevel + '/' + resourceLevel + ')');
-	spawn.createCreep(abilities, creepType + '-' + id, {role: creepType});
+	if ( spawning != OK) {
+		console.log('Can not build creep: ' + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + ' ERR: ' + spawning);
+	} else {
+		console.log("Spawning " + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + " with " + abilities);
+	}
 };
 
 CreepFactory.prototype.maxCreep = function(creepType) {
@@ -216,8 +209,6 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		}
 	})
 	baseAbilities.forEach(base => maxAbilities.push(base));
-	console.log("Spawning " + creepType + " for " + _.sum(maxAbilities.map((b) => BODYPART_COST[b])) + " with " + maxAbilities);
-
 	return maxAbilities;
 }
 
