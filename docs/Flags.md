@@ -23,11 +23,9 @@ Used to define economy based positions
 
 | Color  | Type |
 | ------------- | ------------- |
-| ORANGE + RED  | Harvest pos1 for source 1  |
-| ORANGE + PURPLE | Harvest pos2 for source 1 |
-| ORANGE + BLUE | Harvest pos1 for source 2 |
-| ORANGE + CYAN | Harvest pos1 for source 2 |
-| ORANGE + GREEN | Graveyard |
+| ORANGE + RED  | Harvest pos1 for source |
+| ORANGE + PURPLE | Harvest pos2 for source |
+| ORANGE + BLUE | Graveyard |
 
 ### Blue flags
 

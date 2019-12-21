@@ -12,17 +12,17 @@ FlagsController.run = function(rooms, flags) {
         var flag = Game.flags[flagObject.name]
 
         // Source pos 1
-        if(flag.secondaryColor == COLOR_RED || flag.secondaryColor == COLOR_BLUE) {
+        if(flag.secondaryColor == COLOR_RED) {
             setHarvesterPos(flag, 1);
         }
 
         // Source pos 2
-        if(flag.secondaryColor == COLOR_PURPLE || flag.secondaryColor == COLOR_CYAN) {
+        if(flag.secondaryColor == COLOR_PURPLE) {
             setHarvesterPos(flag, 2);
         }
 
         // Graveyard
-        if(flag.secondaryColor == COLOR_GREEN) {
+        if(flag.secondaryColor == COLOR_BLUE) {
             flag.room.memory.graveyard = flag.pos;
             console.log("Set graveyard position");
             flag.remove();
