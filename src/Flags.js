@@ -52,14 +52,13 @@ FlagsController.run = function(rooms, flags) {
         var flag = Game.flags[flagObject.name];
 
         if(flag.secondaryColor == COLOR_RED) {
-            var hostiles = this.room.find(FIND_HOSTILE_CREEPS);
-            var towers = flag.pos.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+            var hostiles = flag.room.find(FIND_HOSTILE_CREEPS);
+            var towers = flag.room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 
             if(hostiles.length > 0) {
                 towers.forEach(tower => {
                     var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
                     tower.attack(target);
-
                 });
             }
         }
