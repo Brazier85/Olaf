@@ -4,6 +4,7 @@ var FlagsController = {};
 FlagsController.run = function(rooms, flags) {
     var orangeFlags = _.filter(flags, flag => flag.color === COLOR_ORANGE);
     var whiteFlags = _.filter(flags, flag => flag.color === COLOR_WHITE);
+    var blueFlags = _.filter(flags, flag => flag.color === COLOR_BLUE);
     var redFlags = _.filter(flags, flag => flag.color === COLOR_RED);
 
     // Orange flags
@@ -52,6 +53,20 @@ FlagsController.run = function(rooms, flags) {
 
         if(flag.secondaryColor == COLOR_RED) {
 
+        }
+    })
+
+    // Blue flags
+    _.forEach(blueFlags, function(flagObject){
+        var flag = Game.flags[flagObject.name];
+
+        // Build a road from spawn to flag
+        if(flag.secondaryColor == COLOR_BLUE) {
+            var spawn = flag.room.pos.findClosestByRange(FIND_MY_SPAWNS);
+            var path = spawn.pos.findPathTo(flag.pos);
+            for (var i = 0; i < path.length; i++) {
+                spawn.room.createConstructionSite(path[i].x,path[i].y, STRUCTURE_ROAD);
+            }
         }
     })
 }

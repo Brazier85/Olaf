@@ -5,7 +5,8 @@
 | Color  | Type |
 | ------------- | ------------- |
 | WHITE  | Defensive  |
-| ORANGE  | Room Positions |
+| ORANGE  | Room positions |
+| BLUE  | Build stuff |
 
 ### White flags
 
@@ -27,3 +28,11 @@ Used to define economy based positions
 | ORANGE + BLUE | Harvest pos1 for source 2 |
 | ORANGE + CYAN | Harvest pos1 for source 2 |
 | ORANGE + GREEN | Graveyard |
+
+### Blue flags
+
+Used to define defensive positions
+
+| Color  | Type |
+| ------------- | ------------- |
+| BLUE + BLUE  | Road from spawn to flag |
