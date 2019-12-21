@@ -210,7 +210,6 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 
 	availableEnergy = availableEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
 	var upgradeCount = Math.floor(availableEnergy / _.sum(updatePackage.map((b) => BODYPART_COST[b])) );
-	maxAbilities = baseAbilities;
 	updatePackage.forEach(update => {
 		for ( var i = 1; i <= upgradeCount; i++) {
 			maxAbilities.push(update);
