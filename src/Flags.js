@@ -75,7 +75,7 @@ FlagsController.run = function(rooms, flags) {
     })
 }
 
-FlagController.setHarvesterPos = function(flag, position) {
+var setHarvesterPos = function(flag, position) {
     var room = Game.rooms[flag.pos.roomName];
     var source = flag.pos.findClosestByRange(FIND_SOURCES);
 
