@@ -31,11 +31,6 @@ function Population(room) {
 			max: 1,
 			minExtensions: 2
 		},
-		CreepSquadSoldier: {
-			total: 0,
-			max: 20,
-			minExtensions: 2
-		},
 		CreepShooter: {
 			total: 0,
 			max: 1,
