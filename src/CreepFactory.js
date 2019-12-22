@@ -36,9 +36,6 @@ CreepFactory.prototype.load = function(creep) {
 		case 'CreepSoldier':
 			loadedCreep = new CreepSoldier(creep);
 		break;
-		case 'CreepSquadSoldier':
-			loadedCreep = new CreepSquadSoldier(creep);
-		break;
 		case 'CreepHealer':
 			loadedCreep = new CreepHealer(creep);
 		break;
