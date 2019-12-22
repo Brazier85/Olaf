@@ -49,9 +49,10 @@ CreepCarrier.prototype.init = function() {
 	} else {
 		this.position = this.remember('position');
 	}
-
-	if(this.randomMovement() == false) {
-	    this.act();
+	if (!this.dying()) {
+		if(this.randomMovement() == false) {
+			this.act();
+		}
 	}
 };
 
@@ -67,20 +68,18 @@ CreepCarrier.prototype.getDepositFor = function() {
 }
 
 CreepCarrier.prototype.act = function() {
-	if (!this.dying()) {
-		var continueDeposit = false;
-		if(this.creep.store[RESOURCE_ENERGY] != 0 && this.remember('last-action') == ACTIONS.DEPOSIT) {
-			continueDeposit = true;
-		}
+	var continueDeposit = false;
+	if(this.creep.store[RESOURCE_ENERGY] != 0 && this.remember('last-action') == ACTIONS.DEPOSIT) {
+		continueDeposit = true;
+	}
 
-		this.pickupEnergy();
+	this.pickupEnergy();
 
-		if(this.creep.store[RESOURCE_ENERGY] < this.creep.store.getCapacity(RESOURCE_ENERGY) && continueDeposit == false) {
-			this.harvestEnergy();
-		} else {
-			this.depositEnergy();
+	if(this.creep.store[RESOURCE_ENERGY] < this.creep.store.getCapacity(RESOURCE_ENERGY) && continueDeposit == false) {
+		this.harvestEnergy();
+	} else {
+		this.depositEnergy();
 
-		}
 	}
 };
 
