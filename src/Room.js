@@ -9,7 +9,6 @@ const FLAG = {
 	SET: 1,
 	REMOVE: 2
 }
-
 function Room(room, roomHandler) {
 	this.room = room;
 	this.roomHandler = roomHandler;
