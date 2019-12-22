@@ -265,7 +265,8 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 }
 
 Room.prototype.buildSquad = function() {
-	var ctype = this.population.getType('CreepSquadSoldier');
+	var types = this.population.getTypes();
+	var ctype = this.population.getType(types['CreepSquadSoldier']);
 	console.log(ctype);
 	if (this.room.memory.purpleSquad == "build") {
 		this.creepFactory.new(ctype, this.depositManager.getSpawnDeposit(), 'purple');
