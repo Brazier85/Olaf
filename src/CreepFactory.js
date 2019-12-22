@@ -155,7 +155,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	var updatePackage = [];
 	var updatePackageCost = 0;
 	var maxCost = 0;
-	var availableEnergy = this.depositManager.energyCapacity();
+	var maxEnergy = this.depositManager.energyCapacity();
 
 	// TOUGH          10
 	// MOVE           50
@@ -200,12 +200,12 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 	}
 
 	// calculate
-	if (availableEnergy > maxCost) {
-		availableEnergy = maxCost;
+	if (maxEnergy > maxCost) {
+		maxEnergy = maxCost;
 	}
 
-	availableEnergy = availableEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
-	var upgradeCount = Math.floor(availableEnergy / _.sum(updatePackage.map((b) => BODYPART_COST[b])) );
+	maxEnergy = maxEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
+	var upgradeCount = Math.floor(maxEnergy / _.sum(updatePackage.map((b) => BODYPART_COST[b])) );
 	updatePackage.forEach(update => {
 		for ( var i = 1; i <= upgradeCount; i++) {
 			maxAbilities.push(update);
