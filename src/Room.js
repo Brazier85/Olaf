@@ -38,9 +38,9 @@ Room.prototype.populate = function() {
 		}
 
 
-		// Late game = less creeps
+		// Late game -> less creeps
 		if (this.depositManager.energyCapacity > 1000) {
-			this.population.typeDistribution.CreepCarrier.max = this.population.typeDistribution.CreepMiner.max;
+			this.population.typeDistribution.CreepCarrier.max = 4;
 		}
 
 		var types = this.population.getTypes()
