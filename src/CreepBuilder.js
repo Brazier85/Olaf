@@ -20,10 +20,11 @@ CreepBuilder.prototype.init = function() {
 	}
 
 	this.forceControllerUpgrade = this.remember('forceControllerUpgrade');
-
-	//if(this.randomMovement() == false) {
-		this.act();
-	//}
+	if (!this.dying()) {
+		//if(this.randomMovement() == false) {
+			this.act();
+		//}
+	}
 };
 
 CreepBuilder.prototype.act = function() {
