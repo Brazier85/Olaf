@@ -60,6 +60,7 @@ FlagsController.run = function(rooms, flags) {
         // Build purple squad
         if(flag.secondaryColor == COLOR_PURPLE) {
             console.log('Build purple squad')
+            flag.room.memory.purpleSquad = "build";
         }
     })
 

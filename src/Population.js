@@ -114,6 +114,7 @@ module.exports = Population;
 function createTypeDistribution(type) {
 	return {
 		total: 0,
-		max: 5
+		max: 20,
+		minExtensions: 0
 	};
 };

@@ -5,6 +5,7 @@ var CreepBase = require('CreepBase');
 var CreepBuilder = require('CreepBuilder');
 var CreepMiner = require('CreepMiner');
 var CreepSoldier = require('CreepSoldier');
+var CreepSquadSoldier = require('CreepSquadSoldier');
 var CreepHealer = require('CreepHealer');
 var CreepScout = require('CreepScout');
 var CreepCarrier = require('CreepCarrier');
@@ -35,6 +36,9 @@ CreepFactory.prototype.load = function(creep) {
 		case 'CreepSoldier':
 			loadedCreep = new CreepSoldier(creep);
 		break;
+		case 'CreepSquadSoldier':
+			loadedCreep = new CreepSquadSoldier(creep);
+		break;
 		case 'CreepHealer':
 			loadedCreep = new CreepHealer(creep);
 		break;
@@ -56,7 +60,7 @@ CreepFactory.prototype.load = function(creep) {
 	return loadedCreep;
 };
 
-CreepFactory.prototype.new = function(creepType, spawn) {
+CreepFactory.prototype.new = function(creepType, spawn, addon) {
 	var abilities = [];
 	var id = new Date().getTime();
 	var creepLevel = this.population.getTotalPopulation() / this.population.populationLevelMultiplier;
@@ -109,6 +113,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 				abilities = this.maxCreep(creepType);
 		break;
 		case 'CreepSoldier':
+		case 'CreepSquadSoldier':
 				abilities = this.maxCreep(creepType);
 		break;
 		case 'CreepShooter':
@@ -139,7 +144,11 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 		break;
 	}
 
-	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType}});
+	if (addon != undefined) {
+		var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, addon: addon}});	
+	} else {
+		var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType}});
+	}
 
 	if ( spawning != OK) {
 		if(spawning == -6) { spawning = "NOT_ENOUGH_ENERGY" }
@@ -183,6 +192,7 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 			maxCost = 1000;
 		break;
 		case 'CreepSoldier':
+		case 'CreepSquadSoldier':
 			baseAbilities = [TOUGH, ATTACK, MOVE];
 			updatePackage = [TOUGH, ATTACK, MOVE];
 			maxCost = 800;

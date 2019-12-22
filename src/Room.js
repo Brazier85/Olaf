@@ -264,4 +264,12 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 	};
 }
 
+Room.prototype.buildSquad = function() {
+	var ctype = this.population.getType('CreepSquadSoldier');
+	console.log(ctype);
+	if (this.room.memory.purpleSquad == "build") {
+		this.creepFactory.new(ctype, this.depositManager.getSpawnDeposit(), 'purple');
+	}
+}
+
 module.exports = Room;
