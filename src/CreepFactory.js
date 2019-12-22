@@ -5,7 +5,6 @@ var CreepBase = require('CreepBase');
 var CreepBuilder = require('CreepBuilder');
 var CreepMiner = require('CreepMiner');
 var CreepSoldier = require('CreepSoldier');
-var CreepSquadSoldier = require('CreepSquadSoldier');
 var CreepHealer = require('CreepHealer');
 var CreepScout = require('CreepScout');
 var CreepCarrier = require('CreepCarrier');
