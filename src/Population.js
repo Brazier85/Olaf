@@ -8,43 +8,31 @@ function Population(room) {
 	this.typeDistribution = {
 		CreepMiner: {
 			total: 0,
-			goalPercentage: 0.2,
-			currentPercentage: 0,
 			max: 5,
 			minExtensions: 0
 		},
 		CreepCarrier: {
 			total: 0,
-			goalPercentage: 0.5,
-			currentPercentage: 0,
 			max: 15,
 			minExtensions: 0
 		},
 		CreepBuilder: {
 			total: 0,
-			goalPercentage: 0.25,
-			currentPercentage: 0,
 			max: 15,
 			minExtensions: 0
 		},
 		CreepHealer: {
 			total: 0,
-			goalPercentage: 0.25,
-			currentPercentage: 0,
 			max: 1,
 			minExtensions: 2
 		},
 		CreepSoldier: {
 			total: 0,
-			goalPercentage: 0.25,
-			currentPercentage: 0,
 			max: 1,
 			minExtensions: 2
 		},
 		CreepShooter: {
 			total: 0,
-			goalPercentage: 0.2,
-			currentPercentage: 0,
 			max: 1,
 			minExtensions: 10
 		}
@@ -59,17 +47,12 @@ function Population(room) {
 		}
 		this.typeDistribution[creepType].total++;
 	}
-
-	for(var name in this.typeDistribution) {
-		var curr = this.typeDistribution[name];
-		this.typeDistribution[name].currentPercentage = curr.total / this.getTotalPopulation();
-	}
 };
 
 Population.prototype.goalsMet = function() {
 	for(var n in this.typeDistribution) {
 		var type = this.typeDistribution[n];
-		if((type.currentPercentage < (type.goalPercentage - type.goalPercentage/4) && type.total < type.max) || type.total == 0 || type.total < type.max*0.75) {
+		if(type.total == 0 || type.total < type.max*0.75) {
 			return false;
 		}
 	}
@@ -131,8 +114,6 @@ module.exports = Population;
 function createTypeDistribution(type) {
 	return {
 		total: 0,
-		goalPercentage: 0.1,
-		currentPercentage: 0,
 		max: 5
 	};
 };

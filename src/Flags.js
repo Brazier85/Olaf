@@ -51,9 +51,15 @@ FlagsController.run = function(rooms, flags) {
     _.forEach(redFlags, function(flagObject){
         var flag = Game.flags[flagObject.name];
 
+        // Set room target
         if(flag.secondaryColor == COLOR_RED) {
             flag.room.memory.roomTarget = flag.pos.findClosestByRange(FIND_HOSTILE_CREEPS).id;
             flag.remove();
+        }
+
+        // Build purple squad
+        if(flag.secondaryColor == COLOR_PURPLE) {
+            console.log('Build purple squad')
         }
     })
 

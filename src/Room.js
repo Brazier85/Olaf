@@ -37,21 +37,23 @@ Room.prototype.populate = function() {
 			continue;
 		}
 
-		// Is there enough energy?
-		if((this.depositManager.energy() / this.depositManager.energyCapacity()) > 0.2) {
-			var types = this.population.getTypes()
-			for(var i = 0; i < types.length; i++) {
-				var ctype = this.population.getType(types[i]);
-				if((this.depositManager.deposits.length > ctype.minExtensions) || (!this.depositManager.length)) {
-					if((ctype.goalPercentage > ctype.currentPercentage && ctype.total < ctype.max) || ctype.total == 0 || ctype.total < ctype.max*0.75) {
-						this.creepFactory.new(types[i], this.depositManager.getSpawnDeposit());
-						break;
-					}
+
+		// Late game = less creeps
+		if (this.depositManager.energyCapacity() > 1000) {
+			this.population.typeDistribution.CreepCarrier.max = this.population.typeDistribution.CreepMiner.max;
+		}
+
+		var types = this.population.getTypes()
+		for(var i = 0; i < types.length; i++) {
+			var ctype = this.population.getType(types[i]);
+			if((this.depositManager.deposits.length > ctype.minExtensions) || (!this.depositManager.length)) {
+				if(ctype.total == 0 || ctype.total < ctype.max*0.75) {
+					this.creepFactory.new(types[i], this.depositManager.getSpawnDeposit());
+					break;
 				}
 			}
 		}
 	}
-
 };
 
 Room.prototype.loadCreeps = function() {
