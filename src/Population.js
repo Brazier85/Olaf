@@ -52,7 +52,7 @@ function Population(room) {
 Population.prototype.goalsMet = function() {
 	for(var n in this.typeDistribution) {
 		var type = this.typeDistribution[n];
-		if(type.total == 0 || type.total < type.max*0.75) {
+		if(type.total == 0 || type.total < type.max) {
 			return false;
 		}
 	}
