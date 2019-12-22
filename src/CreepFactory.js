@@ -110,7 +110,6 @@ CreepFactory.prototype.new = function(creepType, spawn, addon) {
 				abilities = this.maxCreep(creepType);
 		break;
 		case 'CreepSoldier':
-		case 'CreepSquadSoldier':
 				abilities = this.maxCreep(creepType);
 		break;
 		case 'CreepShooter':
