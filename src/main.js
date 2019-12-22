@@ -42,7 +42,7 @@ for(var n in rooms) {
 		room.population.getType('CreepSoldier').total + 
 		'), ' +
 		'resources at: ' + parseInt( (room.depositManager.energy() / room.depositManager.energyCapacity())*100) +'%, ' +
-		'max resources: ' + room.depositManager.energyCapacity() +'u, ' +
+		'max resources: ' + room.depositManager.energyCapacity +'u, ' +
 		'next death: ' + room.population.getNextExpectedDeath() +' ticks'
 	);
 };
