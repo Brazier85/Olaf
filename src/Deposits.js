@@ -8,7 +8,6 @@ function Deposits(room) {
 	this.room = room;
 	this.deposits = this.room.find(FIND_MY_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_EXTENSION});
 	this.storage = this.room.find(FIND_MY_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_STORAGE});
-	this.energyCapacity = this.room.energyCapacityAvailable;
 
 	this.spawns = [];
 	for(var n in Game.spawns) {
@@ -84,6 +83,18 @@ Deposits.prototype.energy = function() {
 			energy = this.room.energyAvailable;
 
 			return energy;
+		}.bind(this)
+	);
+};
+
+Deposits.prototype.energyCapacity = function() {
+	return this.cache.remember(
+		'deposits-energy-capacity',
+		function() {
+			var energyCapacity = 0;
+			energyCapacity = this.room.energyCapacityAvailable;
+
+			return energyCapacity;
 		}.bind(this)
 	);
 };
