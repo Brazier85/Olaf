@@ -142,6 +142,7 @@ CreepFactory.prototype.new = function(creepType, spawn) {
 	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType}});
 
 	if ( spawning != OK) {
+		if(spawning == -6) { spawning = "NOT_ENOUGH_ENERGY" }
 		console.log('Can not build creep: ' + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + ' ERR: ' + spawning);
 	} else {
 		console.log("Spawning " + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + " with " + abilities);
