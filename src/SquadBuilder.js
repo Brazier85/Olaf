@@ -68,8 +68,6 @@ SquadBuilder.prototype.maxCreep = function(creepType) {
 	// WORK           100
 	// RANGED_ATTACK  150
     // HEAL           250
-    
-    console.log(creepType);
 
 	switch(creepType) {
 		case 'CreepSquadSolider':
