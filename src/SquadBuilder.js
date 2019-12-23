@@ -20,7 +20,7 @@ SquadBuilder.prototype.init = function() {
             if (Object.keys(squadMem.members).length < 3) {
                 var member = this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad);
                 if(member != false) {
-                    this.squadMem.members[member].id = "";
+                    squadMem.members[member].id = "";
                 }
             }
         }
@@ -36,8 +36,6 @@ SquadBuilder.prototype.build = function(spawn, creepType, squad) {
     var id = new Date().getTime();
 
     abilities = this.maxCreep(creepType);
-    console.log(abilities);
-
 	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, squad: squad}, dryRun: true});	
 
 	if ( spawning != OK) {
