@@ -65,7 +65,9 @@ SquadBuilder.prototype.maxCreep = function(creepType) {
 	// ATTACK         80
 	// WORK           100
 	// RANGED_ATTACK  150
-	// HEAL           250
+    // HEAL           250
+    
+    console.log(creepType);
 
 	switch(creepType) {
 		case 'CreepSquadSoldier':
@@ -91,7 +93,8 @@ SquadBuilder.prototype.maxCreep = function(creepType) {
 		maxEnergy = maxCost;
 	}
 
-	maxEnergy = maxEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
+    maxEnergy = maxEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
+    console.log(maxEnergy);
 	var upgradeCount = Math.floor(maxEnergy / _.sum(updatePackage.map((b) => BODYPART_COST[b])) );
 	updatePackage.forEach(update => {
 		for ( var i = 1; i <= upgradeCount; i++) {
