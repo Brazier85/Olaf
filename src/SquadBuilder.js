@@ -9,7 +9,7 @@ var SquadBuilder = function(room, depositManager, resourceManager) {
 	this.resourceManager = resourceManager;
 };
 
-SquadBuilder.prototype.init = function(squad, mem) {
+SquadBuilder.prototype.init = function(squad) {
     // Hier wird der Squad definiert
     if(!this.room.memory.squads) {
         this.room.memory.squads = {};

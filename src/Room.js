@@ -271,6 +271,7 @@ Room.prototype.buildSquad = function() {
 	}
 	if (this.room.memory.purpleSquad == "build") {
 		//this.SquadBuilder.build(COLOR_PURPLE);
+		this.room.memory.purpleSquad = this.squadBuilder.init(COLOR_PURPLE);
 	}
 }
 
