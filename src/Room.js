@@ -4,6 +4,7 @@ var CreepFactory = require('CreepFactory');
 var Population = require('Population');
 var Resources = require('Resources');
 var Constructions = require('Constructions');
+var SquadBuilder = require('SquadBuilder');
 
 const FLAG = {
 	SET: 1,
@@ -19,6 +20,7 @@ function Room(room, roomHandler) {
 	this.depositManager = new Deposits(this.room);
 	this.resourceManager = new Resources(this.room, this.population);
 	this.constructionManager = new Constructions(this.room);
+	this.squadBuilder = new SquadBuilder(this.room, this.depositManager.spawns[0], this.resourceManager);
 	this.population.typeDistribution.CreepBuilder.max = 4;
 	this.population.typeDistribution.CreepMiner.max = this.resourceManager.getSources().length*2;
 	if (this.depositManager.energyCapacity() > 1000) {
