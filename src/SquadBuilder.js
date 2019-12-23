@@ -24,17 +24,13 @@ SquadBuilder.prototype.init = function() {
     }
 }
 
-SquadBuilder.prototype.defineMember = function() {
-    var id = new Date().getTime();
-    return "CreepSquadSolider-" + id;
-}
-
 SquadBuilder.prototype.loadSquad = function(squad) {
     // Load Squad Members
 }
 
 SquadBuilder.prototype.build = function(spawn, creepType, squad) {
     // Build Squad
+    var id = new Date().getTime();
 
     abilities = this.maxCreep(creepType);
 
