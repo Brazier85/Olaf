@@ -36,6 +36,7 @@ SquadBuilder.prototype.build = function(spawn, creepType, squad) {
     var id = new Date().getTime();
 
     abilities = this.maxCreep(creepType);
+    console.log(abilities);
 
 	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, dryRun: true}});	
 
