@@ -20,7 +20,7 @@ function Room(room, roomHandler) {
 	this.depositManager = new Deposits(this.room);
 	this.resourceManager = new Resources(this.room, this.population);
 	this.constructionManager = new Constructions(this.room);
-	this.squadBuilder = new SquadBuilder(this.room, this.depositManager.spawns[0], this.resourceManager);
+	this.squadBuilder = new SquadBuilder(this.room, this.depositManager, this.resourceManager);
 	this.population.typeDistribution.CreepBuilder.max = 4;
 	this.population.typeDistribution.CreepMiner.max = this.resourceManager.getSources().length*2;
 	if (this.depositManager.energyCapacity() > 1000) {
@@ -266,12 +266,8 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 }
 
 Room.prototype.buildSquad = function() {
-	//var types = this.population.getTypes();
-	//console.log(types);
-	//var ctype = this.population.getType(types['CreepSquadSoldier']);
-	//console.log(ctype);
-	if (this.room.memory.purpleSquad == "build") {
-		this.creepFactory.new(ctype, this.depositManager.getSpawnDeposit(), 'purple');
+	if (this.room.memory.purpleSquad == "init") {
+		this.SquadBuilder.init('purpleSquad');
 	}
 }
 

@@ -9,6 +9,14 @@ var SquadBuilder = function(room, depositManager, resourceManager) {
 	this.resourceManager = resourceManager;
 };
 
+SquadBuilder.prototype.init = function(squad) {
+    // Hier wird der Squad definiert
+}
+
+SquadBuilder.prototype.loadSquad = function(squad) {
+    // Load Squad Members
+}
+
 SquadBuilder.prototype.build = function(spawn, creepType, squad) {
     // Build Squad
     var id = new Date().getTime();
