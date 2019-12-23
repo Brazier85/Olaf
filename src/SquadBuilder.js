@@ -26,6 +26,8 @@ SquadBuilder.prototype.init = function() {
                 } else {
                     squadMem.members[member] = {};
                 }
+            } else {
+                squadMem.status = "build";
             }
         }
     }
