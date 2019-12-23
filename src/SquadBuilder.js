@@ -12,7 +12,7 @@ var SquadBuilder = function(room, depositManager, resourceManager) {
 SquadBuilder.prototype.init = function() {
     // Hier wird der Squad definiert
     var squads = this.room.memory.squads;
-    squads.forEach(squad => {
+    for (var squad in squads) {
         var squadMem = this.room.squads[squad];
         if (squadMem.status == "init") {
             //Define Squad Members
