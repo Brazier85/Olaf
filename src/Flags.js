@@ -61,15 +61,15 @@ FlagsController.run = function(rooms, flags) {
         if(flag.secondaryColor != COLOR_RED) {
             console.log('Build purple squad')
             // Hier wird der Squad definiert
-            if(!this.room.memory.squads) {
-                this.room.memory.squads = {};
+            if(!flag.room.memory.squads) {
+                flag.room.memory.squads = {};
             }
             
-            if(!this.room.memory.squads[flag.secondaryColor]) {
-                this.room.memory.squads[flag.secondaryColor] = {}
+            if(!flag.room.memory.squads[flag.secondaryColor]) {
+                flag.room.memory.squads[flag.secondaryColor] = {}
             }
 
-            this.room.memory.squads[flag.secondaryColor].status = "init";
+            flag.room.memory.squads[flag.secondaryColor].status = "init";
             flag.remove();
         }
     })
