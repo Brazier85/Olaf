@@ -70,7 +70,7 @@ SquadBuilder.prototype.maxCreep = function(creepType) {
     console.log(creepType);
 
 	switch(creepType) {
-		case 'CreepSquadSoldier':
+		case 'CreepSquadSolider':
 			baseAbilities = [TOUGH, ATTACK, MOVE];
 			updatePackage = [TOUGH, ATTACK, MOVE];
 			maxCost = 800;
