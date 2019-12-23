@@ -38,7 +38,7 @@ SquadBuilder.prototype.build = function(spawn, creepType, squad) {
     abilities = this.maxCreep(creepType);
     console.log(abilities);
 
-	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, dryRun: true}});	
+	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, squad: squad}, dryRun: true});	
 
 	if ( spawning != OK) {
 		if(spawning == -6) { spawning = "NOT_ENOUGH_ENERGY" }
@@ -92,11 +92,8 @@ SquadBuilder.prototype.maxCreep = function(creepType) {
 	if (maxEnergy > maxCost) {
 		maxEnergy = maxCost;
     }
-    
-    console.log(baseAbilities);
 
     maxEnergy = maxEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
-    console.log(maxEnergy);
 	var upgradeCount = Math.floor(maxEnergy / _.sum(updatePackage.map((b) => BODYPART_COST[b])) );
 	updatePackage.forEach(update => {
 		for ( var i = 1; i <= upgradeCount; i++) {
