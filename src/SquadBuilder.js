@@ -17,7 +17,7 @@ SquadBuilder.prototype.init = function(squad, mem) {
     if(!room.memory.squads.squad) {
         this.room.memory.squads.squad = {}
     }
-    this.room.memory.mem = "build";
+    return "build";
 }
 
 SquadBuilder.prototype.loadSquad = function(squad) {
