@@ -21,7 +21,7 @@ SquadBuilder.prototype.init = function() {
                 this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad)
             }
         }
-    })
+    }
 }
 
 SquadBuilder.prototype.defineMember = function() {
