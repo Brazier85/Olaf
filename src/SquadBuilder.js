@@ -91,7 +91,9 @@ SquadBuilder.prototype.maxCreep = function(creepType) {
 	// calculate
 	if (maxEnergy > maxCost) {
 		maxEnergy = maxCost;
-	}
+    }
+    
+    console.log(baseAbilities);
 
     maxEnergy = maxEnergy - _.sum(baseAbilities.map((b) => BODYPART_COST[b]));
     console.log(maxEnergy);
