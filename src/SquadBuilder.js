@@ -13,7 +13,7 @@ SquadBuilder.prototype.init = function() {
     // Hier wird der Squad definiert
     var squads = this.room.memory.squads;
     for (var squad in squads) {
-        var squadMem = this.room.squads[squad];
+        var squadMem = this.room.memory.squads[squad];
         if (squadMem.status == "init") {
             //Define Squad Members
             squadMem.members = {};
