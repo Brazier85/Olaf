@@ -11,6 +11,8 @@ var SquadBuilder = function(room, depositManager, resourceManager) {
 
 SquadBuilder.prototype.init = function(squad) {
     // Hier wird der Squad definiert
+    this.room.memory.squad = {};
+    this.room.memory.squad.purple = {}
 }
 
 SquadBuilder.prototype.loadSquad = function(squad) {
