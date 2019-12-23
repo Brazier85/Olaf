@@ -6,6 +6,7 @@ var CreepBase = require('CreepBase');
 var CreepBuilder = require('CreepBuilder');
 var CreepMiner = require('CreepMiner');
 var CreepSoldier = require('CreepSoldier');
+var CreepSquadSoldier = require('CreepSquadSoldier');
 var CreepHealer = require('CreepHealer');
 var CreepScout = require('CreepScout');
 var CreepCarrier = require('CreepCarrier');
@@ -35,6 +36,9 @@ CreepFactory.prototype.load = function(creep) {
 		break;
 		case 'CreepSoldier':
 			loadedCreep = new CreepSoldier(creep);
+		break;
+		case 'CreepSquadSoldier':
+			loadedCreep = new CreepSquadSoldier(creep);
 		break;
 		case 'CreepHealer':
 			loadedCreep = new CreepHealer(creep);

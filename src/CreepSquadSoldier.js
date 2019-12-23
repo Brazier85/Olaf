@@ -17,7 +17,7 @@ CreepSquadSoldier.prototype.init = function() {
 
 CreepSquadSoldier.prototype.act = function() {
 
-    if(this.stayFlag()) { return true; }
+    if(this.squadFlag()) { return true; }
     if(this.attackHostiles()) { return true; }
     if(this.attackSpawns()) { return true; }
     
@@ -51,12 +51,12 @@ CreepSquadSoldier.prototype.attackSpawns = function() {
 }
 
 
-CreepSquadSoldier.prototype.stayFlag = function() {
-    var flags = this.creep.room.find(FIND_FLAGS);
+CreepSquadSoldier.prototype.squadFlag = function() {
+    var flags = Game.flags;
     var ok = false;
     if (flags.length) {
         flags.forEach(flag => {
-            if (flag.name == "StayHere") {
+            if (flag.secondaryColor == this.remember(squad)) {
                 this.creep.say("🏳️");
                 this.creep.moveTo(flag);
                 ok = true;
