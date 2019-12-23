@@ -14,6 +14,7 @@ SquadBuilder.prototype.init = function(squad) {
     if(!this.room.memory.squads) {
         this.room.memory.squads = {};
     }
+    console.log(squad);
     if(!this.room.memory.squads.squad) {
         this.room.memory.squads.squad = {}
     }
