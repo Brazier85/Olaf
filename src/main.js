@@ -29,7 +29,7 @@ for(var n in rooms) {
 	room.loadCreeps();
 	room.populate();
 	room.defendRoom();
-	//room.buildSquad();
+	room.buildSquad();
 
 	console.log(
 		room.room.name + ' | ' +
