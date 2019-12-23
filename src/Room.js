@@ -267,7 +267,7 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 
 Room.prototype.buildSquad = function() {
 	if (this.room.memory.purpleSquad == "init") {
-		this.SquadBuilder.init(COLOR_PURPLE);
+		this.squadBuilder.init(COLOR_PURPLE);
 	}
 }
 
