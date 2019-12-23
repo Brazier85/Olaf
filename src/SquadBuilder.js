@@ -16,7 +16,9 @@ SquadBuilder.prototype.init = function() {
         var squadMem = this.room.memory.squads[squad];
         if (squadMem.status == "init") {
             //Define Squad Members
-            squadMem.members = {};
+            if(!squadMem.members) {
+                squadMem.members = {};
+            }
             if (Object.keys(squadMem.members).length < 3) {
                 var member = this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad);
                 if(!member) {
