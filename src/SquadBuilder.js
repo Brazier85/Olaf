@@ -11,10 +11,10 @@ var SquadBuilder = function(room, depositManager, resourceManager) {
 
 SquadBuilder.prototype.init = function(squad, mem) {
     // Hier wird der Squad definiert
-    if(!room.memory.squads) {
+    if(!this.room.memory.squads) {
         this.room.memory.squads = {};
     }
-    if(!room.memory.squads.squad) {
+    if(!this.room.memory.squads.squad) {
         this.room.memory.squads.squad = {}
     }
     return "build";
