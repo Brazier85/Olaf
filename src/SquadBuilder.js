@@ -9,16 +9,24 @@ var SquadBuilder = function(room, depositManager, resourceManager) {
 	this.resourceManager = resourceManager;
 };
 
-SquadBuilder.prototype.init = function(squad) {
+SquadBuilder.prototype.init = function() {
     // Hier wird der Squad definiert
-    if(!this.room.memory.squads) {
-        this.room.memory.squads = {};
-    }
-    
-    if(!this.room.memory.squads[squad]) {
-        this.room.memory.squads[squad] = {}
-    }
-    return "build";
+    var squads = this.room.memory.squads;
+    squads.forEach(squad => {
+        var squadMem = this.room.squads[squad];
+        if (squadMem.status == "init") {
+            //Define Squad Members
+            squadMem.members = {};
+            if (this.squadMem.members.lenght < 3) {
+                this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad)
+            }
+        }
+    })
+}
+
+SquadBuilder.prototype.defineMember = function() {
+    var id = new Date().getTime();
+    return "CreepSquadSolider-" + id;
 }
 
 SquadBuilder.prototype.loadSquad = function(squad) {
@@ -27,10 +35,6 @@ SquadBuilder.prototype.loadSquad = function(squad) {
 
 SquadBuilder.prototype.build = function(spawn, creepType, squad) {
     // Build Squad
-    var id = new Date().getTime();
-
-    //For debug
-    creepType = 'CreepSquadSolider';
 
     abilities = this.maxCreep(creepType);
 
