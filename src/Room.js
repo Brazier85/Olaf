@@ -270,7 +270,7 @@ Room.prototype.buildSquad = function() {
 		this.squadBuilder.init(COLOR_PURPLE, purpleSquad);
 	}
 	if (this.room.memory.purpleSquad == "build") {
-		this.SquadBuilder.build(COLOR_PURPLE);
+		//this.SquadBuilder.build(COLOR_PURPLE);
 	}
 }
 
