@@ -18,7 +18,7 @@ SquadBuilder.prototype.init = function() {
             //Define Squad Members
             squadMem.members = {};
             if (Object.keys(squadMem.members).length < 3) {
-                //this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad)
+                this.squadMem.members[this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad)].id = "";
             }
         }
     }
@@ -34,13 +34,14 @@ SquadBuilder.prototype.build = function(spawn, creepType, squad) {
 
     abilities = this.maxCreep(creepType);
 
-	var spawning = spawn.spawnCreep(abilities, "CreepSquadSolider" + '-' + id, {memory: {role: 'CreepSquadSolider', sqaud: squad}});	
+	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, dryRun: true}});	
 
 	if ( spawning != OK) {
 		if(spawning == -6) { spawning = "NOT_ENOUGH_ENERGY" }
 		console.log('Can not build creep: ' + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + ' ERR: ' + spawning);
 	} else {
-		console.log("Spawning " + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + " with " + abilities);
+        console.log("Spawning " + creepType + " for " + _.sum(abilities.map((b) => BODYPART_COST[b])) + " with " + abilities);
+        return creepType + '-' + id;
 	}
 }
 
