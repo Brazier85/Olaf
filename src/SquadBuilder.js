@@ -19,10 +19,10 @@ SquadBuilder.prototype.init = function() {
             if(!squadMem.members) {
                 squadMem.members = {};
             }
-            if (Object.keys(squadMem.members).length < 3) {
+            if (Object.keys(squadMem.members).length < 1) {
                 var member = this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad);
                 if(!member) {
-                    // nix
+                    // nothing to do
                 } else {
                     squadMem.members[member] = {};
                 }
@@ -30,11 +30,21 @@ SquadBuilder.prototype.init = function() {
                 squadMem.status = "build";
             }
         }
+        if (squadMem.status == "build") {
+            this.loadSquad(squadMem);
+        }
     }
 }
 
 SquadBuilder.prototype.loadSquad = function(squad) {
     // Load Squad Members
+    for (var creep in squad.members) {
+        var loadedCreep = null;
+        var role = creep.memory.role;
+        if(!role) {
+            role = creep.name.split('-')[0];
+        }
+    }
 }
 
 SquadBuilder.prototype.build = function(spawn, creepType, squad) {
