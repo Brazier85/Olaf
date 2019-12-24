@@ -31,7 +31,7 @@ SquadBuilder.prototype.init = function() {
             }
         }
         if (squadMem.status == "build") {
-            this.loadSquad(squadMem);
+            //this.loadSquad(squadMem);
         }
     }
 }
