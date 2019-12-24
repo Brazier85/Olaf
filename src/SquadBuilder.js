@@ -37,14 +37,18 @@ SquadBuilder.prototype.init = function() {
 }
 
 SquadBuilder.prototype.loadSquad = function(squad) {
-    // Load Squad Members
-    for (var creep in squad.members) {
-		if(Game.creeps[creep]) {
-			this.loadCreep(creep);
-		} else {
-			console.log("Does not exist");
+	// Load Squad Members
+	if(Object.keys(squad.members).length > 0) {
+		for (var creep in squad.members) {
+			if(Game.creeps[creep]) {
+				this.loadCreep(creep);
+			} else {
+				console.log("Does not exist");
+			}
+			delete squad.members[creep];
 		}
-		delete squad.members[creep];
+	} else{
+		squad.status = "dead";
 	}
 }
 
