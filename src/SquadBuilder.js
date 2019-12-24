@@ -39,13 +39,12 @@ SquadBuilder.prototype.init = function() {
 SquadBuilder.prototype.loadSquad = function(squad) {
     // Load Squad Members
     for (var creep in squad.members) {
-		console.log(creep);
 		if(Game.creeps[creep]) {
-
+			this.loadCreep(creep);
 		} else {
 			console.log("Does not exist");
 		}
-		//this.loadCreep(creep);
+		delete squad.members[creep];
 	}
 }
 
