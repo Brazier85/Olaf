@@ -61,16 +61,13 @@ SquadBuilder.prototype.loadCreep = function(creep) {
 	}
 
 	switch(role) {
-		case 'CreepSSquadoldier':
+		case 'CreepSquadSoldier':
 			loadedCreep = new CreepSquadSoldier(creep);
 		break;
-		case 'CreepHealer':
+		case 'CreepSquadHealer':
 			loadedCreep = new CreepHealer(creep);
 		break;
-		case 'CreepCarrier':
-			loadedCreep = new CreepCarrier(creep, this.depositManager, this.resourceManager, this.constructionsManager);
-		break;
-		case 'CreepShooter':
+		case 'CreepSquadShooter':
 			loadedCreep = new CreepShooter(creep);
 		break;
 	}
