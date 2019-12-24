@@ -52,7 +52,7 @@ SquadBuilder.prototype.build = function(spawn, creepType, squad) {
     var id = new Date().getTime();
 
     abilities = this.maxCreep(creepType);
-	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, squad: squad}, dryRun: true});	
+	var spawning = spawn.spawnCreep(abilities, creepType + '-' + id, {memory: {role: creepType, squad: squad}});	
 
 	if ( spawning != OK) {
 		if(spawning == -6) { spawning = "NOT_ENOUGH_ENERGY" }
