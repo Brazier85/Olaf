@@ -31,7 +31,7 @@ SquadBuilder.prototype.init = function() {
             }
         }
         if (squadMem.status == "build") {
-            //this.loadSquad(squadMem);
+            this.loadSquad(squadMem);
         }
     }
 }
@@ -39,12 +39,43 @@ SquadBuilder.prototype.init = function() {
 SquadBuilder.prototype.loadSquad = function(squad) {
     // Load Squad Members
     for (var creep in squad.members) {
-        var loadedCreep = null;
-        var role = creep.memory.role;
-        if(!role) {
-            role = creep.name.split('-')[0];
-        }
-    }
+		console.log(creep);
+		//this.loadCreep(creep);
+	}
+}
+
+SquadBuilder.prototype.loadCreep = function(creep) {
+    // Load Squad Member
+	var loadedCreep = null;
+	var role = creep.memory.role;
+	if(!role) {
+		role = creep.name.split('-')[0];
+	}
+
+	switch(role) {
+		case 'CreepSSquadoldier':
+			loadedCreep = new CreepSquadSoldier(creep);
+		break;
+		case 'CreepHealer':
+			loadedCreep = new CreepHealer(creep);
+		break;
+		case 'CreepCarrier':
+			loadedCreep = new CreepCarrier(creep, this.depositManager, this.resourceManager, this.constructionsManager);
+		break;
+		case 'CreepShooter':
+			loadedCreep = new CreepShooter(creep);
+		break;
+	}
+
+	if(!loadedCreep) {
+		return false;
+	}
+
+	//Addes CreepBase to creep
+	HelperFunctions.extend(loadedCreep, CreepBase);
+	loadedCreep.init();
+
+	return loadedCreep;
 }
 
 SquadBuilder.prototype.build = function(spawn, creepType, squad) {

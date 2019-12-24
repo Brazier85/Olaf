@@ -44,7 +44,8 @@ function Population(room) {
 	for(var i = 0; i < this.creeps.length; i++) {
 		var creepType = this.creeps[i].memory.role;
 		if(!this.typeDistribution[creepType]) {
-			this.typeDistribution[creepType] = createTypeDistribution(creepType);
+			//this.typeDistribution[creepType] = createTypeDistribution(creepType);
+			continue; // Ignore this creep
 		}
 		this.typeDistribution[creepType].total++;
 	}

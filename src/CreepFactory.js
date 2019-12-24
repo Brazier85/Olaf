@@ -52,6 +52,7 @@ CreepFactory.prototype.load = function(creep) {
 		return false;
 	}
 
+	// Add CreepBase to creep
 	HelperFunctions.extend(loadedCreep, CreepBase);
 	loadedCreep.init();
 
