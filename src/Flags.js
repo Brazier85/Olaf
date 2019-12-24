@@ -57,9 +57,8 @@ FlagsController.run = function(rooms, flags) {
             flag.remove();
         }
 
-        // Build purple squad
+        // Build squads
         if(flag.secondaryColor != COLOR_RED) {
-            console.log('Build purple squad')
             // Define squads memory
             if(!flag.room.memory.squads) {
                 flag.room.memory.squads = {};
