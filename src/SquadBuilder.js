@@ -37,7 +37,7 @@ SquadBuilder.prototype.init = function() {
 		// If all squadmembers are dead delete squad in mem
 		if(squadMem.status == "dead") {
 			console.log("Squad dead");
-			delete squadMem;
+			delete this.room.memory.squads[squad];
 		}
 
     }
