@@ -68,7 +68,7 @@ FlagsController.run = function(rooms, flags) {
             if (!flag.room.memory.squads[flag.secondaryColor]) {
                 flag.room.memory.squads[flag.secondaryColor] = {}
                 flag.room.memory.squads[flag.secondaryColor].status = "init";
-                flag.room.memory.squads[flag.secondaryColor].size = 3;
+                flag.room.memory.squads[flag.secondaryColor].size = 1;
                 flag.room.memory.squads[flag.secondaryColor].flag = flag;
             }
         }
