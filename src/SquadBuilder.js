@@ -20,7 +20,7 @@ SquadBuilder.prototype.init = function() {
                 squadMem.members = {};
             }
             if (Object.keys(squadMem.members).length < squadMem.size) {
-                var member = this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad);
+                var member = this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSoldier', squad);
                 if(!member) {
                     // nothing to do
                 } else {
@@ -130,7 +130,7 @@ SquadBuilder.prototype.maxCreep = function(creepType) {
     // HEAL           250
 
 	switch(creepType) {
-		case 'CreepSquadSolider':
+		case 'CreepSquadSoldier':
 			baseAbilities = [TOUGH, ATTACK, MOVE];
 			updatePackage = [TOUGH, ATTACK, MOVE];
 			maxCost = 800;
