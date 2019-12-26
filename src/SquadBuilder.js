@@ -1,4 +1,5 @@
 // Squad Builder
+var HelperFunctions = require('HelperFunctions');
 
 var CreepSquadSoldier = require('CreepSquadSoldier');
 
