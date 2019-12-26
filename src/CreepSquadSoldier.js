@@ -56,6 +56,7 @@ CreepSquadSoldier.prototype.squadFlag = function() {
     // Save flag to creep -> for moving rooms
     if (!this.remember('flag')) {
         var squad = this.creep.room.memory.squads[this.remember("squad")]
+        console.log(squad);
         this.remember('flag', Game.flags[squad.flag]);
         console.log(this.remember('flag'));
     }
