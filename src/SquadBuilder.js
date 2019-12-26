@@ -83,6 +83,7 @@ SquadBuilder.prototype.loadCreep = function(creep) {
 	}
 
 	if(!loadedCreep) {
+		console.log("Could not load")
 		return false;
 	}
 
