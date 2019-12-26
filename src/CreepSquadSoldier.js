@@ -55,14 +55,14 @@ CreepSquadSoldier.prototype.attackSpawns = function() {
 CreepSquadSoldier.prototype.squadFlag = function() {
     // Save flag to creep -> for moving rooms
     if (!this.remember('flag')) {
-        var squad = this.creep.room.memory.squads[this.remember("squad")]
+        var squad = this.creep.room.memory.squads[this.remember('squad')]
         this.remember('flag', Game.flags[squad.flag.name]);
     }
     //Get flag and move to flag
     var flag = Game.flags[this.remember('flag').name];
     var ok = false;
-    console.log(this.remember(squad));
-    if (flag.secondaryColor == this.remember(squad)) {
+    console.log(this.remember('squad'));
+    if (flag.secondaryColor == this.remember('squad')) {
         this.creep.say("🏳️");
         this.creep.moveTo(flag.pos.x, flag.pos.y);
         ok = true;
