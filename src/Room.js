@@ -266,7 +266,7 @@ Room.prototype.doFlag = function(flagName, state, x, y) {
 }
 
 Room.prototype.buildSquad = function() {
-	this.room.memory.purpleSquad = this.squadBuilder.init();
+	this.squadBuilder.init();
 }
 
 module.exports = Room;
