@@ -31,7 +31,7 @@ SquadBuilder.prototype.init = function() {
             }
 		}
 		
-		if(squadMem.members) {
+		if(squadMem.members && (squadMem.status != "build" || squadMem.status != "init") ) {
 			// Load creeps
 			this.loadSquad(squadMem);
 		}
@@ -73,10 +73,10 @@ SquadBuilder.prototype.loadCreep = function(creep) {
 			loadedCreep = new CreepSquadSoldier(creep);
 		break;
 		case 'CreepSquadHealer':
-			loadedCreep = new CreepHealer(creep);
+			loadedCreep = new CreepSquadHealer(creep);
 		break;
 		case 'CreepSquadShooter':
-			loadedCreep = new CreepShooter(creep);
+			loadedCreep = new CreepSquadShooter(creep);
 		break;
 	}
 
