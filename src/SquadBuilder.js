@@ -31,15 +31,16 @@ SquadBuilder.prototype.init = function() {
             }
 		}
 		
-		// Load creeps
-        this.loadSquad(squadMem);
-		
-		// If all squadmembers are dead delete squad in mem
-		if(squadMem.status == "dead") {
-			console.log("Squad dead");
-			delete this.room.memory.squads[squad];
-		}
+		if(squadMem) {
+			// Load creeps
+			this.loadSquad(squadMem);
 
+			// If all squadmembers are dead delete squad in mem
+			if(squadMem.status == "dead") {
+				console.log("Squad dead");
+				delete this.room.memory.squads[squad];
+			}
+		}
     }
 }
 
