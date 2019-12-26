@@ -61,20 +61,18 @@ FlagsController.run = function(rooms, flags) {
         if(flag.secondaryColor != COLOR_RED) {
             // Define squads memory
 
-            if(!flag.room.memory) {
-                flag.room.memory = {};
-            }
+            var room = Game.rooms[flag.pos.roomName];
 
-            if(!flag.room.memory.squads) {
-                flag.room.memory.squads = {};
+            if(!room.memory.squads) {
+                room.memory.squads = {};
             }
             
             // Create squad memory
-            if (!flag.room.memory.squads[flag.secondaryColor]) {
-                flag.room.memory.squads[flag.secondaryColor] = {}
-                flag.room.memory.squads[flag.secondaryColor].status = "init";
-                flag.room.memory.squads[flag.secondaryColor].size = 1;
-                flag.room.memory.squads[flag.secondaryColor].flag = flag;
+            if (!room.memory.squads[flag.secondaryColor]) {
+                room.memory.squads[flag.secondaryColor] = {}
+                room.memory.squads[flag.secondaryColor].status = "init";
+                room.memory.squads[flag.secondaryColor].size = 1;
+                room.memory.squads[flag.secondaryColor].flag = flag;
             }
         }
     })
