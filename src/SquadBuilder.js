@@ -14,12 +14,12 @@ SquadBuilder.prototype.init = function() {
     var squads = this.room.memory.squads;
     for (var squad in squads) {
         var squadMem = this.room.memory.squads[squad];
-        if (squadMem.status == "init") {
+        if (squadMem.status == "build") {
             //Define Squad Members
             if(!squadMem.members) {
                 squadMem.members = {};
             }
-            if (Object.keys(squadMem.members).length < 1) {
+            if (Object.keys(squadMem.members).length < squadMem.size) {
                 var member = this.build(this.depositManager.getSpawnDeposit(), 'CreepSquadSolider', squad);
                 if(!member) {
                     // nothing to do
@@ -27,12 +27,18 @@ SquadBuilder.prototype.init = function() {
                     squadMem.members[member] = {};
                 }
             } else {
-                squadMem.status = "build";
+                squadMem.status = "alive";
             }
-        }
-        if (squadMem.status == "build") {
-            this.loadSquad(squadMem);
-        }
+		}
+		
+		// Load creeps
+        this.loadSquad(squadMem);
+		
+		// If all squadmembers are dead delete squad in mem
+		if(squadMem.status == "dead") {
+			delete squadMem;
+		}
+
     }
 }
 
