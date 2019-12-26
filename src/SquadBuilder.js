@@ -52,8 +52,8 @@ SquadBuilder.prototype.loadSquad = function(squad) {
 				this.loadCreep(Game.creeps[creep]);
 			} else {
 				console.log("Does not exist");
+				delete squad.members[creep];
 			}
-			delete squad.members[creep];
 		}
 	} else{
 		squad.status = "dead";
