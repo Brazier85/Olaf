@@ -208,7 +208,9 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		break;
 	}
 
-	console.log(this.room.controller.level);
+	if (this.room.controller.level > 5) {
+		maxCost = maxCost*2;
+	}
 
 	// calculate
 	if (maxEnergy > maxCost) {

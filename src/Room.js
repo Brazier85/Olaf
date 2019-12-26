@@ -34,8 +34,6 @@ function Room(room, roomHandler) {
 // Populate the room
 Room.prototype.populate = function() {
 
-	console.log(this.room.controller.level);
-
 	for(var i = 0; i < this.depositManager.spawns.length; i++) {
 
 		// Is there something spawning?
