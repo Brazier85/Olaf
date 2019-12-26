@@ -61,6 +61,7 @@ CreepSquadSoldier.prototype.squadFlag = function() {
     //Get flag and move to flag
     var flag = Game.flags[this.remember('flag').name];
     var ok = false;
+    console.log(flag);
     if (flag.secondaryColor == this.remember(squad)) {
         this.creep.say("🏳️");
         this.creep.moveTo(flag.pos.x, flag.pos.y);
