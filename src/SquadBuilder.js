@@ -49,6 +49,7 @@ SquadBuilder.prototype.loadSquad = function(squad) {
 	if(Object.keys(squad.members).length > 0) {
 		for (var creep in squad.members) {
 			if(Game.creeps[creep]) {
+				console.log("Load creep: " + creep);
 				this.loadCreep(Game.creeps[creep]);
 			} else {
 				console.log("Does not exist");
