@@ -10,7 +10,9 @@ CreepSquadSoldier.prototype.init = function() {
     this.remember('targetRoom', false);
     if(this.moveToNewRoom() == true) {
 		return;
-	}
+    }
+    
+    console.log("I am a "+this.remember('role'))
 
     this.act();
 };
