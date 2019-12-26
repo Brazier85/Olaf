@@ -11,8 +11,7 @@ CreepSquadSoldier.prototype.init = function() {
     if(this.moveToNewRoom() == true) {
 		return;
     }
-    
-    console.log("I am a "+this.remember('role'))
+
 
     this.act();
 };
@@ -58,6 +57,7 @@ CreepSquadSoldier.prototype.squadFlag = function() {
     if (!this.remember('flag')) {
         var squad = this.creep.room.memory.squads[this.remember("squad")]
         this.remember('flag', Game.flags[squad.flag]);
+        console.log(this.remember('flag'));
     }
     //Get flag and move to flag
     var flag = Game.flags[this.remember('flag')];

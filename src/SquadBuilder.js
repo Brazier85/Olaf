@@ -71,8 +71,7 @@ SquadBuilder.prototype.loadCreep = function(creep) {
 	if(!role) {
 		role = creep.name.split('-')[0];
 	}
-
-	console.log(role);
+	
 	switch(role) {
 		case 'CreepSquadSoldier':
 			console.log(creep);
