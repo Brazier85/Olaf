@@ -60,6 +60,11 @@ FlagsController.run = function(rooms, flags) {
         // Build squads
         if(flag.secondaryColor != COLOR_RED) {
             // Define squads memory
+
+            if(!flag.room.memory) {
+                flag.room.memory = {};
+            }
+
             if(!flag.room.memory.squads) {
                 flag.room.memory.squads = {};
             }
