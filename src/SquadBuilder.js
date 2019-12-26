@@ -31,7 +31,7 @@ SquadBuilder.prototype.init = function() {
             }
 		}
 		
-		if(squadMem.members && (squadMem.status != "build" || squadMem.status != "init") ) {
+		if(squadMem.members) {
 			// Load creeps
 			this.loadSquad(squadMem);
 		}
@@ -56,7 +56,9 @@ SquadBuilder.prototype.loadSquad = function(squad) {
 			}
 		}
 	} else{
-		squad.status = "dead";
+		if (squad.status != "build") {
+			squad.status = "dead";
+		}
 	}
 }
 
