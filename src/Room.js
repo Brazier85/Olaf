@@ -28,11 +28,13 @@ function Room(room, roomHandler) {
 	} else {
 		this.population.typeDistribution.CreepCarrier.max = this.population.typeDistribution.CreepBuilder.max+this.population.typeDistribution.CreepMiner.max;
 	}
-	this.creepFactory = new CreepFactory(this.depositManager, this.resourceManager, this.constructionManager, this.population, this.roomHandler);
+	this.creepFactory = new CreepFactory(this.depositManager, this.resourceManager, this.constructionManager, this.population, this.room);
 }
 
 // Populate the room
 Room.prototype.populate = function() {
+
+	console.log(this.room.controller.level);
 
 	for(var i = 0; i < this.depositManager.spawns.length; i++) {
 

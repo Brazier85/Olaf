@@ -12,12 +12,12 @@ var CreepScout = require('CreepScout');
 var CreepCarrier = require('CreepCarrier');
 var CreepShooter = require('CreepShooter');
 
-function CreepFactory(depositManager, resourceManager, constructionsManager, population, roomHandler) {
+function CreepFactory(depositManager, resourceManager, constructionsManager, population, room) {
 	this.depositManager = depositManager;
 	this.resourceManager = resourceManager;
 	this.population = population;
 	this.constructionsManager = constructionsManager;
-	this.roomHandler = roomHandler;
+	this.room = room;
 };
 
 CreepFactory.prototype.load = function(creep) {
@@ -207,6 +207,8 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 			maxCost = 1000;
 		break;
 	}
+
+	console.log(this.room.controller.level);
 
 	// calculate
 	if (maxEnergy > maxCost) {
