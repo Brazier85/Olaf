@@ -101,14 +101,16 @@ Population.prototype.getNextExpectedDeath = function() {
 		'creep-ttl',
 		function() {
 			var ttl = 100000;
+			var cname = "";
 			for(var i = 0; i < this.creeps.length; i++) {
 				var creep = this.creeps[i];
 
 				if(creep.ticksToLive < ttl) {
 					ttl = creep.ticksToLive;
+					cname = creep.name;
 				}
 
-				return ttl;
+				return ttl + ' ' +cname;
 			}
 		}.bind(this)
 	);
