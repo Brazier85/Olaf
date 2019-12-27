@@ -13,12 +13,12 @@ var DEPOSIT_FOR = {
 	POPULATION: 2
 }
 
-function CreepWorker(creep, depositManager, resourceManager, constructionsManager) {
+function CreepWorker(creep, depositManager, resourceManager, constructionManager) {
 	this.cache = new Cache();
 	this.creep = creep;
 	this.depositManager = depositManager;
 	this.resourceManager = resourceManager;
-	this.constructionsManager = constructionsManager;
+	this.constructionManager = constructionManager;
 	this.resource = false;
 	this.target = false;
 	this.position = false;
