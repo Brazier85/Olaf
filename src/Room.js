@@ -72,6 +72,44 @@ Room.prototype.loadCreeps = function() {
 };
 
 // Distribute the builders
+Room.prototype.distributeWorkers = function() {
+	var builderStats = this.population.getType('CreepWorker');
+	if(this.depositManager.spawns.length == 0) {
+		for(var i = 0; i < this.creeps.length; i++) {
+			var creep = this.creeps[i];
+			if(creep.remember('role') != 'CreepWorker') {
+				continue;
+			}
+
+			creep.remember('forceControllerUpgrade', false);
+		}
+		return;
+	}
+	if(builderStats <= 3) {
+		for(var i = 0; i < this.creeps.length; i++) {
+			var creep = this.creeps[i];
+			if(creep.remember('role') != 'CreepWorker') {
+				continue;
+			}
+			creep.remember('forceControllerUpgrade', false);
+		}
+	} else {
+		var c = 0;
+		for(var i = 0; i < this.creeps.length; i++) {
+			var creep = this.creeps[i];
+			if(creep.remember('role') != 'CreepWorker') {
+				continue;
+			}
+			creep.remember('forceControllerUpgrade', true);
+			c++;
+			if(c == 2) {
+				break;
+			}
+		}
+	}
+}
+
+// Distribute the builders
 Room.prototype.distributeBuilders = function() {
 	var builderStats = this.population.getType('CreepBuilder');
 	if(this.depositManager.spawns.length == 0) {

@@ -40,6 +40,8 @@ CreepWorker.prototype.init = function() {
 		this.remember('srcRoom', this.creep.room.name);
 	}
 
+	this.forceControllerUpgrade = this.remember('forceControllerUpgrade');
+
 	if(this.moveToNewRoom() == true) {
 		return;
 	}
@@ -101,11 +103,12 @@ CreepWorker.prototype.depositEnergy = function() {
 
 	if(this.depositFor == DEPOSIT_FOR.CONSTRUCTION) {
 		var site = false;
+		if(!this.forceControllerUpgrade) {
+			this.creep.say("🛠");
+			site = this.constructionManager.constructStructure(this);
+		}
 
-		this.creep.say("🛠");
-		site = this.constructionManager.constructStructure(this);
-
-		if(!site) {
+		if(!site || this.forceControllerUpgrade) {
 			this.creep.say("📡");
 			var site = this.constructionManager.getController();
 			if(this.creep.upgradeController(site) == ERR_NOT_IN_RANGE) {
