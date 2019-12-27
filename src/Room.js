@@ -21,11 +21,11 @@ function Room(room, roomHandler) {
 	this.resourceManager = new Resources(this.room, this.population);
 	this.constructionManager = new Constructions(this.room);
 	this.squadBuilder = new SquadBuilder(this.room, this.depositManager, this.resourceManager);
-	this.population.typeDistribution.CreepWorker.max = 2;
-	this.population.typeDistribution.CreepBuilder.max = 2;
+	this.population.typeDistribution.CreepWorker.max = 4;
+	this.population.typeDistribution.CreepBuilder.max = 0;
 	this.population.typeDistribution.CreepMiner.max = this.resourceManager.getSources().length*2;
 	if (this.depositManager.energyCapacity() > 1000) {
-		this.population.typeDistribution.CreepCarrier.max = this.population.typeDistribution.CreepMiner.max;
+		this.population.typeDistribution.CreepCarrier.max = 0
 	} else {
 		this.population.typeDistribution.CreepCarrier.max = this.population.typeDistribution.CreepBuilder.max+this.population.typeDistribution.CreepMiner.max;
 	}
