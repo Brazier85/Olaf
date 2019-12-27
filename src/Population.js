@@ -110,7 +110,7 @@ Population.prototype.getNextExpectedDeath = function() {
 					cname = creep.name;
 				}
 
-				return ttl + 'ticks -> ' +cname;
+				return ttl + ' ticks -> ' +cname.split('-')[0];
 			}
 		}.bind(this)
 	);
