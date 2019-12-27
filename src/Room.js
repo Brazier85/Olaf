@@ -21,8 +21,8 @@ function Room(room, roomHandler) {
 	this.resourceManager = new Resources(this.room, this.population);
 	this.constructionManager = new Constructions(this.room);
 	this.squadBuilder = new SquadBuilder(this.room, this.depositManager, this.resourceManager);
-	this.population.typeDistribution.CreepWorker.max = 1;
-	this.population.typeDistribution.CreepBuilder.max = 4;
+	this.population.typeDistribution.CreepWorker.max = 2;
+	this.population.typeDistribution.CreepBuilder.max = 2;
 	this.population.typeDistribution.CreepMiner.max = this.resourceManager.getSources().length*2;
 	if (this.depositManager.energyCapacity() > 1000) {
 		this.population.typeDistribution.CreepCarrier.max = this.population.typeDistribution.CreepMiner.max;
@@ -72,7 +72,7 @@ Room.prototype.loadCreeps = function() {
 	this.distributeCarriers();
 };
 
-// Distribute the builders
+// Distribute workers
 Room.prototype.distributeWorkers = function() {
 	var builderStats = this.population.getType('CreepWorker');
 	if(this.depositManager.spawns.length == 0) {
