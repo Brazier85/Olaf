@@ -65,6 +65,7 @@ Room.prototype.loadCreeps = function() {
 		}
 	}
 	this.distributeBuilders();
+	// this.distributeWorkers();
 	this.distributeResources('CreepMiner');
 	this.distributeResources('CreepCarrier');
 	this.distributeResources('CreepWorker');
