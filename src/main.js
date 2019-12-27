@@ -39,6 +39,7 @@ for(var n in rooms) {
 		room.population.getTotalPopulation() + '/' + room.population.getMaxPopulation() +
 		' (B' + room.population.getType('CreepBuilder').total + '/M' +
 		room.population.getType('CreepMiner').total + '/C' +
+		room.population.getType('CreepWorker').total + '/W' +
 		room.population.getType('CreepCarrier').total + '/S' +
 		room.population.getType('CreepSoldier').total + 
 		'), ' +
