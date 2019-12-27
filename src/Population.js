@@ -11,7 +11,7 @@ function Population(room) {
 			total: 0,
 			max: 5,
 			minExtensions: 0
-		},
+		},/*
 		CreepCarrier: {
 			total: 0,
 			max: 15,
@@ -21,7 +21,7 @@ function Population(room) {
 			total: 0,
 			max: 15,
 			minExtensions: 0
-		},
+		},*/
 		CreepWorker: {
 			total: 0,
 			max: 15,
