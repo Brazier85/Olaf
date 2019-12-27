@@ -22,6 +22,11 @@ function Population(room) {
 			max: 15,
 			minExtensions: 0
 		},
+		CreepWorker: {
+			total: 0,
+			max: 15,
+			minExtensions: 0
+		},
 		CreepHealer: {
 			total: 0,
 			max: 1,

@@ -10,6 +10,7 @@ var CreepSquadSoldier = require('CreepSquadSoldier');
 var CreepHealer = require('CreepHealer');
 var CreepScout = require('CreepScout');
 var CreepCarrier = require('CreepCarrier');
+var CreepWorker = require('CreepWorker');
 var CreepShooter = require('CreepShooter');
 
 function CreepFactory(depositManager, resourceManager, constructionsManager, population, room) {
@@ -42,6 +43,9 @@ CreepFactory.prototype.load = function(creep) {
 		break;
 		case 'CreepCarrier':
 			loadedCreep = new CreepCarrier(creep, this.depositManager, this.resourceManager, this.constructionsManager);
+		break;
+		case 'CreepWorker':
+			loadedCreep = new CreepWorker(creep, this.depositManager, this.resourceManager, this.constructionsManager);
 		break;
 		case 'CreepShooter':
 			loadedCreep = new CreepShooter(creep);
@@ -109,6 +113,9 @@ CreepFactory.prototype.new = function(creepType, spawn, addon) {
 			}
 		break;
 		case 'CreepCarrier':
+				abilities = this.maxCreep(creepType);
+		break;
+		case 'CreepWorker':
 				abilities = this.maxCreep(creepType);
 		break;
 		case 'CreepSoldier':
@@ -187,6 +194,11 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 		case 'CreepCarrier':
 			baseAbilities = [CARRY, MOVE];
 			updatePackage = [CARRY, MOVE];
+			maxCost = 1000;
+		break;
+		case 'CreepWorker':
+			baseAbilities = [WORK, CARRY, MOVE];
+			updatePackage = [WORK, CARRY, MOVE];
 			maxCost = 1000;
 		break;
 		case 'CreepSoldier':
