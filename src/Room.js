@@ -64,12 +64,12 @@ Room.prototype.loadCreeps = function() {
 			this.creeps.push(c);
 		}
 	}
-	this.distributeBuilders();
+	//this.distributeBuilders();
 	this.distributeWorkers();
 	this.distributeResources('CreepMiner');
-	this.distributeResources('CreepCarrier');
+	//this.distributeResources('CreepCarrier');
 	this.distributeResources('CreepWorker');
-	this.distributeCarriers();
+	//this.distributeCarriers();
 };
 
 // Distribute workers
