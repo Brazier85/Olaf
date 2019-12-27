@@ -197,8 +197,8 @@ CreepFactory.prototype.maxCreep = function(creepType) {
 			maxCost = 1000;
 		break;
 		case 'CreepWorker':
-			baseAbilities = [WORK, CARRY, MOVE, MOVE];
-			updatePackage = [WORK, CARRY, MOVE, MOVE];
+			baseAbilities = [WORK, CARRY, MOVE];
+			updatePackage = [WORK, CARRY, MOVE];
 			maxCost = 1600;
 		break;
 		case 'CreepSoldier':
