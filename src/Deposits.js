@@ -7,7 +7,7 @@ function Deposits(room) {
 	this.cache = new Cache();
 	this.room = room;
 	this.deposits = this.room.find(FIND_MY_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_EXTENSION});
-	this.storage = this.room.find(FIND_MY_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_STORAGE});
+	this.storage = this.room.find(FIND_MY_STRUCTURES,{filter: (s) => s.structureType == STRUCTURE_STORAGE})[0];
 
 	this.spawns = [];
 	for(var n in Game.spawns) {
