@@ -115,6 +115,16 @@ CreepWorker.prototype.depositEnergy = function() {
 				this.creep.moveTo(site);
 			}
 		}
+
+		if(!site) {
+			this.creep.say("🔋");
+			var storage = this.depositManager.storage;
+			if(storage) {
+				if(this.creep.transfer(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+					this.creep.moveTo(storage);
+				}
+			}
+		}
 	}
 
 	this.remember('last-action', ACTIONS.DEPOSIT);
