@@ -108,7 +108,7 @@ CreepWorker.prototype.depositEnergy = function() {
 		}
 
 		if(!site) {
-			var storage = this.depositManager.storage;
+			var storage = this.depositManager.storage[0];
 			if(storage) {
 				this.creep.say("🔋");
 				site = storage;
@@ -166,7 +166,7 @@ CreepWorker.prototype.pickupEnergy = function() {
 };
 CreepWorker.prototype.harvestEnergy = function() {
 
-	var storage = this.depositManager.storage;
+	var storage = this.depositManager.storage[0];
 
 	if(this.resource.energy == 0 && storage) {
 		if(this.creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
