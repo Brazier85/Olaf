@@ -28,24 +28,19 @@ Builds stuff, fills towers and will upgrade the controller
 
 Is carring energy form a to b.
 
-### CreepSoldier
+### CreepWorker
 
--
+The CreepWorker is a combination of builder and carrier. The worker transports energy from the miners to storage. If storage is full it will build stuff or upgrade the controller.
+
+* Collects energy from miners
+* Transports energy to spawn and extrensions
+* Builds stuff
+* Upgrades controller
 
 ### CreepShooter
 
--
+A range creep solidier
 
 ### CreepHealer
 
 -
-
-### Ideas for the future
-
-* Combine CreepCarrier and CreepBuilder into 1 creep
-
-#### CreepWorker
-
-* Collects energy from miners
-* Transports energy to spawn
-* Builds stuff
