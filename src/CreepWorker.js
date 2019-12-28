@@ -169,8 +169,6 @@ CreepWorker.prototype.harvestEnergy = function() {
 	var storage = this.depositManager.storage;
 	var deposit = false;
 
-	console.log(deposit);
-
 	if( (this.depositManager.energy() / this.depositManager.energyCapacity() ) < 0.9) {
 		deposit = true;
 	}
