@@ -116,6 +116,7 @@ CreepWorker.prototype.depositEnergy = function() {
 			}
 		}
 
+		/*
 		if(!site) {
 			this.creep.say("🔋");
 			var storage = this.depositManager.storage;
@@ -124,7 +125,7 @@ CreepWorker.prototype.depositEnergy = function() {
 					this.creep.moveTo(storage);
 				}
 			}
-		}
+		}*/
 	}
 
 	this.remember('last-action', ACTIONS.DEPOSIT);
