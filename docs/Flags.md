@@ -4,12 +4,12 @@
 
 | Color  | Type |
 | ------------- | ------------- |
-| WHITE  | Defensive  |
-| ORANGE  | Room positions |
-| BLUE  | Build stuff |
-| RED  | Agressive stuff |
+| [WHITE](#WhiteFlags)  | Defensive  |
+| [ORANGE](#OrangeFlags)  | Room positions |
+| [BLUE](#BlueFlags)  | Build stuff |
+| [RED](#RedFlags)  | Agressive stuff |
 
-### White flags
+### WhiteFlags
 
 Used to define defensive positions
 
@@ -18,7 +18,7 @@ Used to define defensive positions
 | WHITE + RED  | Assembly point |
 | WHITE + PURPLE  | Defensive point |
 
-### Orange flags
+### OrangeFlags
 
 Used to define economy based positions
 
@@ -28,7 +28,7 @@ Used to define economy based positions
 | ORANGE + PURPLE | Harvest pos2 for source |
 | ORANGE + BLUE | Graveyard |
 
-### Blue flags
+### BlueFlags
 
 Used to define building positions
 
@@ -36,7 +36,7 @@ Used to define building positions
 | ------------- | ------------- |
 | BLUE + BLUE  | Road from spawn to flag |
 
-### RED flags
+### RedFlags
 
 Used for agressive things
 

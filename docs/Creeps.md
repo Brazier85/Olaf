@@ -4,13 +4,13 @@
 
 | Name  | Function |
 | ------------- | ------------- |
-| CreepMiner  | Mines resources  |
-| CreepBuilder  | Builds stuff |
-| CreepCarrier  | Carries energy from a to b |
-| CreepWorker  | Combines CreepBuilder and CreepCarrier |
-| CreepSoldier  | Mele attacker |
-| CreepShooter  | Range attacker |
-| CreepHealer  | Heals other creeps |
+| [CreepMiner](#CreepMiner) | Mines resources  |
+| [CreepBuilder](#CreepBuilder) | Builds stuff |
+| [CreepCarrier](#CreepCarrier) | Carries energy from a to b |
+| [CreepWorker](#CreepWorker) | Combines CreepBuilder and CreepCarrier |
+| [CreepSoldier](#CreepSoldier) | Mele attacker |
+| [CreepShooter](#CreepShooter) | Range attacker |
+| [CreepHealer](#CreepHealer) | Heals other creeps |
 
 ### CreepMiner
 
@@ -21,11 +21,11 @@ Functions:
 * If there is a carrier in range he will stay at its position and wait
 * If there is a contianer in range 0 it will drop its resources
 
-### CreepBuilder
+### CreepBuilder (OLD)
 
 Builds stuff, fills towers and will upgrade the controller
 
-### CreepCarrier
+### CreepCarrier (OLD)
 
 Is carring energy form a to b.
 

@@ -81,7 +81,6 @@ CreepWorker.prototype.act = function() {
 		this.harvestEnergy();
 	} else {
 		this.depositEnergy();
-
 	}
 };
 
@@ -108,6 +107,17 @@ CreepWorker.prototype.depositEnergy = function() {
 			site = this.constructionManager.constructStructure(this);
 		}
 
+		if(!site) {
+			var storage = this.depositManager.storage;
+			if(storage) {
+				this.creep.say("🔋");
+				site = storage;
+				if(this.creep.transfer(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+					this.creep.moveTo(storage);
+				}
+			}
+		}
+
 		if(!site || this.forceControllerUpgrade) {
 			this.creep.say("📡");
 			var site = this.constructionManager.getController();
@@ -115,17 +125,6 @@ CreepWorker.prototype.depositEnergy = function() {
 				this.creep.moveTo(site);
 			}
 		}
-
-		/*
-		if(!site) {
-			this.creep.say("🔋");
-			var storage = this.depositManager.storage;
-			if(storage) {
-				if(this.creep.transfer(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-					this.creep.moveTo(storage);
-				}
-			}
-		}*/
 	}
 
 	this.remember('last-action', ACTIONS.DEPOSIT);
@@ -167,39 +166,48 @@ CreepWorker.prototype.pickupEnergy = function() {
 };
 CreepWorker.prototype.harvestEnergy = function() {
 
-	if(this.creep.pos.inRangeTo(this.resource, 2)) {
-		this.creep.say("⚡️");
-		var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES, 4, {
-			filter: function(s) {
-					if ((s.structureType == STRUCTURE_CONTAINER) && (s.store[RESOURCE_ENERGY] > 0)) {
-						return true;
-					} else {
-						return false;
+	var storage = this.depositManager.storage;
+
+	if(this.resource.energy == 0 && storage) {
+		if(this.creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+			this.creep.moveTo(storage);
+		}
+	} else {
+		if(this.creep.pos.inRangeTo(this.resource, 2)) {
+			this.creep.say("⚡️");
+			var containerNear = this.creep.pos.findInRange(FIND_STRUCTURES, 4, {
+				filter: function(s) {
+						if ((s.structureType == STRUCTURE_CONTAINER) && (s.store[RESOURCE_ENERGY] > 0)) {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				});
+			if(containerNear.length) {
+				for(var n in containerNear) {
+					if(this.creep.withdraw(containerNear[n], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+						this.creep.moveTo(containerNear[n]);
 					}
 				}
-			});
-		if(containerNear.length) {
-			for(var n in containerNear) {
-				if(this.creep.withdraw(containerNear[n], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-					this.creep.moveTo(containerNear[n]);
-				}
-			}
-		} else {
-			var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 2); //Search for miner
-			if(creepsNear.length){
-				for(var n in creepsNear){
-					// If miner -> get resource
-					if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
-						if (creepsNear[n].transfer(this.creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-							this.creep.moveTo(creepsNear[n]);
+			} else {
+				var creepsNear = this.creep.pos.findInRange(FIND_MY_CREEPS, 2); //Search for miner
+				if(creepsNear.length){
+					for(var n in creepsNear){
+						// If miner -> get resource
+						if(creepsNear[n].memory.role === 'CreepMiner' && creepsNear[n].store[RESOURCE_ENERGY] != 0){
+							if (creepsNear[n].transfer(this.creep, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+								this.creep.moveTo(creepsNear[n]);
+							}
 						}
 					}
 				}
 			}
+		} else {
+			this.creep.moveTo(this.resource);
 		}
-	} else {
-		this.creep.moveTo(this.resource);
 	}
+
 	this.remember('last-action', ACTIONS.HARVEST);
 	this.forget('closest-deposit');
 }
