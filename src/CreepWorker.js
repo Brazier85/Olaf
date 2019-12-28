@@ -169,7 +169,9 @@ CreepWorker.prototype.harvestEnergy = function() {
 	var storage = this.depositManager.storage;
 	var deposit = this.getDeposit();
 
-	if(this.resource.energy == 0 && storage && deposit) {
+	console.log(deposit);
+
+	if( storage && ( (this.resource.energy == 0 && deposit) || ( this.resource.energy == 0 && this.forceControllerUpgrade) ) ) {
 		if(this.creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(storage);
 		}
