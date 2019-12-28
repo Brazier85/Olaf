@@ -107,7 +107,7 @@ CreepWorker.prototype.depositEnergy = function() {
 			site = this.constructionManager.constructStructure(this);
 		}
 
-		if(!site) {
+		if(!site && !this.forceControllerUpgrade) {
 			var storage = this.depositManager.storage;
 			if(storage) {
 				this.creep.say("🔋");
