@@ -7,6 +7,7 @@
 | CreepMiner  | Mines resources  |
 | CreepBuilder  | Builds stuff |
 | CreepCarrier  | Carries energy from a to b |
+| CreepWorker  | Combines CreepBuilder and CreepCarrier |
 | CreepSoldier  | Mele attacker |
 | CreepShooter  | Range attacker |
 | CreepHealer  | Heals other creeps |
@@ -43,4 +44,4 @@ A range creep solidier
 
 ### CreepHealer
 
--
+Heals damaged creeps
