@@ -175,7 +175,7 @@ CreepWorker.prototype.harvestEnergy = function() {
 		deposit = true;
 	}
 
-	if( storage && ( (this.resource.energy == 0 && deposit) || ( this.resource.energy == 0 && this.forceControllerUpgrade) ) ) {
+	if( storage && this.resource.energy == 0 && ( deposit || this.forceControllerUpgrade ) ) {
 		if(this.creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(storage);
 		}
