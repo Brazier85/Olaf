@@ -72,7 +72,7 @@ CreepFactory.prototype.new = function(creepType, spawn, addon) {
 	if(this.population.getTotalPopulation() < 5){
 		level = 1;
 	}
-	if(this.population.getTotalPopulation() > 10){
+	if(this.population.getTotalPopulation() > 8){
 		level = 5;
 	}
 	// TOUGH          10
