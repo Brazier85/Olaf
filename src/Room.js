@@ -97,9 +97,9 @@ Room.prototype.distributeWorkers = function() {
 	} else {
 		var c = 0;
 		for(var i = 0; i < this.creeps.length; i++) {
-			//var creep = this.creeps[i];
+			var creep = this.creeps[i];
 			// Select random creep
-			var creep = Math.floor(Math.random() * creeps.length)
+			//var creep = Math.floor(Math.random() * creeps.length)
 			if(creep.remember('role') != 'CreepWorker') {
 				continue;
 			}
