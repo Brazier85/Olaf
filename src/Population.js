@@ -27,7 +27,7 @@ function Population(room) {
 			max: 15,
 			minExtensions: 0
 		},
-		CreepHealer: {
+		/*CreepHealer: {
 			total: 0,
 			max: 1,
 			minExtensions: 2
@@ -41,7 +41,7 @@ function Population(room) {
 			total: 0,
 			max: 1,
 			minExtensions: 10
-		}
+		}*/
 	};
 
 	this.creeps = this.room.find(FIND_MY_CREEPS);
