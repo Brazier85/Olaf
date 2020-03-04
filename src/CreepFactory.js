@@ -117,7 +117,7 @@ CreepFactory.prototype.new = function(creepType, spawn, addon) {
 		break;
 		case 'CreepWorker':
 			if(level <= 5) {
-				abilities = [WORK,CARRY.MOVE]
+				abilities = [WORK, CARRY, MOVE]
 			} else {
 				abilities = this.maxCreep(creepType);
 			}
