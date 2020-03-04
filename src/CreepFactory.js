@@ -69,7 +69,7 @@ CreepFactory.prototype.new = function(creepType, spawn, addon) {
 	var creepLevel = this.population.getTotalPopulation() / this.population.populationLevelMultiplier;
 	var resourceLevel = this.depositManager.getFullDeposits().length / 5;
 	var level = Math.floor(creepLevel + resourceLevel);
-	if(this.population.getTotalPopulation() < 5){
+	if(this.population.getTotalPopulation() < 6){
 		level = 1;
 	}
 	if(this.population.getTotalPopulation() > 8){
@@ -116,8 +116,11 @@ CreepFactory.prototype.new = function(creepType, spawn, addon) {
 				abilities = this.maxCreep(creepType);
 		break;
 		case 'CreepWorker':
-			if(level <= 5) {
+			if(level <= 3) {
 				abilities = [WORK, CARRY, MOVE]
+			} else
+			if (level <= 5) {
+				abilities = [WORK, CARRY, CARRY, MOVE, MOVE]
 			} else {
 				abilities = this.maxCreep(creepType);
 			}
